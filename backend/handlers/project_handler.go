@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"myportfolio-backend/models"
+	"myportfolio-backend/services"
 	"myportfolio-backend/utils"
 	"net/http"
 	"strconv"
@@ -13,7 +14,8 @@ import (
 )
 
 type ProjectHandler struct {
-	DB *gorm.DB
+	DB      *gorm.DB
+	Storage *services.StorageService
 }
 
 // GET /api/projects - Public
@@ -248,51 +250,58 @@ func (h *ProjectHandler) DeleteProject(c *gin.Context) {
 
 // POST /api/admin/projects/upload-image - Protected
 func (h *ProjectHandler) UploadImage(c *gin.Context) {
-	file, err := c.FormFile("image")
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"success": false,
-			"error":   "No file uploaded",
-		})
-		return
-	}
+    file, err := c.FormFile("image")
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{
+            "success": false,
+            "error":   "No file uploaded",
+        })
+        return
+    }
 
-	// Validasi ukuran (max 10MB)
-	if file.Size > 10<<20 {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"success": false,
-			"error":   "File too large (max 10MB)",
-		})
-		return
-	}
+    // Validasi ukuran (max 10MB)
+    if file.Size > 10<<20 {
+        c.JSON(http.StatusBadRequest, gin.H{
+            "success": false,
+            "error":   "File too large (max 10MB)",
+        })
+        return
+    }
 
-	// Validasi tipe file
-	ext := strings.ToLower(file.Filename[strings.LastIndex(file.Filename, "."):])
-	allowed := map[string]bool{".jpg": true, ".jpeg": true, ".png": true, ".gif": true}
-	if !allowed[ext] {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"success": false,
-			"error":   "Invalid file type. Allowed: jpg, jpeg, png, gif",
-		})
-		return
-	}
+    // Validasi tipe file
+    ext := strings.ToLower(file.Filename[strings.LastIndex(file.Filename, "."):])
+    allowed := map[string]bool{".jpg": true, ".jpeg": true, ".png": true, ".gif": true, ".webp": true}
+    if !allowed[ext] {
+        c.JSON(http.StatusBadRequest, gin.H{
+            "success": false,
+            "error":   "Invalid file type. Allowed: jpg, jpeg, png, gif, webp",
+        })
+        return
+    }
 
-	// Generate unique filename
-	filename := time.Now().Format("20060102150405") + "_" + file.Filename
-	uploadPath := "./uploads/projects/" + filename
+    // Buka file
+    src, err := file.Open()
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{
+            "success": false,
+            "error":   "Failed to open file",
+        })
+        return
+    }
+    defer src.Close()
 
-	// Save file
-	if err := c.SaveUploadedFile(file, uploadPath); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"success": false,
-			"error":   "Failed to save file",
-		})
-		return
-	}
+    // Upload ke Supabase Storage
+    imageURL, err := h.Storage.UploadFile(h.Storage.ProjectsBucket, src, file.Filename)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{
+            "success": false,
+            "error":   "Failed to upload to Supabase: " + err.Error(),
+        })
+        return
+    }
 
-	imageURL := "/uploads/projects/" + filename
-	c.JSON(http.StatusOK, gin.H{
-		"success":   true,
-		"image_url": imageURL,
-	})
+    c.JSON(http.StatusOK, gin.H{
+        "success":   true,
+        "image_url": imageURL,
+    })
 }

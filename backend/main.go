@@ -12,6 +12,8 @@ import (
 	"myportfolio-backend/database"
 	"myportfolio-backend/handlers"
 	"myportfolio-backend/middleware"
+	"myportfolio-backend/services"
+    
 )
 
 func main() {
@@ -24,12 +26,30 @@ func main() {
 	database.Connect()
 	database.Migrate()
 
+    // Initialize Storage Service
+    storageService, err := services.NewStorageService()
+    if err != nil {
+        log.Printf("Warning: Failed to initialize storage service: %v", err)
+    } else {
+        // Inisialisasi buckets
+        storageService.InitBuckets()
+        log.Println("Supabase Storage initialized")
+    }
+
+    // Initialize handlers with database AND storage
+    authHandler := &handlers.AuthHandler{DB: database.DB}
+    projectHandler := &handlers.ProjectHandler{DB: database.DB, Storage: storageService}
+    experienceHandler := &handlers.ExperienceHandler{DB: database.DB}
+    categoryHandler := &handlers.CategoryHandler{DB: database.DB}
+    contactHandler := &handlers.ContactHandler{DB: database.DB}
+    certificateHandler := &handlers.CertificateHandler{DB: database.DB, Storage: storageService}
+
 	// Initialize router
 	router := gin.Default()
 
 	// CORS configuration
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5176", "https://my-portfolio-kirru.vercel.app"},
+		AllowOrigins:     []string{"http://localhost:5176", "https://my-portfolio-sigma-murex-62.vercel.app"},
 		AllowMethods:     []string{"*"},
 		AllowHeaders:     []string{"*"},
 		ExposeHeaders:    []string{"Content-Length", "Content-Type"},
@@ -39,14 +59,6 @@ func main() {
 
 	// Serve static files
 	router.Static("/uploads", "./uploads")
-
-	// Initialize handlers with database
-	authHandler := &handlers.AuthHandler{DB: database.DB}
-	projectHandler := &handlers.ProjectHandler{DB: database.DB}
-	experienceHandler := &handlers.ExperienceHandler{DB: database.DB}
-	categoryHandler := &handlers.CategoryHandler{DB: database.DB}
-	contactHandler := &handlers.ContactHandler{DB: database.DB}
-	certificateHandler := &handlers.CertificateHandler{DB: database.DB}
 
 	// Public routes
 	public := router.Group("/api")

@@ -7,11 +7,13 @@ import (
     "strings"
     "github.com/gin-gonic/gin"
     "gorm.io/gorm"
+	"myportfolio-backend/services"
     "myportfolio-backend/models"
 )
 
 type CertificateHandler struct {
     DB *gorm.DB
+	Storage *services.StorageService
 }
 
 // GET /api/certificates - Public
@@ -221,20 +223,27 @@ func (h *CertificateHandler) UploadImage(c *gin.Context) {
         return
     }
 
-    // Generate unique filename
-    filename := "cert_" + time.Now().Format("20060102150405") + "_" + file.Filename
-    uploadPath := "./uploads/certificates/" + filename
-
-    // Save file
-    if err := c.SaveUploadedFile(file, uploadPath); err != nil {
+    // Buka file
+    src, err := file.Open()
+    if err != nil {
         c.JSON(http.StatusInternalServerError, gin.H{
             "success": false,
-            "error":   "Failed to save file",
+            "error":   "Failed to open file",
+        })
+        return
+    }
+    defer src.Close()
+
+    // Upload ke Supabase Storage
+    imageURL, err := h.Storage.UploadFile(h.Storage.CertBucket, src, file.Filename)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{
+            "success": false,
+            "error":   "Failed to upload to Supabase: " + err.Error(),
         })
         return
     }
 
-    imageURL := "/uploads/certificates/" + filename
     c.JSON(http.StatusOK, gin.H{
         "success":   true,
         "image_url": imageURL,
