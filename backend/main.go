@@ -51,7 +51,7 @@ func main() {
 
 	// CORS configuration
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5176", "https://my-portfolio-sigma-murex-62.vercel.app"},
+		AllowOrigins:     []string{"http://localhost:5176", "https://my-portfolio-sigma-murex-62.vercel.app", "https://my-portfolio-production-430f.up.railway.app",},
 		AllowMethods:     []string{"*"},
 		AllowHeaders:     []string{"*"},
 		ExposeHeaders:    []string{"Content-Length", "Content-Type"},
@@ -61,6 +61,7 @@ func main() {
 
 	// Serve static files
 	router.Static("/uploads", "./uploads")
+    
 
 	// Public routes
 	public := router.Group("/api")
