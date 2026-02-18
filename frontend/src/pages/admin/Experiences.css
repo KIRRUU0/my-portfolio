@@ -1,0 +1,23 @@
+/* Reuse styles from Projects.css */
+.experience-form {
+    max-width: 800px;
+}
+
+.experiences-table {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+/* Additional styles specific to experiences */
+.experiences-table td:first-child {
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .experiences-table {
+        min-width: 600px;
+    }
+}

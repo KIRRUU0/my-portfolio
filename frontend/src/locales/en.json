@@ -1,0 +1,85 @@
+{
+    "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome back",
+        "subtitle": "Here's what's happening with your portfolio",
+        "logout": "Logout"
+    },
+    "analytics": {
+        "totalViews": "Total Views",
+        "uniqueVisitors": "Unique Visitors",
+        "avgTimeOnSite": "Avg. Time on Site",
+        "bounceRate": "Bounce Rate",
+        "vsLastMonth": "vs last month",
+        "mostViewedProjects": "Most Viewed Projects",
+        "views": "views",
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "line": "Line",
+        "bar": "Bar"
+    },
+    "projects": {
+        "title": "Projects",
+        "total": "Total Projects",
+        "published": "Published",
+        "draft": "Draft",
+        "featured": "Featured",
+        "recent": "Recent Projects",
+        "viewAll": "View all",
+        "new": "New Project",
+        "edit": "Edit Project",
+        "delete": "Delete",
+        "noProjects": "No projects yet",
+        "createFirst": "Create your first project",
+        "techStack": "Tech Stack",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "experiences": {
+        "title": "Work Experiences",
+        "total": "Total Experiences",
+        "current": "Current",
+        "totalYears": "Total Years",
+        "recent": "Recent Experiences",
+        "viewAll": "View all",
+        "new": "New Experience",
+        "edit": "Edit Experience",
+        "delete": "Delete",
+        "noExperiences": "No experiences yet",
+        "addFirst": "Add your first experience",
+        "company": "Company",
+        "position": "Position",
+        "location": "Location",
+        "period": "Period",
+        "present": "Present"
+    },
+    "contacts": {
+        "title": "Contact Messages",
+        "total": "Total Messages",
+        "unread": "Unread",
+        "read": "Read",
+        "all": "All",
+        "from": "From",
+        "email": "Email",
+        "phone": "Phone",
+        "date": "Date",
+        "message": "Message",
+        "replyViaWA": "Reply via WhatsApp",
+        "noMessages": "No messages",
+        "selectMessage": "Select a message to view details"
+    },
+    "quickActions": {
+        "title": "Quick Actions",
+        "newProject": "+ New Project",
+        "newExperience": "+ New Experience"
+    },
+    "theme": {
+        "light": "Light",
+        "dark": "Dark"
+    },
+    "language": {
+        "en": "English",
+        "id": "Indonesia"
+    }
+}

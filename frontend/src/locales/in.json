@@ -1,0 +1,85 @@
+{
+    "dashboard": {
+        "title": "Dasbor",
+        "welcome": "Selamat datang",
+        "subtitle": "Berikut ringkasan aktivitas portofolio Anda",
+        "logout": "Keluar"
+    },
+    "analytics": {
+        "totalViews": "Total Kunjungan",
+        "uniqueVisitors": "Pengunjung Unik",
+        "avgTimeOnSite": "Rata-rata Waktu",
+        "bounceRate": "Persentase Bounce",
+        "vsLastMonth": "vs bulan lalu",
+        "mostViewedProjects": "Proyek Terpopuler",
+        "views": "kunjungan",
+        "daily": "Harian",
+        "weekly": "Mingguan",
+        "monthly": "Bulanan",
+        "line": "Garis",
+        "bar": "Batang"
+    },
+    "projects": {
+        "title": "Proyek",
+        "total": "Total Proyek",
+        "published": "Terbit",
+        "draft": "Konsep",
+        "featured": "Unggulan",
+        "recent": "Proyek Terbaru",
+        "viewAll": "Lihat semua",
+        "new": "Proyek Baru",
+        "edit": "Edit Proyek",
+        "delete": "Hapus",
+        "noProjects": "Belum ada proyek",
+        "createFirst": "Buat proyek pertama Anda",
+        "techStack": "Teknologi",
+        "status": "Status",
+        "actions": "Aksi"
+    },
+    "experiences": {
+        "title": "Pengalaman Kerja",
+        "total": "Total Pengalaman",
+        "current": "Saat Ini",
+        "totalYears": "Total Tahun",
+        "recent": "Pengalaman Terbaru",
+        "viewAll": "Lihat semua",
+        "new": "Tambah Pengalaman",
+        "edit": "Edit Pengalaman",
+        "delete": "Hapus",
+        "noExperiences": "Belum ada pengalaman",
+        "addFirst": "Tambah pengalaman pertama Anda",
+        "company": "Perusahaan",
+        "position": "Posisi",
+        "location": "Lokasi",
+        "period": "Periode",
+        "present": "Sekarang"
+    },
+    "contacts": {
+        "title": "Pesan Masuk",
+        "total": "Total Pesan",
+        "unread": "Belum Dibaca",
+        "read": "Sudah Dibaca",
+        "all": "Semua",
+        "from": "Dari",
+        "email": "Email",
+        "phone": "Telepon",
+        "date": "Tanggal",
+        "message": "Pesan",
+        "replyViaWA": "Balas via WhatsApp",
+        "noMessages": "Tidak ada pesan",
+        "selectMessage": "Pilih pesan untuk melihat detail"
+    },
+    "quickActions": {
+        "title": "Aksi Cepat",
+        "newProject": "+ Proyek Baru",
+        "newExperience": "+ Pengalaman Baru"
+    },
+    "theme": {
+        "light": "Terang",
+        "dark": "Gelap"
+    },
+    "language": {
+        "en": "Inggris",
+        "id": "Indonesia"
+    }
+}

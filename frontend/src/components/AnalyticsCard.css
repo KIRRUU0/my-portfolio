@@ -1,0 +1,52 @@
+.analytics-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.2s;
+}
+
+.analytics-card:hover {
+    border-color: #999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.analytics-title {
+    margin: 0 0 12px;
+    color: #999;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.analytics-value {
+    margin: 0 0 12px;
+    font-size: 36px;
+    color: #333;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.analytics-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.analytics-change {
+    font-weight: 500;
+}
+
+.analytics-change.positive {
+    color: #22c55e;
+}
+
+.analytics-change.negative {
+    color: #ef4444;
+}
+
+.analytics-period {
+    color: #999;
+}

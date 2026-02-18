@@ -1,0 +1,55 @@
+:root {
+    /* Light Theme - Terang */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --bg-card: #f8f9fa;           /* Abu-abu terang untuk card */
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #e0e0e0;
+    --hover-bg: #f0f0f0;
+    --primary-color: #333333;
+    --primary-hover: #000000;
+    --danger-color: #dc2626;
+    --danger-bg: #fee2e2;
+    --success-color: #16a34a;
+    --success-bg: #dcfce7;
+    --warning-color: #d97706;
+    --warning-bg: #fef3c7;
+    --chart-grid: rgba(0, 0, 0, 0.05);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --overlay-bg: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme - Gelap */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-card: #2d2d2d;           /* Abu-abu gelap untuk card (konsisten) */
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #999999;
+    --border-color: #404040;
+    --hover-bg: #3d3d3d;
+    --primary-color: #ffffff;
+    --primary-hover: #e0e0e0;
+    --danger-color: #f87171;
+    --danger-bg: #451a1a;
+    --success-color: #4ade80;
+    --success-bg: #14532d;
+    --warning-color: #fbbf24;
+    --warning-bg: #422006;
+    --chart-grid: rgba(255, 255, 255, 0.05);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+}
+
+/* Transisi halus saat ganti theme */
+* {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
