@@ -123,4 +123,11 @@ func main() {
 
 	log.Printf("🚀 Server running on http://localhost:%s", port)
 	router.Run(":" + port)
+
+    log.Printf("✅ Database migration completed!")
+    log.Printf("🚀 Starting server on port %s", port)
+
+    if err := router.Run(":" + port); err != nil {
+        log.Fatalf("❌ Failed to start server: %v", err)
+    }
 }

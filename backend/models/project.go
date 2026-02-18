@@ -20,8 +20,11 @@ type Project struct {
     Featured    bool      `json:"featured" gorm:"default:false"`
     Status      string    `json:"status" gorm:"default:'published'"`
     Views       int       `json:"views" gorm:"default:0"`
-    StartDate   time.Time `json:"start_date"`
-    EndDate     time.Time `json:"end_date"`
+
+    // Ubah ke pointer agar bisa NULL
+    StartDate   *time.Time `json:"start_date" gorm:"default:null"`
+    EndDate     *time.Time `json:"end_date" gorm:"default:null"`
+    
     CreatedAt   time.Time `json:"created_at"`
     UpdatedAt   time.Time `json:"updated_at"`
     
