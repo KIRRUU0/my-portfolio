@@ -14,6 +14,7 @@ import (
 var DB *gorm.DB
 
 func Connect() {
+    log.Println("Attempting to connect to database...")
     // Ambil konfigurasi dari environment
     dbHost := os.Getenv("DB_HOST")
     dbPort := os.Getenv("DB_PORT")
@@ -34,6 +35,10 @@ func Connect() {
 
     if err != nil {
         log.Fatal("❌ Failed to connect to MySQL:", err)
+    }
+
+    if err != nil {
+        log.Fatal("❌ Failed to connect to database:", err) // PASTIKAN INI LOG.FATAL
     }
 
     log.Println("✅ Connected to MySQL successfully!")

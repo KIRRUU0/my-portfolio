@@ -29,11 +29,13 @@ func main() {
     // Initialize Storage Service
     storageService, err := services.NewStorageService()
     if err != nil {
-        log.Printf("Warning: Failed to initialize storage service: %v", err)
+        log.Fatalf("❌ CRITICAL: Failed to initialize storage service: %v", err) // Hentikan program
+    }
+    // Inisialisasi buckets
+    if err := storageService.InitBuckets(); err != nil {
+        log.Printf("Warning: Failed to init buckets: %v", err)
     } else {
-        // Inisialisasi buckets
-        storageService.InitBuckets()
-        log.Println("Supabase Storage initialized")
+        log.Println("✅ Supabase Storage initialized")
     }
 
     // Initialize handlers with database AND storage
