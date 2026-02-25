@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import ThemeToggle from '../ThemeToggle';
 import LanguageSelector from '../LanguageSelector';
@@ -92,10 +92,10 @@ const MainLayout = () => {
 
                 {/* Mobile Navigation */}
                 <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
-                    {/* <div className="mobile-nav-header">
+                    <div className="mobile-nav-header">
                         <span className="mobile-logo">MHA</span>
                         <button className="mobile-close-btn" onClick={() => setMobileMenuOpen(false)}>✕</button>
-                    </div> */}
+                    </div>
                     <nav className="mobile-nav-links">
                         <button onClick={() => scrollToSection('home')} className="mobile-nav-link">{text.home}</button>
                         <button onClick={() => scrollToSection('about')} className="mobile-nav-link">{text.about}</button>

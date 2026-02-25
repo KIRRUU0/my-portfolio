@@ -25,29 +25,18 @@
     margin: 0 auto;
     padding: 1.5rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Ubah dari space-between ke center */
     align-items: center;
     position: relative;
 }
 
-.logo {
-    text-decoration: none;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--text-primary);
-    letter-spacing: -1px;
-}
-
-.logo-text {
-    border: 1px solid var(--border-color);
-    padding: 0.5rem 1rem;
-    border-radius: 50%;
-}
+/* Logo dihapus, jadi nav akan berada di tengah */
 
 /* ===== DESKTOP NAVIGATION ===== */
 .desktop-nav {
     display: flex;
     gap: 2rem;
+    margin-right: auto; /* Untuk menjaga keseimbangan dengan controls */
 }
 
 .nav-link {
@@ -90,6 +79,7 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    margin-left: auto; /* Dorong ke kanan */
 }
 
 /* ===== MOBILE MENU BUTTON ===== */
@@ -257,7 +247,7 @@
     color: var(--text-primary);
 }
 
-/* ===== RESPONSIVE BREAKPOINTS ===== */
+/* ===== RESPONSIVE ===== */
 
 /* Laptop/Desktop (1024px ke atas) */
 @media (min-width: 1025px) {
@@ -287,10 +277,6 @@
     .header-container {
         padding: 1.2rem 2rem;
     }
-    
-    .logo {
-        font-size: 1.8rem;
-    }
 }
 
 /* Handphone (max 768px) */
@@ -305,18 +291,11 @@
     
     .header-container {
         padding: 1rem 1.5rem;
-    }
-    
-    .logo {
-        font-size: 1.6rem;
-    }
-    
-    .logo-text {
-        padding: 0.4rem 0.8rem;
+        justify-content: space-between; /* Kembali ke space-between di mobile */
     }
     
     .header-controls {
-        gap: 0.3rem;
+        margin-left: 0; /* Reset margin */
     }
     
     .main-content {
@@ -339,14 +318,6 @@
 @media (max-width: 480px) {
     .header-container {
         padding: 0.8rem 1rem;
-    }
-    
-    .logo {
-        font-size: 1.4rem;
-    }
-    
-    .logo-text {
-        padding: 0.3rem 0.6rem;
     }
     
     .header-controls .theme-toggle .toggle-text {
