@@ -1,0 +1,59 @@
+.tech-section {
+  margin-bottom: 6rem;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.tech-section .section-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.tech-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+  );
+}
+
+.tech-marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: fit-content;
+  animation: marquee 40s linear infinite;
+  padding: 1rem 0;
+}
+
+.tech-item {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  border-radius: 30px;
+}
+
+.tech-item:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+  border-color: var(--border-color);
+  background: var(--hover-bg);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.tech-marquee-track:hover {
+  animation-play-state: paused;
+}

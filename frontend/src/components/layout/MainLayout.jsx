@@ -122,8 +122,8 @@ const MainLayout = () => {
                 <div className="footer-container">
                     <p>© 2026 Muhammad Haekal Arrafi</p>
                     <div className="social-links">
-                        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
-                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://github.com/KIRRUU0" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://www.linkedin.com/in/muhammad-haekal-arrafi-961991282" target="_blank" rel="noopener">LinkedIn</a>
                     </div>
                 </div>
             </footer>

@@ -1,0 +1,88 @@
+.experiences-section {
+  margin-bottom: 6rem;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.experiences-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.5rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-color);
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.experience-item:last-child {
+  border-bottom: none;
+}
+
+.experience-period {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 300;
+}
+
+.experience-content {
+  flex: 1;
+}
+
+.experience-position {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.experience-company {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.experience-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
+}
+
+.experience-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0;
+}
+
+.experience-achievements li {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.experience-achievements li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
