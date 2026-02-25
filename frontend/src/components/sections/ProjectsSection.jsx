@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
+import ProjectFilter from './ProjectFilter';
 import './ProjectsSection.css';
 
 const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }) => {
   const { language } = useApp();
+  const [filter, setFilter] = useState('newest'); // 'newest' atau 'oldest'
   
   const t = {
     en: { featuredTitle: 'featured projects' },
@@ -12,13 +14,30 @@ const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }
 
   const text = t[language] || t.en;
 
+  // Urutkan project berdasarkan filter
+  const sortedProjects = useMemo(() => {
+    const sorted = [...projects].sort((a, b) => {
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      
+      if (filter === 'newest') {
+        return dateB - dateA; // Terbaru dulu (descending)
+      } else {
+        return dateA - dateB; // Terlama dulu (ascending)
+      }
+    });
+    return sorted;
+  }, [projects, filter]);
+
   return (
     <section id="projects" ref={projectsRef} className="projects-section">
       <div className="section-header">
         <h2 className="section-title">{text.featuredTitle}</h2>
+        <ProjectFilter currentFilter={filter} onFilterChange={setFilter} />
       </div>
+      
       <div className="projects-grid-2col">
-        {projects.map((project, index) => (
+        {sortedProjects.map((project, index) => (
           <div key={project.id} className="project-card-2col" data-aos="fade-up" data-aos-delay={index * 100} onClick={() => openProjectPopup(project)}>
             <div className="project-card-content">
               <div className="project-card-image">

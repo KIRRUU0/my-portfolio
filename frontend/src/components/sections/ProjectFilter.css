@@ -1,0 +1,43 @@
+.project-filter {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.filter-btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-filter {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
+}

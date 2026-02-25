@@ -9,7 +9,7 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
     en: {
       about: 'About Me',
       role: 'WEB DEVELOPER & DESIGNER',
-      aboutDesc: 'I am a passionate web developer and designer with experience in creating digital experiences. I love building applications that are both functional and beautiful.',
+      aboutDesc: 'An Information Technology student at Bina Sarana Informatika University with expertise in backend development using Laravel, UI/UX design, and web layout using Figma. He has a foundation in Python programming and experience in web-based system development. He is proficient in Git, MySQL database management, and REST API development. He also understands network design using Cisco Packet Tracer.',
       yearsExp: 'Years Experience',
       projects: 'Projects',
       technologies: 'Technologies'
@@ -17,7 +17,7 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
     id: {
       about: 'Tentang Saya',
       role: 'WEB DEVELOPER & DESIGNER',
-      aboutDesc: 'Saya adalah pengembang dan desainer web yang bersemangat dengan pengalaman dalam menciptakan pengalaman digital. Saya suka membangun aplikasi yang fungsional dan indah.',
+      aboutDesc: 'Mahasiswa TeknologiInformasi Universitas Bina Sarana Informatika dengan keahlian dalam pengembangan backend menggunakan Laravel serta perancangan UI/UX dan tata letak web melalui Figma. Memiliki dasar pemrograman Python dan pengalaman dalam pembuatan sistem berbasis web. Menguasai penggunaan Git, manajemen basis data MySQL, serta pengembangan REST API. Juga memahami perancangan jaringan menggunakan Cisco Packet Tracer.',
       yearsExp: 'Tahun Pengalaman',
       projects: 'Proyek',
       technologies: 'Teknologi'
