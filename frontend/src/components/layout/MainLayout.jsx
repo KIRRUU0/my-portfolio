@@ -66,9 +66,9 @@ const MainLayout = () => {
         <div className="main-layout">
             <header className="main-header">
                 <div className="header-container">
-                    <Link to="/" className="logo">
+                    {/* <Link to="/" className="logo">
                         <span className="logo-text">MHA</span>
-                    </Link>
+                    </Link> */}
                     
                     {/* Desktop Navigation */}
                     <nav className="desktop-nav">
