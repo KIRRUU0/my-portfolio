@@ -14,6 +14,7 @@ const MainLayout = () => {
     const t = {
         en: {
             home: 'Home',
+            about: 'About',
             projects: 'Projects',
             experiences: 'Experiences',
             certificates: 'Certificates',
@@ -22,6 +23,7 @@ const MainLayout = () => {
         },
         id: {
             home: 'Beranda',
+            about: 'Tentang',
             projects: 'Proyek',
             experiences: 'Pengalaman',
             certificates: 'Sertifikat',
@@ -33,7 +35,7 @@ const MainLayout = () => {
     const text = t[language] || t.en;
 
     const scrollToSection = (sectionId) => {
-        setMobileMenuOpen(false); // Tutup menu setelah klik
+        setMobileMenuOpen(false);
         if (!isHomePage) {
             window.location.href = `/#${sectionId}`;
             return;
@@ -45,7 +47,6 @@ const MainLayout = () => {
         }
     };
 
-    // Tutup menu saat resize ke desktop
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 768) {
@@ -57,7 +58,6 @@ const MainLayout = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Tutup menu saat route berubah
     useEffect(() => {
         setMobileMenuOpen(false);
     }, [location]);
@@ -66,60 +66,25 @@ const MainLayout = () => {
         <div className="main-layout">
             <header className="main-header">
                 <div className="header-container">
-                    {/* <Link to="/" className="logo">
+                    <Link to="/" className="logo">
                         <span className="logo-text">MHA</span>
-                    </Link> */}
+                    </Link>
                     
                     {/* Desktop Navigation */}
                     <nav className="desktop-nav">
-                        <button 
-                            onClick={() => scrollToSection('home')}
-                            className="nav-link"
-                        >
-                            {text.home}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('projects')}
-                            className="nav-link"
-                        >
-                            {text.projects}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('experiences')}
-                            className="nav-link"
-                        >
-                            {text.experiences}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('certificates')}
-                            className="nav-link"
-                        >
-                            {text.certificates}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('tech')}
-                            className="nav-link"
-                        >
-                            {text.tech}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('contact')}
-                            className="nav-link"
-                        >
-                            {text.contact}
-                        </button>
+                        <button onClick={() => scrollToSection('home')} className="nav-link">{text.home}</button>
+                        <button onClick={() => scrollToSection('about')} className="nav-link">{text.about}</button>
+                        <button onClick={() => scrollToSection('projects')} className="nav-link">{text.projects}</button>
+                        <button onClick={() => scrollToSection('experiences')} className="nav-link">{text.experiences}</button>
+                        <button onClick={() => scrollToSection('certificates')} className="nav-link">{text.certificates}</button>
+                        <button onClick={() => scrollToSection('tech')} className="nav-link">{text.tech}</button>
+                        <button onClick={() => scrollToSection('contact')} className="nav-link">{text.contact}</button>
                     </nav>
                     
                     <div className="header-controls">
                         <ThemeToggle />
                         <LanguageSelector />
-                        
-                        {/* Mobile Menu Button */}
-                        <button 
-                            className="mobile-menu-btn"
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            aria-label="Toggle menu"
-                        >
+                        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
                             {mobileMenuOpen ? '✕' : '☰'}
                         </button>
                     </div>
@@ -127,52 +92,18 @@ const MainLayout = () => {
 
                 {/* Mobile Navigation */}
                 <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
-                    <div className="mobile-nav-header">
+                    {/* <div className="mobile-nav-header">
                         <span className="mobile-logo">MHA</span>
-                        <button 
-                            className="mobile-close-btn"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            ✕
-                        </button>
-                    </div>
+                        <button className="mobile-close-btn" onClick={() => setMobileMenuOpen(false)}>✕</button>
+                    </div> */}
                     <nav className="mobile-nav-links">
-                        <button 
-                            onClick={() => scrollToSection('home')}
-                            className="mobile-nav-link"
-                        >
-                            {text.home}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('projects')}
-                            className="mobile-nav-link"
-                        >
-                            {text.projects}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('experiences')}
-                            className="mobile-nav-link"
-                        >
-                            {text.experiences}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('certificates')}
-                            className="mobile-nav-link"
-                        >
-                            {text.certificates}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('tech')}
-                            className="mobile-nav-link"
-                        >
-                            {text.tech}
-                        </button>
-                        <button 
-                            onClick={() => scrollToSection('contact')}
-                            className="mobile-nav-link"
-                        >
-                            {text.contact}
-                        </button>
+                        <button onClick={() => scrollToSection('home')} className="mobile-nav-link">{text.home}</button>
+                        <button onClick={() => scrollToSection('about')} className="mobile-nav-link">{text.about}</button>
+                        <button onClick={() => scrollToSection('projects')} className="mobile-nav-link">{text.projects}</button>
+                        <button onClick={() => scrollToSection('experiences')} className="mobile-nav-link">{text.experiences}</button>
+                        <button onClick={() => scrollToSection('certificates')} className="mobile-nav-link">{text.certificates}</button>
+                        <button onClick={() => scrollToSection('tech')} className="mobile-nav-link">{text.tech}</button>
+                        <button onClick={() => scrollToSection('contact')} className="mobile-nav-link">{text.contact}</button>
                     </nav>
                     <div className="mobile-nav-footer">
                         <ThemeToggle />
@@ -180,13 +111,7 @@ const MainLayout = () => {
                     </div>
                 </div>
                 
-                {/* Overlay untuk mobile */}
-                {mobileMenuOpen && (
-                    <div 
-                        className="mobile-overlay"
-                        onClick={() => setMobileMenuOpen(false)}
-                    ></div>
-                )}
+                {mobileMenuOpen && <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)}></div>}
             </header>
             
             <main className="main-content">
@@ -197,8 +122,8 @@ const MainLayout = () => {
                 <div className="footer-container">
                     <p>© 2026 Muhammad Haekal Arrafi</p>
                     <div className="social-links">
-                        <a href="https://github.com/KIRRUU0" target="_blank" rel="noopener">GitHub</a>
-                        <a href="https://www.linkedin.com/in/muhammad-haekal-arrafi-961991282/" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
                     </div>
                 </div>
             </footer>

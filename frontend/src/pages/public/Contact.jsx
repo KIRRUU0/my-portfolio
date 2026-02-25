@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { contactsAPI } from '../../api/contacts';
 
 const Contact = () => {
     const { language } = useApp();

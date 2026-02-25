@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { projectsAPI } from '../../api/projects';
 import './Projects.css';
 
 const Projects = () => {

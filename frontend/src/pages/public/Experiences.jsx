@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
-import { experiencesAPI } from '../../api/experiences';
 
 const Experiences = () => {
     const { language } = useApp();

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { projectsAPI } from '../../api/projects';
-import { experiencesAPI } from '../../api/experiences';
-import { contactsAPI } from '../../api/contacts';
 import Sidebar from '../../components/Sidebar';
 import AnalyticsCard from '../../components/AnalyticsCard';
 import ViewsChart from '../../components/ViewsChart';

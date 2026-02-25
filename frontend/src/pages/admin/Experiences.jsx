@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { experiencesAPI } from '../../api/experiences';
 import Sidebar from '../../components/Sidebar';
 import './Experiences.css';
 
