@@ -7,12 +7,13 @@
 }
 
 .section-title {
-  font-size: 0.9rem;
-  font-weight: 300;
+  font-size: 1rem;
+  font-weight: 400; /* Konsisten dengan Home.css */
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 1rem;
+  opacity: 0.9;
 }
 
 .experiences-list {
@@ -35,42 +36,40 @@
   border-bottom: none;
 }
 
+/* DIPERTEBAL SEDIKIT */
 .experience-period {
   color: var(--text-muted);
   font-size: 0.85rem;
-  font-weight: 300;
+  font-weight: 400; /* Ditingkatkan dari 300 */
   line-height: 1.5;
+  opacity: 0.9; /* Sedikit lebih terang */
 }
 
 .experience-content {
   flex: 1;
 }
 
-/* Position - lebih besar */
 .experience-position {
   font-size: 1.3rem;
   font-weight: 500;
   color: var(--text-primary);
-  margin-bottom: 0.25rem; /* Jarak ke company */
+  margin-bottom: 0.15rem;
   letter-spacing: -0.02em;
-  line-height: 1.3;
 }
 
-/* Company - sedikit lebih kecil dengan margin minimal */
 .experience-company {
   color: var(--text-secondary);
   font-size: 0.95rem;
   font-weight: 400;
   display: inline-block;
-  margin-bottom: 0.5rem; /* Jarak ke location */
+  margin-bottom: 0.5rem;
   opacity: 0.8;
 }
 
-/* Location - langsung setelah company dengan margin kecil */
 .experience-location {
   color: var(--text-secondary);
   font-size: 0.9rem;
-  margin-bottom: 0.75rem; /* Jarak ke description */
+  margin-bottom: 0.75rem;
   line-height: 1.5;
 }
 
@@ -80,28 +79,26 @@
   margin-right: 0.5rem;
 }
 
-/* Description - dengan margin ke achievements */
 .experience-description {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.7;
-  margin-bottom: 1rem; /* Jarak ke achievements */
+  margin-bottom: 1rem;
   padding: 0;
   background: transparent;
   max-width: 600px;
   font-weight: 350;
 }
 
-/* Achievements - dengan margin minimal */
 .experience-achievements {
-  margin-top: 0; /* Tidak ada margin top */
+  margin-top: 0.75rem;
 }
 
 .achievements-title {
   color: var(--text-primary);
   font-size: 0.9rem;
   font-weight: 500;
-  margin-bottom: 0.5rem; /* Jarak ke list achievements */
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -112,7 +109,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem; /* Gap antar achievement items */
+  gap: 0.3rem;
 }
 
 .achievement-item {
@@ -142,17 +139,17 @@
   
   .experience-period {
     font-size: 0.8rem;
+    font-weight: 400; /* Tetap 400 di mobile */
     margin-bottom: 0.25rem;
   }
   
   .experience-position {
     font-size: 1.1rem;
-    margin-bottom: 0.2rem;
   }
   
   .experience-company {
     font-size: 0.9rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
   }
   
   .experience-location {
@@ -166,7 +163,7 @@
   }
   
   .achievements-title {
-    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
   }
   
   .achievement-item {
@@ -175,16 +172,25 @@
 }
 
 @media (max-width: 480px) {
+  .experience-period {
+    font-size: 0.75rem;
+  }
+  
   .experience-position {
     font-size: 1rem;
   }
   
   .achievements-title {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   
   .achievement-item {
     font-size: 0.8rem;
     padding-left: 1rem;
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

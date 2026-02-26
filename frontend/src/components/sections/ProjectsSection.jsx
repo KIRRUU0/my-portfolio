@@ -5,7 +5,7 @@ import './ProjectsSection.css';
 
 const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }) => {
   const { language } = useApp();
-  const [filter, setFilter] = useState('newest'); // 'newest' atau 'oldest'
+  const [filter, setFilter] = useState('newest');
   
   const t = {
     en: { featuredTitle: 'featured projects' },

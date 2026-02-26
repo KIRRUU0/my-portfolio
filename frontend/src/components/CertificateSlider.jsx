@@ -7,58 +7,90 @@ const CertificateSlider = ({ certificates }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCert, setSelectedCert] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const t = {
     en: {
       issuedBy: 'Issued by',
       issuedDate: 'Issued',
       credentialId: 'Credential ID',
-      viewCredential: 'View Credential'
+      viewCredential: 'View Credential',
+      certificates: 'Certificates'
     },
     id: {
       issuedBy: 'Diterbitkan oleh',
       issuedDate: 'Diterbitkan',
       credentialId: 'ID Kredensial',
-      viewCredential: 'Lihat Kredensial'
+      viewCredential: 'Lihat Kredensial',
+      certificates: 'Sertifikat'
     }
   };
 
   const text = t[language] || t.en;
+
+  // Deteksi resize untuk mobile/tablet
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Urutkan sertifikat berdasarkan tanggal (terbaru dulu)
   const sortedCertificates = [...certificates].sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
 
-  // Hitung jumlah halaman (setiap halaman 3 sertifikat)
-  const pageCount = Math.ceil(sortedCertificates.length / 3);
+  // Hitung jumlah halaman (setiap halaman 3 sertifikat - UNTUK SEMUA DEVICE)
+  const itemsPerPage = 3;
+  const pageCount = Math.ceil(sortedCertificates.length / itemsPerPage);
   
-  // Dapatkan sertifikat untuk halaman saat ini
+  // Dapatkan sertifikat untuk halaman saat ini (3 item)
   const currentCertificates = sortedCertificates.slice(
-    currentIndex * 3,
-    currentIndex * 3 + 3
+    currentIndex * itemsPerPage,
+    currentIndex * itemsPerPage + itemsPerPage
   );
 
   const handlePrev = () => {
     if (isTransitioning) return;
-    
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? pageCount - 1 : prevIndex - 1
     );
-    
     setTimeout(() => setIsTransitioning(false), 400);
   };
 
   const handleNext = () => {
     if (isTransitioning) return;
-    
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) => 
       prevIndex === pageCount - 1 ? 0 : prevIndex + 1
     );
-    
     setTimeout(() => setIsTransitioning(false), 400);
+  };
+
+  // Handle touch events untuk slide dengan jari
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) {
+      // Swipe left
+      handleNext();
+    }
+    if (touchStart - touchEnd < -50) {
+      // Swipe right
+      handlePrev();
+    }
   };
 
   const openPopup = (cert) => {
@@ -81,45 +113,22 @@ const CertificateSlider = ({ certificates }) => {
     return null;
   }
 
-  // Tambahkan fungsi ini di dalam komponen CertificateSlider
-    const formatDescription = (text) => {
-  if (!text) return null;
-  
-  // Split berdasarkan newline
-  const lines = text.split('\n');
-  
-  return lines.map((line, index) => {
-    const trimmedLine = line.trim();
-    
-    // Jika line kosong, skip
-    if (!trimmedLine) return null;
-    
-    // Cek apakah line memiliki bullet point (•, -, *)
-    if (trimmedLine.startsWith('•') || trimmedLine.startsWith('-') || trimmedLine.startsWith('*')) {
-      return (
-        <div key={index} className="popup-description-bullet">
-          <span className="bullet-point">•</span>
-          <span className="bullet-text">{trimmedLine.substring(1).trim()}</span>
-        </div>
-      );
-    } else {
-      // Teks biasa (tanpa bullet)
-      return <p key={index} className="popup-description-text">{trimmedLine}</p>;
-    }
-  });
-};
-
   return (
     <div className="certificate-slider-section">
       <div className="slider-header">
-        <h2 className="section-title">
-          {language === 'en' ? 'Certificates' : 'Sertifikat'}
-        </h2>
+        <h2 className="section-title">{text.certificates}</h2>
       </div>
 
-      <div className="slider-container">
-        {/* HAPUS TOMBOL NAVIGASI KIRI */}
-        {/* <button className="slider-nav prev" onClick={handlePrev}>←</button> */}
+      <div 
+        className="slider-container"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Tombol navigasi hanya tampil di desktop (>768px) */}
+        {!isMobile && (
+          <button className="slider-nav prev" onClick={handlePrev}>←</button>
+        )}
 
         <div className={`slider-track ${isTransitioning ? 'transitioning' : ''}`}>
           {currentCertificates.map((cert) => (
@@ -144,11 +153,13 @@ const CertificateSlider = ({ certificates }) => {
           ))}
         </div>
 
-        {/* HAPUS TOMBOL NAVIGASI KANAN */}
-        {/* <button className="slider-nav next" onClick={handleNext}>→</button> */}
+        {/* Tombol navigasi hanya tampil di desktop (>768px) */}
+        {!isMobile && (
+          <button className="slider-nav next" onClick={handleNext}>→</button>
+        )}
       </div>
 
-      {/* Indicator halaman */}
+      {/* Indicator halaman - TAMPIL DI SEMUA DEVICE */}
       {pageCount > 1 && (
         <div className="slider-indicators">
           {Array.from({ length: pageCount }).map((_, index) => (
@@ -191,10 +202,8 @@ const CertificateSlider = ({ certificates }) => {
                   </p>
                   
                   {selectedCert.description && (
-                    <div className="popup-description-container">
-                        {formatDescription(selectedCert.description)}
-                    </div>
-                    )}
+                    <p className="popup-description">{selectedCert.description}</p>
+                  )}
                   
                   {selectedCert.credential_id && (
                     <p className="popup-credential">
