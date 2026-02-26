@@ -93,7 +93,7 @@ const MainLayout = () => {
                 {/* Mobile Navigation */}
                 <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
                     <div className="mobile-nav-header">
-                        <span className="mobile-logo">MHA</span>
+                        <span className="mobile-logo">Menu</span>
                         <button className="mobile-close-btn" onClick={() => setMobileMenuOpen(false)}>✕</button>
                     </div>
                     <nav className="mobile-nav-links">

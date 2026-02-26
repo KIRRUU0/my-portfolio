@@ -6,8 +6,18 @@ const ExperiencesSection = ({ experiencesRef, experiences, formatDate }) => {
   const { language } = useApp();
   
   const t = {
-    en: { experiencesTitle: 'experience', present: 'present' },
-    id: { experiencesTitle: 'pengalaman', present: 'sekarang' }
+    en: { 
+      experiencesTitle: 'experience', 
+      present: 'present',
+      location: 'Location',
+      achievements: 'Key Achievements'
+    },
+    id: { 
+      experiencesTitle: 'pengalaman', 
+      present: 'sekarang',
+      location: 'Lokasi',
+      achievements: 'Pencapaian'
+    }
   };
 
   const text = t[language] || t.en;
@@ -26,13 +36,25 @@ const ExperiencesSection = ({ experiencesRef, experiences, formatDate }) => {
             <div className="experience-content">
               <h3 className="experience-position">{exp.position}</h3>
               <span className="experience-company">{exp.company}</span>
+              
+              {/* Hanya location, tanpa address terpisah */}
+              {exp.location && (
+                <div className="experience-location">
+                  <span className="location-label">{text.location}:</span> {exp.location}
+                </div>
+              )}
+              
               <p className="experience-description">{exp.description}</p>
+              
               {exp.achievements?.length > 0 && (
-                <ul className="experience-achievements">
-                  {exp.achievements.slice(0, 2).map((achievement, i) => (
-                    <li key={i}>{achievement}</li>
-                  ))}
-                </ul>
+                <div className="experience-achievements">
+                  <h4 className="achievements-title">{text.achievements}</h4>
+                  <ul className="achievements-list">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i} className="achievement-item">{achievement}</li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
           </div>

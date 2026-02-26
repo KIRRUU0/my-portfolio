@@ -1,62 +1,31 @@
-// data/experiences.js
 export const experiences = [
   {
     id: 1,
-    company: "PT Teknologi Maju",
-    position: "Senior Backend Developer",
-    description: "Bertanggung jawab mengembangkan dan memelihara microservices untuk platform fintech dengan skalabilitas tinggi.",
-    location: "Jakarta, Indonesia",
-    start_date: "2024-01-01T00:00:00Z",
-    end_date: null,
-    current: true,
+    company: "Institut Bisnis & Informatika (IBI) Kosgoro 1957",
+    position: "Data Entry Assistant Intern",
+    description: null,
+    location: "Jl. Moch. Kahfi II Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 13550", // Gabungkan lokasi dan alamat
+    start_date: "2020-02-01T00:00:00Z",
+    end_date: "2020-03-01T00:00:00Z",
+    current: false,
     achievements: [
-      "Mendesain arsitektur microservices untuk menangani 10.000+ request per detik",
-      "Mengimplementasikan caching dengan Redis yang mengurangi response time hingga 40%",
-      "Memimpin tim 5 developer dalam pengembangan fitur baru"
+      "Melakukan pengimputan Data Dosen,Mahasiswa dan staff yang bekerja ke dalam sistem database yang kampus sudah sediakan",
+      "Merakit dan menginstall komputer yang berada dilab sana untuk digunakan pada Mahasiswa",
     ]
   },
   {
     id: 2,
-    company: "Startup Digital Kreatif",
-    position: "Full Stack Developer",
-    description: "Mengembangkan aplikasi web dan mobile untuk berbagai klien dari berbagai industri.",
-    location: "Bandung, Indonesia",
-    start_date: "2022-06-01T00:00:00Z",
-    end_date: "2023-12-31T00:00:00Z",
+    company: "PT INSPIRASI SOLUSI KREATIF “SORE”",
+    position: "Web Development (Backend)",
+    description: "Membangun website company profile untuk client menggunakan Laravel sebagai backend menggunakan metode microservice dengan React.",
+    location: "Tj. DUREN, Gedung Soho Capital,Jl. Tanjung Duren Raya, Tj. Duren Utara, Kota Jakarta Barat", // Gabungkan lokasi dan alamat
+    start_date: "2025-10-01T00:00:00Z",
+    end_date: "2026-01-31T00:00:00Z",
     current: false,
     achievements: [
-      "Membangun REST API dengan Go untuk aplikasi e-commerce",
-      "Mengembangkan frontend React dengan performa optimal",
-      "Mengintegrasikan payment gateway Midtrans dan Stripe"
-    ]
-  },
-  {
-    id: 3,
-    company: "Tech Company Global",
-    position: "Backend Engineer",
-    description: "Bergabung dengan tim platform untuk mengembangkan layanan backend yang melayani jutaan pengguna.",
-    location: "Singapore (Remote)",
-    start_date: "2021-01-01T00:00:00Z",
-    end_date: "2022-05-31T00:00:00Z",
-    current: false,
-    achievements: [
-      "Mengembangkan API service dengan Go dan gRPC",
-      "Mengimplementasikan sistem autentikasi terpusat dengan JWT",
-      "Optimasi query database yang meningkatkan performa 300%"
-    ]
-  },
-  {
-    id: 4,
-    company: "Agency Kreatif",
-    position: "Frontend Developer",
-    description: "Membangun antarmuka pengguna yang responsif dan interaktif untuk berbagai website perusahaan.",
-    location: "Yogyakarta, Indonesia",
-    start_date: "2019-08-01T00:00:00Z",
-    end_date: "2020-12-31T00:00:00Z",
-    current: false,
-    achievements: [
-      "Membangun component library dengan React dan Storybook",
-      "Mengimplementasikan desain sistem untuk konsistensi UI"
+      "Membangun Arsitektur API dan Manajemen Endpoint",
+      "Implementasi Sistem Keamanan dan Autentikasi Berbasis Role",
+      "Pengembangan Logika Bisnis dan Pengelolaan Data Media",
     ]
   }
 ];
