@@ -103,8 +103,8 @@ const Home = () => {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: false,
-      mirror: true,
+      once: false, // false agar animasi muncul setiap kali scroll
+      mirror: true, // true agar animasi muncul saat scroll naik juga
       offset: 100,
       easing: 'ease-in-out',
       delay: 100
