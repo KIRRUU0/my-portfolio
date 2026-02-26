@@ -1,59 +1,69 @@
 .tech-section {
   margin-bottom: 6rem;
-  width: 100%;
-  overflow: hidden;
   padding: 2rem 0;
 }
 
-.tech-section .section-header {
-  margin-bottom: 3rem;
+.section-header {
   text-align: center;
+  margin-bottom: 3rem;
 }
 
-.tech-marquee {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent
-  );
-}
-
-.tech-marquee-track {
-  display: flex;
-  gap: 3rem;
-  width: fit-content;
-  animation: marquee 40s linear infinite;
-  padding: 1rem 0;
-}
-
-.tech-item {
-  color: var(--text-secondary);
-  font-size: 1.2rem;
+.section-title {
+  font-size: 1rem;
   font-weight: 300;
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-  border-radius: 30px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.tech-item:hover {
+.tech-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.tech-cloud-item {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.tech-cloud-item:hover {
   color: var(--text-primary);
-  transform: scale(1.1);
-  border-color: var(--border-color);
+  border-color: var(--text-primary);
+  transform: scale(1.05);
   background: var(--hover-bg);
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .tech-cloud {
+    gap: 0.8rem;
+    padding: 0.5rem;
+  }
+  
+  .tech-cloud-item {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
 }
 
-.tech-marquee-track:hover {
-  animation-play-state: paused;
+@media (max-width: 480px) {
+  .tech-cloud {
+    gap: 0.5rem;
+  }
+  
+  .tech-cloud-item {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.7rem;
+  }
 }

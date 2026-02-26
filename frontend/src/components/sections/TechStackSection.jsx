@@ -1,9 +1,12 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
+import { projects } from '../../data/projects';
 import './TechStackSection.css';
 
-const TechStackSection = ({ techRef, projects }) => {
+const TechStackSection = ({ techRef }) => {
   const { language } = useApp();
+  
+  const allTech = [...new Set(projects.flatMap(p => p.tech_stack))].sort();
   
   const t = {
     en: { techTitle: 'tech stack' },
@@ -17,12 +20,11 @@ const TechStackSection = ({ techRef, projects }) => {
       <div className="section-header">
         <h2 className="section-title">{text.techTitle}</h2>
       </div>
-      <div className="tech-marquee">
-        <div className="tech-marquee-track">
-          {[...projects.flatMap(p => p.tech_stack), ...projects.flatMap(p => p.tech_stack)].map((tech, index) => (
-            <span key={`${tech}-${index}`} className="tech-item">{tech}</span>
-          ))}
-        </div>
+      
+      <div className="tech-cloud">
+        {allTech.map((tech, index) => (
+          <span key={index} className="tech-cloud-item">{tech}</span>
+        ))}
       </div>
     </section>
   );

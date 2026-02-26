@@ -13,7 +13,6 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Fade animations */
 .loading-screen.fade-in {
   opacity: 1;
   transform: scale(1);
@@ -25,7 +24,6 @@
   pointer-events: none;
 }
 
-/* Matrix background effect */
 .matrix-bg {
   position: absolute;
   top: 0;
@@ -52,7 +50,6 @@
   text-align: center;
 }
 
-/* Welcome text dengan animasi muncul per karakter */
 .welcome-text {
   margin-bottom: 2rem;
   font-size: 2.5rem;
@@ -82,7 +79,6 @@
   51%, 100% { opacity: 0; }
 }
 
-/* Code window */
 .code-animation {
   margin-bottom: 2rem;
   width: 100%;
@@ -169,7 +165,6 @@
   margin-left: 2px;
 }
 
-/* Progress bar */
 .progress-container {
   margin-bottom: 2rem;
   width: 100%;
@@ -207,7 +202,6 @@
   color: #666;
 }
 
-/* Tech Stack - 1 Baris dengan scroll */
 .tech-stack-container {
   position: relative;
   width: 100%;
@@ -248,7 +242,6 @@
   background: rgba(76, 175, 80, 0.1);
 }
 
-/* Particles */
 .particles {
   position: absolute;
   top: 0;
@@ -285,244 +278,59 @@
   }
 }
 
-/* ===== RESPONSIVE UNTUK SEMUA DEVICE ===== */
-
-/* Desktop Besar (1200px ke atas) */
-@media (min-width: 1200px) {
+/* Responsive Mobile */
+@media (max-width: 768px) {
   .loading-content {
-    max-width: 1000px;
-  }
-  
-  .welcome-text {
-    font-size: 3rem;
-    margin-bottom: 2.5rem;
-  }
-  
-  .code-body {
-    font-size: 1.1rem;
-    padding: 25px;
-  }
-  
-  .tech-icon {
-    padding: 10px 20px;
-    font-size: 1rem;
-  }
-  
-  .tech-stack-track {
-    gap: 2.5rem;
-  }
-}
-
-/* Desktop (992px - 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .loading-content {
-    max-width: 900px;
-  }
-  
-  .welcome-text {
-    font-size: 2.5rem;
-  }
-  
-  .code-body {
-    font-size: 1rem;
-  }
-}
-
-/* Tablet (768px - 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
-  .loading-content {
-    max-width: 700px;
-  }
-  
-  .welcome-text {
-    font-size: 2.2rem;
-    margin-bottom: 1.8rem;
-    min-height: 3.5rem;
-  }
-  
-  .code-window {
-    border-radius: 8px;
-  }
-  
-  .code-header {
-    padding: 10px 14px;
-  }
-  
-  .dot {
-    width: 10px;
-    height: 10px;
-    margin-right: 6px;
-  }
-  
-  .filename {
-    font-size: 0.85rem;
-  }
-  
-  .code-body {
-    padding: 18px;
-    font-size: 0.95rem;
-    min-height: 75px;
-  }
-  
-  .line-number {
-    min-width: 38px;
-  }
-  
-  .tech-icon {
-    padding: 7px 14px;
-    font-size: 0.85rem;
-  }
-  
-  .tech-stack-track {
-    gap: 1.8rem;
-    animation: scrollTech 25s linear infinite;
-  }
-}
-
-/* Handphone Besar (576px - 767px) */
-@media (min-width: 576px) and (max-width: 767px) {
-  .loading-content {
-    max-width: 500px;
+    max-width: 100%;
     width: 95%;
+    padding: 0 10px;
   }
   
   .welcome-text {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
     min-height: 3rem;
+    line-height: 1.3;
+  }
+  
+  .code-window {
+    max-width: 100%;
+    margin: 0 auto;
   }
   
   .code-header {
     padding: 8px 12px;
   }
   
-  .dot {
-    width: 8px;
-    height: 8px;
-    margin-right: 5px;
-  }
-  
-  .filename {
-    font-size: 0.8rem;
-    margin-left: 8px;
-  }
-  
-  .code-body {
-    padding: 15px;
-    font-size: 0.85rem;
-    min-height: 70px;
-  }
-  
-  .code-line {
-    gap: 10px;
-  }
-  
-  .line-number {
-    min-width: 35px;
-    font-size: 0.85rem;
-  }
-  
-  .progress-container {
-    margin-bottom: 1.5rem;
-  }
-  
-  .progress-text {
-    font-size: 0.8rem;
-  }
-  
-  .tech-stack-container {
-    margin: 0.8rem 0;
-  }
-  
-  .tech-stack-track {
-    gap: 1.5rem;
-    animation: scrollTech 20s linear infinite;
-  }
-  
-  .tech-icon {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-  
-  .particle {
-    font-size: 0.9rem;
-  }
-}
-
-/* Handphone Kecil (max 575px) */
-@media (max-width: 575px) {
-  .loading-content {
-    max-width: 100%;
-    width: 92%;
-    padding: 0 10px;
-  }
-  
-  .welcome-text {
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
-    min-height: 2.5rem;
-  }
-  
-  .code-header {
-    padding: 6px 10px;
-  }
-  
-  .dot {
-    width: 7px;
-    height: 7px;
-    margin-right: 4px;
-  }
-  
-  .filename {
-    font-size: 0.7rem;
-    margin-left: 6px;
-  }
-  
   .code-body {
     padding: 12px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     min-height: 60px;
+    max-height: 80px;
+    overflow-y: hidden;
   }
   
   .code-line {
     gap: 8px;
+    font-size: 0.8rem;
   }
   
   .line-number {
     min-width: 30px;
-    font-size: 0.75rem;
-  }
-  
-  .code-text {
-    font-size: 0.75rem;
   }
   
   .progress-container {
     margin-bottom: 1rem;
   }
   
-  .progress-bar-wrapper {
-    height: 3px;
-  }
-  
-  .progress-text {
-    font-size: 0.7rem;
-  }
-  
-  .tech-stack-container {
-    margin: 0.5rem 0;
-    padding: 0.3rem 0;
-  }
-  
   .tech-stack-track {
     gap: 1rem;
-    animation: scrollTech 18s linear infinite;
+    animation: scrollTech 20s linear infinite;
   }
   
   .tech-icon {
-    padding: 4px 10px;
+    padding: 4px 8px;
     font-size: 0.7rem;
-    border-radius: 20px;
   }
   
   .particle {
@@ -530,148 +338,30 @@
   }
 }
 
-/* Handphone Sangat Kecil (max 375px) */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
+  .loading-content {
+    width: 98%;
+    padding: 0 5px;
+  }
+  
   .welcome-text {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    min-height: 2.2rem;
+    min-height: 2.5rem;
   }
   
   .code-body {
-    padding: 10px;
+    padding: 8px;
     font-size: 0.7rem;
     min-height: 50px;
   }
   
   .line-number {
     min-width: 25px;
-    font-size: 0.7rem;
-  }
-  
-  .code-text {
-    font-size: 0.7rem;
   }
   
   .tech-icon {
-    padding: 3px 8px;
+    padding: 3px 6px;
     font-size: 0.65rem;
   }
-  
-  .tech-stack-track {
-    gap: 0.8rem;
-    animation: scrollTech 15s linear infinite;
-  }
-}
-
-/* Landscape Mode untuk Handphone */
-@media (max-height: 500px) and (orientation: landscape) {
-  .loading-content {
-    max-width: 800px;
-    width: 95%;
-  }
-  
-  .welcome-text {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    min-height: 2.5rem;
-  }
-  
-  .code-window {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
-  .code-body {
-    min-height: 50px;
-    padding: 10px;
-    font-size: 0.85rem;
-  }
-  
-  .tech-stack-container {
-    margin: 0.5rem 0;
-  }
-  
-  .particle {
-    font-size: 0.8rem;
-  }
-}
-
-/* Tablet Landscape Mode */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .loading-content {
-    max-width: 800px;
-  }
-  
-  .welcome-text {
-    font-size: 2.2rem;
-  }
-  
-  .code-body {
-    font-size: 0.95rem;
-  }
-}
-
-/* High Refresh Rate / 4K */
-@media (min-width: 1920px) {
-  .loading-content {
-    max-width: 1200px;
-  }
-  
-  .welcome-text {
-    font-size: 3.5rem;
-    margin-bottom: 3rem;
-  }
-  
-  .code-body {
-    font-size: 1.2rem;
-    padding: 30px;
-    min-height: 100px;
-  }
-  
-  .tech-icon {
-    font-size: 1.1rem;
-    padding: 12px 24px;
-  }
-  
-  .tech-stack-track {
-    gap: 3rem;
-  }
-}
-
-/* Smooth scrolling untuk code window */
-.code-body::-webkit-scrollbar {
-  height: 4px;
-}
-
-.code-body::-webkit-scrollbar-track {
-  background: #1e1e1e;
-}
-
-.code-body::-webkit-scrollbar-thumb {
-  background: #4CAF50;
-  border-radius: 4px;
-}
-
-.code-body::-webkit-scrollbar-thumb:hover {
-  background: #45a049;
-}
-
-/* Tech Stack Container */
-.tech-stack-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  margin: 1rem 0;
-  padding: 0.5rem 0;
-  transition: all 0.8s ease;
-}
-
-.tech-stack-track {
-  display: flex;
-  gap: 2rem;
-  width: fit-content;
-  animation: scrollTech 30s linear infinite;
-  padding: 0.5rem 0;
-  transition: all 0.8s ease;
 }
