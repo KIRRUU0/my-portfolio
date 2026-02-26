@@ -12,7 +12,7 @@
 
 .section-title {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -35,18 +35,6 @@
   gap: 1.5rem;
   width: 100%;
   transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-@media (max-width: 768px) {
-  .slider-track {
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .slider-track {
-    gap: 0.8rem;
-  }
 }
 
 .slider-track.transitioning {
@@ -133,18 +121,6 @@
   text-overflow: ellipsis;
 }
 
-@media (max-width: 768px) {
-  .certificate-overlay h3 {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .certificate-overlay h3 {
-    font-size: 0.7rem;
-  }
-}
-
 .certificate-overlay p {
   font-size: 0.75rem;
   opacity: 0.9;
@@ -156,36 +132,12 @@
   text-overflow: ellipsis;
 }
 
-@media (max-width: 768px) {
-  .certificate-overlay p {
-    font-size: 0.65rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .certificate-overlay p {
-    font-size: 0.6rem;
-  }
-}
-
 .view-detail {
   font-size: 0.7rem;
   text-decoration: underline;
   opacity: 0.8;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   margin-top: 0;
-}
-
-@media (max-width: 768px) {
-  .view-detail {
-    font-size: 0.6rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .view-detail {
-    font-size: 0.55rem;
-  }
 }
 
 /* Tombol navigasi - hanya untuk desktop */
@@ -252,6 +204,61 @@
   background: var(--text-primary);
   width: 24px;
   border-radius: 4px;
+}
+
+/* RESPONSIVE MOBILE - PERBESAR CARD */
+@media (max-width: 768px) {
+  .slider-track {
+    gap: 1rem;
+  }
+  
+  /* Perbesar card di mobile */
+  .certificate-card {
+    aspect-ratio: 4/3;
+  }
+  
+  .certificate-overlay {
+    padding: 0.8rem;
+  }
+  
+  .certificate-overlay h3 {
+    font-size: 0.85rem;
+  }
+  
+  .certificate-overlay p {
+    font-size: 0.7rem;
+  }
+  
+  .view-detail {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-track {
+    gap: 0.8rem;
+  }
+  
+  /* Perbesar card di mobile kecil */
+  .certificate-card {
+    aspect-ratio: 4/3;
+  }
+  
+  .certificate-overlay {
+    padding: 0.6rem;
+  }
+  
+  .certificate-overlay h3 {
+    font-size: 0.8rem;
+  }
+  
+  .certificate-overlay p {
+    font-size: 0.65rem;
+  }
+  
+  .view-detail {
+    font-size: 0.6rem;
+  }
 }
 
 /* Popup Modal (tetap sama) */

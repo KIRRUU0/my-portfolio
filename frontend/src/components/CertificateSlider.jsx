@@ -159,23 +159,50 @@ const CertificateSlider = ({ certificates }) => {
         )}
       </div>
 
-      {/* Indicator halaman - TAMPIL DI SEMUA DEVICE */}
+      {/* Indicator halaman - TAMPIL DI SEMUA DEVICE - MAKSIMAL 3 DOT */}
       {pageCount > 1 && (
         <div className="slider-indicators">
-          {Array.from({ length: pageCount }).map((_, index) => (
-            <button
-              key={index}
-              className={`indicator-dot ${index === currentIndex ? 'active' : ''}`}
-              onClick={() => {
-                if (!isTransitioning) {
-                  setIsTransitioning(true);
-                  setCurrentIndex(index);
-                  setTimeout(() => setIsTransitioning(false), 400);
-                }
-              }}
-              aria-label={`Go to page ${index + 1}`}
-            />
-          ))}
+          {Array.from({ length: Math.min(pageCount, 3) }).map((_, index) => {
+            // Hitung index yang sesuai dengan halaman saat ini
+            let dotIndex = index;
+            let isActive = false;
+            
+            if (pageCount <= 3) {
+              // Jika total halaman ≤ 3, tampilkan semua
+              dotIndex = index;
+              isActive = index === currentIndex;
+            } else {
+              // Jika total halaman > 3, tampilkan 3 dot bergerak
+              if (currentIndex === 0) {
+                // Halaman pertama: tampilkan 1,2,3
+                dotIndex = index;
+                isActive = index === 0;
+              } else if (currentIndex === pageCount - 1) {
+                // Halaman terakhir: tampilkan n-2, n-1, n
+                dotIndex = pageCount - 3 + index;
+                isActive = (pageCount - 3 + index) === currentIndex;
+              } else {
+                // Halaman tengah: tampilkan current-1, current, current+1
+                dotIndex = currentIndex - 1 + index;
+                isActive = index === 1; // Dot tengah yang aktif
+              }
+            }
+            
+            return (
+              <button
+                key={index}
+                className={`indicator-dot ${isActive ? 'active' : ''}`}
+                onClick={() => {
+                  if (!isTransitioning) {
+                    setIsTransitioning(true);
+                    setCurrentIndex(dotIndex);
+                    setTimeout(() => setIsTransitioning(false), 400);
+                  }
+                }}
+                aria-label={`Go to page ${dotIndex + 1}`}
+              />
+            );
+          })}
         </div>
       )}
 
