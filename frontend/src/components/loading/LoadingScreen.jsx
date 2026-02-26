@@ -12,12 +12,12 @@ const LoadingScreen = ({ onFinish }) => {
   
   const t = {
     en: {
-      welcome: 'Welcome',
+      welcome: 'Welcome to my portfolio',
       loading: 'Loading',
       complete: 'Ready'
     },
     id: {
-      welcome: 'Selamat datang',
+      welcome: 'Selamat datang di portfolio saya',
       loading: 'Memuat',
       complete: 'Siap'
     }
@@ -68,7 +68,7 @@ const LoadingScreen = ({ onFinish }) => {
       } else {
         clearInterval(textInterval);
       }
-    }, 80); // Kecepatan muncul per karakter
+    }, 80);
 
     // Update loading text secara acak
     const codeInterval = setInterval(() => {
@@ -82,6 +82,7 @@ const LoadingScreen = ({ onFinish }) => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           clearInterval(codeInterval);
+          clearInterval(textInterval);
           
           // Trigger fade out
           setFadeOut(true);
@@ -152,7 +153,7 @@ const LoadingScreen = ({ onFinish }) => {
           </div>
         </div>
 
-        {/* Tech Stack - 1 Baris dengan scroll */}
+        {/* Tech Stack - 1 Baris dengan scroll (tanpa animasi khusus) */}
         <div className="tech-stack-container">
           <div className="tech-stack-track">
             {techStacks.map((tech, index) => (

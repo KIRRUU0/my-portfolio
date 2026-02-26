@@ -1,23 +1,193 @@
 .hero-section {
-  height: 60vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
   margin-bottom: 2rem;
+  padding: 2rem 0;
 }
 
 .hero-container {
-  max-width: 800px;
-  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.hero-welcome {
-  font-size: 3.5rem;
+/* Teks di kiri */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-title {
+  font-size: 4rem;
   font-weight: 300;
   color: var(--text-primary);
   margin: 0;
-  line-height: 1.2;
-  letter-spacing: -1px;
-  animation: fadeInUp 1s ease;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-weight: 300;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 450px;
+}
+
+/* Animasi di kanan */
+.hero-animation {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Bubble animasi coding */
+.code-animation-bubble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: all 0.3s ease;
+  animation: float 6s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.code-animation-bubble:hover {
+  transform: scale(1.1);
+  border-color: var(--text-primary);
+  background: var(--hover-bg);
+}
+
+.code-icon {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.code-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Posisi bubble */
+.bubble-1 { top: 10%; left: 10%; animation-delay: 0s; }
+.bubble-2 { top: 20%; right: 15%; animation-delay: 1s; }
+.bubble-3 { top: 60%; left: 5%; animation-delay: 2s; }
+.bubble-4 { bottom: 15%; right: 20%; animation-delay: 3s; }
+.bubble-5 { top: 40%; left: 30%; animation-delay: 4s; }
+.bubble-6 { bottom: 30%; left: 40%; animation-delay: 5s; }
+.bubble-7 { top: 70%; right: 10%; animation-delay: 6s; }
+.bubble-8 { bottom: 40%; right: 30%; animation-delay: 7s; }
+.bubble-9 { top: 15%; left: 50%; animation-delay: 8s; }
+.bubble-10 { bottom: 20%; left: 60%; animation-delay: 9s; }
+.bubble-11 { top: 50%; right: 40%; animation-delay: 10s; }
+.bubble-12 { bottom: 50%; left: 20%; animation-delay: 11s; }
+.bubble-13 { top: 80%; left: 70%; animation-delay: 12s; }
+.bubble-14 { bottom: 60%; right: 50%; animation-delay: 13s; }
+.bubble-15 { top: 30%; left: 80%; animation-delay: 14s; }
+.bubble-16 { bottom: 70%; right: 60%; animation-delay: 15s; }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(5px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-5px) translateX(10px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .hero-text {
+    align-items: center;
+  }
+  
+  .hero-description {
+    max-width: 100%;
+  }
+  
+  .hero-animation {
+    height: 300px;
+  }
+  
+  .code-animation-bubble {
+    padding: 6px 12px;
+  }
+  
+  .code-icon {
+    font-size: 1rem;
+  }
+  
+  .code-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+  }
+  
+  .hero-animation {
+    height: 250px;
+  }
+  
+  .code-animation-bubble {
+    padding: 4px 8px;
+  }
+  
+  .code-icon {
+    font-size: 0.9rem;
+  }
+  
+  .code-label {
+    font-size: 0.7rem;
+  }
 }

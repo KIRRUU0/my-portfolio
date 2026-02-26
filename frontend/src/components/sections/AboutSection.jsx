@@ -31,7 +31,7 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
       <div className="about-container">
         <div className="about-image" data-aos="fade-right">
           <div className="about-image-border">
-            <img src="/images/profile.jpg" alt="Muhammad Haekal Arrafi" className="about-photo" />
+            <img src="/images/profile/profile.jpeg" alt="Muhammad Haekal Arrafi" className="about-photo" />
           </div>
         </div>
         
