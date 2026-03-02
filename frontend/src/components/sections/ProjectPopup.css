@@ -298,11 +298,11 @@
   
   /* PERBESAR GAMBAR DI MOBILE */
   .popup-image-vertical {
-    max-height: 400px; /* Lebih besar dari sebelumnya */
+    max-height: 450px; /* Diperbesar */
   }
   
   .popup-image-vertical img {
-    max-height: 400px; /* Lebih besar dari sebelumnya */
+    max-height: 450px; /* Diperbesar */
   }
   
   .popup-details-vertical h2 {
@@ -333,11 +333,11 @@
   
   /* PERBESAR GAMBAR DI MOBILE KECIL */
   .popup-image-vertical {
-    max-height: 350px; /* Lebih besar dari sebelumnya */
+    max-height: 400px; /* Diperbesar */
   }
   
   .popup-image-vertical img {
-    max-height: 350px; /* Lebih besar dari sebelumnya */
+    max-height: 400px; /* Diperbesar */
   }
   
   .popup-details-vertical h2 {

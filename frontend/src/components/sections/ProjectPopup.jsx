@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageGallery from '../ImageGallery';
 import './ProjectPopup.css';
 
 const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Deteksi resize untuk mobile/tablet
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   if (!selectedProject) return null;
 
@@ -45,6 +56,7 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
             <ImageGallery 
               images={selectedProject.images || [selectedProject.image_url]} 
               title={selectedProject.title}
+              hideNavButtons={isMobile} // Prop baru untuk menyembunyikan tombol di mobile
             />
           </div>
           
@@ -115,7 +127,12 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
               )}
               {selectedProject.live_link && (
                 <a href={selectedProject.live_link} target="_blank" rel="noopener noreferrer" className="popup-link">
-                  Live Demo →
+                  Live Website →
+                </a>
+              )}
+              {selectedProject.desain_link && (
+                <a href={selectedProject.desain_link} target="_blank" rel="noopener noreferrer" className="popup-link">
+                  Design →
                 </a>
               )}
             </div>

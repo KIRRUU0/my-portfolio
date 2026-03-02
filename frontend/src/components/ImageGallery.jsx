@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ImageGallery.css';
 
-const ImageGallery = ({ images, title }) => {
+const ImageGallery = ({ images, title, hideNavButtons = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showFullscreen, setShowFullscreen] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
@@ -113,9 +113,13 @@ const ImageGallery = ({ images, title }) => {
           className="gallery-main-image"
         />
         
-        {/* Navigation Buttons */}
-        <button className="gallery-nav prev" onClick={handlePrev}>←</button>
-        <button className="gallery-nav next" onClick={handleNext}>→</button>
+        {/* Navigation Buttons - HANYA TAMPIL JIKA hideNavButtons = false */}
+        {!hideNavButtons && (
+          <>
+            <button className="gallery-nav prev" onClick={handlePrev}>←</button>
+            <button className="gallery-nav next" onClick={handleNext}>→</button>
+          </>
+        )}
         
         {/* Counter */}
         <div className="gallery-counter">
@@ -123,18 +127,20 @@ const ImageGallery = ({ images, title }) => {
         </div>
       </div>
       
-      {/* Thumbnails */}
-      <div className="gallery-thumbnails">
-        {imageArray.map((img, idx) => (
-          <div 
-            key={idx}
-            className={`thumbnail ${idx === currentIndex ? 'active' : ''}`}
-            onClick={() => setCurrentIndex(idx)}
-          >
-            <img src={img} alt={`Thumbnail ${idx + 1}`} />
-          </div>
-        ))}
-      </div>
+      {/* Thumbnails - HANYA TAMPIL JIKA ADA BANYAK GAMBAR */}
+      {imageArray.length > 1 && (
+        <div className="gallery-thumbnails">
+          {imageArray.map((img, idx) => (
+            <div 
+              key={idx}
+              className={`thumbnail ${idx === currentIndex ? 'active' : ''}`}
+              onClick={() => setCurrentIndex(idx)}
+            >
+              <img src={img} alt={`Thumbnail ${idx + 1}`} />
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Fullscreen Modal */}
       {showFullscreen && (
