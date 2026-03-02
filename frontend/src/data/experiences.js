@@ -10,7 +10,7 @@ export const experiences = [
     current: false,
     achievements: [
       "Melakukan pengimputan Data Dosen,Mahasiswa dan staff yang bekerja ke dalam sistem database yang kampus sudah sediakan",
-      "Merakit dan menginstall komputer yang berada dilab sana untuk digunakan pada Mahasiswa",
+      "Merakit dan menginstall komputer yang berada di labolatorium komputer untuk digunakan pada Mahasiswa",
     ]
   },
   {

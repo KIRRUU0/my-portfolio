@@ -16,7 +16,7 @@
 .popup-content {
   background: var(--bg-card);
   border-radius: 12px;
-  max-width: 800px; /* Lebih kecil karena stack vertikal */
+  max-width: 800px;
   width: 95%;
   max-height: 90vh;
   overflow-y: auto;
@@ -60,21 +60,23 @@
   gap: 2rem;
 }
 
+/* PERBESAR GAMBAR DI MOBILE */
 .popup-image-vertical {
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
   background: var(--bg-secondary);
-  max-height: 400px;
+  max-height: 500px; /* Diperbesar */
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .popup-image-vertical img {
   width: 100%;
   height: auto;
-  max-height: 400px;
+  max-height: 500px; /* Diperbesar */
   object-fit: contain;
   display: block;
 }
@@ -294,12 +296,13 @@
     gap: 1.5rem;
   }
   
+  /* PERBESAR GAMBAR DI MOBILE */
   .popup-image-vertical {
-    max-height: 300px;
+    max-height: 400px; /* Lebih besar dari sebelumnya */
   }
   
   .popup-image-vertical img {
-    max-height: 300px;
+    max-height: 400px; /* Lebih besar dari sebelumnya */
   }
   
   .popup-details-vertical h2 {
@@ -328,12 +331,13 @@
     gap: 1rem;
   }
   
+  /* PERBESAR GAMBAR DI MOBILE KECIL */
   .popup-image-vertical {
-    max-height: 250px;
+    max-height: 350px; /* Lebih besar dari sebelumnya */
   }
   
   .popup-image-vertical img {
-    max-height: 250px;
+    max-height: 350px; /* Lebih besar dari sebelumnya */
   }
   
   .popup-details-vertical h2 {

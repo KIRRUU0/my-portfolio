@@ -168,23 +168,18 @@ const CertificateSlider = ({ certificates }) => {
             let isActive = false;
             
             if (pageCount <= 3) {
-              // Jika total halaman ≤ 3, tampilkan semua
               dotIndex = index;
               isActive = index === currentIndex;
             } else {
-              // Jika total halaman > 3, tampilkan 3 dot bergerak
               if (currentIndex === 0) {
-                // Halaman pertama: tampilkan 1,2,3
                 dotIndex = index;
                 isActive = index === 0;
               } else if (currentIndex === pageCount - 1) {
-                // Halaman terakhir: tampilkan n-2, n-1, n
                 dotIndex = pageCount - 3 + index;
                 isActive = (pageCount - 3 + index) === currentIndex;
               } else {
-                // Halaman tengah: tampilkan current-1, current, current+1
                 dotIndex = currentIndex - 1 + index;
-                isActive = index === 1; // Dot tengah yang aktif
+                isActive = index === 1;
               }
             }
             
@@ -206,18 +201,20 @@ const CertificateSlider = ({ certificates }) => {
         </div>
       )}
 
-      {/* Popup Modal */}
+      {/* POPUP MODAL - LAYOUT VERTIKAL GAMBAR DI ATAS */}
       {selectedCert && (
         <div className="popup-overlay" onClick={closePopup}>
-          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+          <div className="popup-content certificate-popup" onClick={(e) => e.stopPropagation()}>
             <button className="popup-close" onClick={closePopup}>×</button>
             
-            <div className="popup-body">
-              <div className="popup-image">
+            <div className="popup-body-vertical">
+              {/* GAMBAR DI ATAS */}
+              <div className="popup-image-vertical">
                 <img src={selectedCert.image_url} alt={selectedCert.name} />
               </div>
               
-              <div className="popup-details">
+              {/* DATA DI BAWAH GAMBAR */}
+              <div className="popup-details-vertical">
                 <h2>{selectedCert.name}</h2>
                 
                 <div className="popup-info">
@@ -229,7 +226,10 @@ const CertificateSlider = ({ certificates }) => {
                   </p>
                   
                   {selectedCert.description && (
-                    <p className="popup-description">{selectedCert.description}</p>
+                    <div className="popup-description-container">
+                      <h3>Description</h3>
+                      <p className="popup-description">{selectedCert.description}</p>
+                    </div>
                   )}
                   
                   {selectedCert.credential_id && (

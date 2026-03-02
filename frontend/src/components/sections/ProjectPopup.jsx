@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImageGallery from '../ImageGallery';
 import './ProjectPopup.css';
 
 const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
   if (!selectedProject) return null;
+
+  // Handle touch events untuk swipe gambar
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!selectedProject.images || selectedProject.images.length <= 1) return;
+    
+    // Dapatkan instance ImageGallery melalui event custom
+    const event = new CustomEvent('swipe', {
+      detail: {
+        direction: touchStart - touchEnd > 50 ? 'left' : touchStart - touchEnd < -50 ? 'right' : null
+      }
+    });
+    window.dispatchEvent(event);
+  };
 
   return (
     <div className="popup-overlay" onClick={closeProjectPopup}>
@@ -11,8 +35,13 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
         <button className="popup-close" onClick={closeProjectPopup}>×</button>
         
         <div className="popup-body-vertical">
-          {/* GAMBAR DI ATAS */}
-          <div className="popup-image-vertical">
+          {/* GAMBAR DI ATAS - dengan touch events */}
+          <div 
+            className="popup-image-vertical"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <ImageGallery 
               images={selectedProject.images || [selectedProject.image_url]} 
               title={selectedProject.title}
@@ -86,12 +115,7 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
               )}
               {selectedProject.live_link && (
                 <a href={selectedProject.live_link} target="_blank" rel="noopener noreferrer" className="popup-link">
-                  Live Website →
-                </a>
-              )}
-              {selectedProject.desain_link && (
-                <a href={selectedProject.desain_link} target="_blank" rel="noopener noreferrer" className="popup-link">
-                  Desain →
+                  Live Demo →
                 </a>
               )}
             </div>
