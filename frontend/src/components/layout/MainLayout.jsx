@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import ThemeToggle from '../ThemeToggle';
 import LanguageSelector from '../LanguageSelector';
@@ -66,6 +66,7 @@ const MainLayout = () => {
         <div className="main-layout">
             <header className="main-header">
                 <div className="header-container">
+                    {/* HAPUS ATAU COMMENT BAGIAN LOGO INI */}
                     {/* <Link to="/" className="logo">
                         <span className="logo-text">MHA</span>
                     </Link> */}
@@ -93,7 +94,7 @@ const MainLayout = () => {
                 {/* Mobile Navigation */}
                 <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
                     <div className="mobile-nav-header">
-                        <span className="mobile-logo">Menu</span>
+                        <span className="mobile-logo">MHA</span>
                         <button className="mobile-close-btn" onClick={() => setMobileMenuOpen(false)}>✕</button>
                     </div>
                     <nav className="mobile-nav-links">
@@ -118,13 +119,10 @@ const MainLayout = () => {
                 <Outlet />
             </main>
             
+            {/* FOOTER - HANYA TEKS DI TENGAH */}
             <footer className="main-footer">
                 <div className="footer-container">
                     <p>© 2026 Muhammad Haekal Arrafi</p>
-                    <div className="social-links">
-                        <a href="https://github.com/KIRRUU0" target="_blank" rel="noopener">GitHub</a>
-                        <a href="https://www.linkedin.com/in/muhammad-haekal-arrafi-961991282" target="_blank" rel="noopener">LinkedIn</a>
-                    </div>
                 </div>
             </footer>
         </div>

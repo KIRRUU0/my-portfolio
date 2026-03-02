@@ -1,70 +1,112 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './ContactSection.css';
 
-const ContactSection = ({ contactRef, formData, formError, formSuccess, formLoading, handleFormChange, handleFormSubmit }) => {
+const ContactSection = ({ contactRef }) => {
   const { language } = useApp();
   
   const t = {
     en: {
-      contactTitle: 'get in touch',
-      nameLabel: 'your name',
-      messageLabel: 'message',
-      send: 'send message',
-      sending: 'sending...',
-      success: 'message sent!',
-      error: 'something went wrong. please try again.'
+      contactTitle: 'Contact',
+      phone: 'Phone',
+      email: 'Email',
+      linkedin: 'LinkedIn',
+      github: 'GitHub',
+      copy: 'Copy',
+      copied: 'Copied!'
     },
     id: {
-      contactTitle: 'hubungi saya',
-      nameLabel: 'nama anda',
-      messageLabel: 'pesan',
-      send: 'kirim pesan',
-      sending: 'mengirim...',
-      success: 'pesan terkirim!',
-      error: 'terjadi kesalahan. silakan coba lagi.'
+      contactTitle: 'Kontak',
+      phone: 'Telepon',
+      email: 'Email',
+      linkedin: 'LinkedIn',
+      github: 'GitHub',
+      copy: 'Salin',
+      copied: 'Tersalin!'
     }
   };
 
   const text = t[language] || t.en;
+  
+  // Data kontak dengan Bootstrap Icons
+  const contacts = [
+    {
+      id: 'phone',
+      icon: <i className="bi bi-telephone"></i>,
+      label: text.phone,
+      value: '+62 851-5812-5501',
+      link: 'tel:+6285158125501',
+      copyable: true
+    },
+    {
+      id: 'email',
+      icon: <i className="bi bi-envelope-at"></i>, // Icon email sesuai permintaan
+      label: text.email,
+      value: 'haekalarrafi@gmail.com',
+      link: 'mailto:haekalarrafi@gmail.com',
+      copyable: true
+    },
+    {
+      id: 'linkedin',
+      icon: <i className="bi bi-linkedin"></i>,
+      label: text.linkedin,
+      value: 'linkedin.com/in/muhammad-haekal-arrafi-961991282',
+      link: 'https://www.linkedin.com/in/muhammad-haekal-arrafi-961991282',
+      copyable: false
+    },
+    {
+      id: 'github',
+      icon: <i className="bi bi-github"></i>,
+      label: text.github,
+      value: 'github.com/KIRRUU0',
+      link: 'https://github.com/KIRRUU0',
+      copyable: false
+    }
+  ];
+
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    alert(text.copied || 'Copied!');
+  };
 
   return (
     <section id="contact" ref={contactRef} className="contact-section">
       <div className="section-header">
         <h2 className="section-title">{text.contactTitle}</h2>
       </div>
+      
       <div className="contact-container" data-aos="fade-up" data-aos-duration="800">
-        <form onSubmit={handleFormSubmit} className="contact-form">
-          {formError && <div className="error-message">{formError}</div>}
-          {formSuccess && <div className="success-message">{text.success}</div>}
-          <div className="form-group">
-            <input 
-              type="text" 
-              name="name" 
-              placeholder={text.nameLabel} 
-              value={formData.name} 
-              onChange={handleFormChange} 
-              required 
-              disabled={formLoading} 
-              className="form-input" 
-            />
-          </div>
-          <div className="form-group">
-            <textarea 
-              name="message" 
-              rows="4" 
-              placeholder={text.messageLabel} 
-              value={formData.message} 
-              onChange={handleFormChange} 
-              required 
-              disabled={formLoading} 
-              className="form-input" 
-            />
-          </div>
-          <button type="submit" className="submit-btn" disabled={formLoading}>
-            {formLoading ? text.sending : text.send}
-          </button>
-        </form>
+        <div className="contact-grid">
+          {contacts.map((contact) => (
+            <div key={contact.id} className="contact-card">
+              <div className="contact-icon">
+                {contact.icon}
+              </div>
+              <div className="contact-info">
+                <div className="contact-label">{contact.label}</div>
+                <div className="contact-value">
+                  {contact.link ? (
+                    <a href={contact.link} target="_blank" rel="noopener noreferrer">
+                      {contact.value}
+                    </a>
+                  ) : (
+                    <span>{contact.value}</span>
+                  )}
+                </div>
+              </div>
+              {contact.copyable && (
+                <button 
+                  className="contact-copy" 
+                  onClick={() => handleCopy(contact.value)}
+                  title={text.copy}
+                >
+                  <i className="bi bi-files"></i>
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -10,31 +10,32 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
       <div className="popup-content project-popup" onClick={(e) => e.stopPropagation()}>
         <button className="popup-close" onClick={closeProjectPopup}>×</button>
         
-        <div className="popup-body">
-          <div className="popup-image">
+        <div className="popup-body-vertical">
+          {/* GAMBAR DI ATAS */}
+          <div className="popup-image-vertical">
             <ImageGallery 
               images={selectedProject.images || [selectedProject.image_url]} 
               title={selectedProject.title}
             />
           </div>
           
-          <div className="popup-details">
-            <div className="popup-header">
-              <h2>{selectedProject.title}</h2>
+          {/* DATA DI BAWAH GAMBAR */}
+          <div className="popup-details-vertical">
+            <h2>{selectedProject.title}</h2>
+            
+            <div className="popup-meta">
+              <span className="popup-date">
+                {formatDate(selectedProject.created_at)}
+              </span>
               
-              <div className="popup-meta">
-                <span className="popup-date">
-                  {formatDate(selectedProject.created_at)}
+              {selectedProject.status && (
+                <span className={`popup-status-badge ${selectedProject.status}`}>
+                  {selectedProject.status === 'published' ? 'PUBLISHED' : 'DRAFT'}
                 </span>
-                
-                {selectedProject.status && (
-                  <span className={`popup-status-badge ${selectedProject.status}`}>
-                    {selectedProject.status === 'published' ? 'PUBLISHED' : 'DRAFT'}
-                  </span>
-                )}
-              </div>
+              )}
             </div>
             
+            {/* Categories */}
             {selectedProject.categories && selectedProject.categories.length > 0 && (
               <div className="popup-categories">
                 <h3>Categories</h3>
@@ -46,6 +47,7 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
               </div>
             )}
             
+            {/* Overview */}
             {selectedProject.description && (
               <div className="popup-description-section">
                 <h3>Overview</h3>
@@ -55,6 +57,7 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
               </div>
             )}
             
+            {/* Details */}
             {selectedProject.content && (
               <div className="popup-content-section">
                 <h3>Details</h3>
@@ -64,6 +67,7 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
               </div>
             )}
             
+            {/* Technologies */}
             <div className="popup-tech-stack">
               <h3>Technologies</h3>
               <div className="popup-tech-tags">
@@ -73,12 +77,22 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
               </div>
             </div>
             
+            {/* Links */}
             <div className="popup-links">
               {selectedProject.github_link && (
-                <a href={selectedProject.github_link} target="_blank" rel="noopener noreferrer" className="popup-link">GitHub →</a>
+                <a href={selectedProject.github_link} target="_blank" rel="noopener noreferrer" className="popup-link">
+                  GitHub →
+                </a>
               )}
               {selectedProject.live_link && (
-                <a href={selectedProject.live_link} target="_blank" rel="noopener noreferrer" className="popup-link">Live Demo →</a>
+                <a href={selectedProject.live_link} target="_blank" rel="noopener noreferrer" className="popup-link">
+                  Live Website →
+                </a>
+              )}
+              {selectedProject.desain_link && (
+                <a href={selectedProject.desain_link} target="_blank" rel="noopener noreferrer" className="popup-link">
+                  Desain →
+                </a>
               )}
             </div>
           </div>

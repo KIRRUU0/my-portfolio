@@ -73,7 +73,8 @@ const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }
                 </div>
                 <div className="project-card-links" onClick={(e) => e.stopPropagation()}>
                   {project.github_link && <a href={project.github_link} target="_blank" rel="noopener noreferrer" className="project-card-link">GitHub →</a>}
-                  {project.live_link && <a href={project.live_link} target="_blank" rel="noopener noreferrer" className="project-card-link">Live Demo →</a>}
+                  {project.live_link && <a href={project.live_link} target="_blank" rel="noopener noreferrer" className="project-card-link">Live Website →</a>}
+                  {project.desain_link && <a href={project.desain_link} target="_blank" rel="noopener noreferrer" className="project-card-link">Desain →</a>}
                 </div>
               </div>
             </div>
