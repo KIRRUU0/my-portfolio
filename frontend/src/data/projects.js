@@ -190,4 +190,26 @@ export const projects = [
     created_at: "2026-02-10T00:00:00Z",
     categories: ["frontend"]
   },
+  {
+    id: 10,
+    title: "Undangan Buka Bersama Coffee Shop",
+    slug: "undangan-buka-bersama-coffee-shop",
+    description: "Sebuah platform undangan digital berbasis web yang dirancang khusus untuk acara \"Buka Bersama Tetangga Tuku Cinere\". Proyek ini mengedepankan estetika minimalis, organik, dan approachable, mengadopsi identitas visual dari brand Kopi Tuku (Clean White, Coffee Brown, dan Botanical Green). Fokus utama proyek ini adalah memberikan pengalaman pengguna yang ringan (fast-loading) dan responsif bagi tamu undangan yang mengakses melalui perangkat mobile .",
+    content: "Undangan digital untuk acara buka bersama di coffee shop. Undangan ini memiliki desain menarik dan fitur interaktif untuk memudahkan konfirmasi kehadiran.",
+    image_url: "/images/project/Undangan Buka Bersama Coffe Shop/foto1.jpeg",
+    images: [
+      "/images/project/Undangan Buka Bersama Coffe Shop/foto1.jpeg",
+      "/images/project/Undangan Buka Bersama Coffe Shop/foto2.jpeg",
+      "/images/project/Undangan Buka Bersama Coffe Shop/foto3.jpeg"
+    ],
+    tech_stack: ["HTML", "CSS", "JavaScript"],
+    github_link: null,
+    live_link: null,
+    desain_link: null,
+    featured: false,
+    status: "published",
+    views: 456,
+    created_at: "2026-03-01T00:00:00Z",
+    categories: ["frontend"]
+  },
 ];
