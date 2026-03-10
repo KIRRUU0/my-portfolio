@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { projects } from '../../data/projects';
 import './LoadingScreen.css';
 
 const LoadingScreen = ({ onFinish }) => {
   const { language } = useApp();
   const [progress, setProgress] = useState(0);
-  const [loadingText, setLoadingText] = useState('');
   const [show, setShow] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-  const [displayedWelcome, setDisplayedWelcome] = useState('');
+  const [activeTechIndex, setActiveTechIndex] = useState(0);
+  
+  // Kumpulkan semua tech stack dari projects
+  const allTech = [...new Set(projects.flatMap(p => p.tech_stack))].sort();
   
   const t = {
     en: {
-      welcome: 'Welcome to my portfolio',
       loading: 'Loading',
       complete: 'Ready'
     },
     id: {
-      welcome: 'Selamat datang di portfolio saya',
       loading: 'Memuat',
       complete: 'Siap'
     }
@@ -25,69 +26,21 @@ const LoadingScreen = ({ onFinish }) => {
 
   const text = t[language] || t.en;
 
-  // Kode-kode untuk animasi coding
-  const codeLines = [
-    'import { Portfolio } from "./components";',
-    'const developer = new Developer("Haekal");',
-    'developer.skills = ["React", "Go", "Node.js"];',
-    'function createAwesome() {',
-    '  return <Portfolio />;',
-    '}',
-    'npm install creativity --save',
-    'git commit -m "Add amazing features"',
-    'deploy --production',
-    'console.log("Hello World!");',
-    '<Loading complete={true} />',
-    'export default function App() {',
-    '  return <Experience />;',
-    '}',
-    'while(alive) { code(); }',
-    'if(success) { celebrate(); }',
-    'const future = "Bright";',
-    'portfolio.render();',
-    '🎉 Deployment successful! 🎉'
-  ];
-
-  // Tech stack 1 baris
-  const techStacks = [
-    '⚛️ React', '🐹 Go', '📘 Node.js', '🐍 Python', '🐳 Docker', 
-    '☸️ Kubernetes', '📦 MongoDB', '🐬 MySQL', '☁️ AWS', '📝 TypeScript',
-    '🎨 Vue', '🔷 Angular', '⚡ Next.js', '💅 Tailwind', '📘 Express',
-    '🔧 NestJS', '📊 GraphQL', '🔍 PostgreSQL', '📈 Redis', '🚀 Vercel'
-  ];
-
   useEffect(() => {
-    // Animasi text per text untuk welcome message
-    let charIndex = 0;
-    const welcomeText = text.welcome;
-    
-    const textInterval = setInterval(() => {
-      if (charIndex <= welcomeText.length) {
-        setDisplayedWelcome(welcomeText.substring(0, charIndex));
-        charIndex++;
-      } else {
-        clearInterval(textInterval);
-      }
-    }, 80);
-
-    // Update loading text secara acak
-    const codeInterval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * codeLines.length);
-      setLoadingText(codeLines[randomIndex]);
-    }, 150);
+    // Rotasi tech stack setiap 200ms
+    const techInterval = setInterval(() => {
+      setActiveTechIndex((prev) => (prev + 1) % allTech.length);
+    }, 200);
 
     // Progress bar
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressInterval);
-          clearInterval(codeInterval);
-          clearInterval(textInterval);
+          clearInterval(techInterval);
           
-          // Trigger fade out
           setFadeOut(true);
           
-          // Setelah fade out selesai, panggil onFinish
           setTimeout(() => {
             setShow(false);
             onFinish();
@@ -101,10 +54,9 @@ const LoadingScreen = ({ onFinish }) => {
 
     return () => {
       clearInterval(progressInterval);
-      clearInterval(codeInterval);
-      clearInterval(textInterval);
+      clearInterval(techInterval);
     };
-  }, [onFinish, text.welcome]);
+  }, [onFinish, allTech.length]);
 
   if (!show) return null;
 
@@ -113,31 +65,26 @@ const LoadingScreen = ({ onFinish }) => {
       <div className="matrix-bg"></div>
       
       <div className="loading-content">
-        <h1 className="welcome-text">
-          <span className="welcome">{displayedWelcome}</span>
-          <span className="cursor">_</span>
-        </h1>
-        
-        <div className="code-animation">
-          <div className="code-window">
-            <div className="code-header">
-              <span className="dot red"></span>
-              <span className="dot yellow"></span>
-              <span className="dot green"></span>
-              <span className="filename">portfolio.js</span>
-            </div>
-            <div className="code-body">
-              {loadingText && (
-                <div className="code-line">
-                  <span className="line-number">{String(progress).padStart(3, '0')}</span>
-                  <span className="code-text">{loadingText}</span>
-                  <span className="blink-cursor">|</span>
-                </div>
-              )}
-            </div>
+        {/* Tech Stack Micro Animation */}
+        <div className="tech-micro-container">
+          <div className="tech-micro-wrapper">
+            {allTech.map((tech, index) => (
+              <div
+                key={index}
+                className={`tech-micro-item ${index === activeTechIndex ? 'active' : ''}`}
+                style={{
+                  transform: `translateX(${index - activeTechIndex}00%) scale(${index === activeTechIndex ? 1 : 0.7})`,
+                  opacity: index === activeTechIndex ? 1 : 0.2,
+                  zIndex: index === activeTechIndex ? 10 : 1,
+                }}
+              >
+                <span className="tech-micro-text">{tech}</span>
+              </div>
+            ))}
           </div>
         </div>
 
+        {/* Progress Bar */}
         <div className="progress-container">
           <div className="progress-bar-wrapper">
             <div 
@@ -153,32 +100,16 @@ const LoadingScreen = ({ onFinish }) => {
           </div>
         </div>
 
-        {/* Tech Stack - 1 Baris dengan scroll (tanpa animasi khusus) */}
-        <div className="tech-stack-container">
-          <div className="tech-stack-track">
-            {techStacks.map((tech, index) => (
-              <span key={index} className="tech-icon">{tech}</span>
-            ))}
-            {techStacks.map((tech, index) => (
-              <span key={`dup-${index}`} className="tech-icon">{tech}</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="particles">
-          {[...Array(20)].map((_, i) => (
-            <div 
-              key={i} 
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 4}s`,
-                fontSize: `${0.8 + Math.random() * 1}rem`
-              }}
-            >
-              {['{', '}', '<', '>', '/', ';', '(', ')', '=', '$', '#', '@'][Math.floor(Math.random() * 12)]}
-            </div>
+        {/* Tech Stack Cloud (background effect) */}
+        <div className="tech-cloud-bg">
+          {allTech.slice(0, 10).map((tech, index) => (
+            <span key={index} className="cloud-item" style={{
+              animationDelay: `${index * 0.5}s`,
+              left: `${(index * 7) % 100}%`,
+              top: `${(index * 3) % 80}%`,
+            }}>
+              {tech}
+            </span>
           ))}
         </div>
       </div>
