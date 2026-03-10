@@ -7,10 +7,11 @@ const LoadingScreen = ({ onFinish }) => {
   const { language } = useApp();
   const [show, setShow] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-  const [currentTech, setCurrentTech] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [dotCount, setDotCount] = useState(1);
+  const [slideDirection, setSlideDirection] = useState('right');
   
-  // Kumpulkan semua tech stack dari semua project
+  // Kumpulkan semua tech stack
   const allTech = [...new Set(projects.flatMap(p => p.tech_stack))].sort();
 
   const t = {
@@ -21,17 +22,18 @@ const LoadingScreen = ({ onFinish }) => {
   const text = t[language] || t.en;
 
   useEffect(() => {
-    // Timer untuk ganti tech stack setiap 400ms (lebih lambat)
+    // Timer untuk ganti tech stack dengan efek smooth
     const techInterval = setInterval(() => {
-      setCurrentTech((prev) => (prev + 1) % allTech.length);
-    }, 400);
+      setSlideDirection('right');
+      setCurrentIndex((prev) => (prev + 1) % allTech.length);
+    }, 500);
 
     // Timer untuk animasi titik loading
     const dotInterval = setInterval(() => {
       setDotCount((prev) => (prev % 3) + 1);
     }, 500);
 
-    // Timer untuk fade out (2.5 detik)
+    // Timer untuk fade out
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
       
@@ -41,7 +43,7 @@ const LoadingScreen = ({ onFinish }) => {
         clearInterval(techInterval);
         clearInterval(dotInterval);
       }, 800);
-    }, 2500);
+    }, 2800);
 
     return () => {
       clearInterval(techInterval);
@@ -52,11 +54,11 @@ const LoadingScreen = ({ onFinish }) => {
 
   if (!show) return null;
 
-  // Ambil 3 tech stack berdasarkan current index
+  // Ambil 3 tech stack dengan efek melingkar
   const getVisibleTech = () => {
     const result = [];
-    for (let i = 0; i < 3; i++) {
-      const index = (currentTech + i) % allTech.length;
+    for (let i = -1; i <= 1; i++) {
+      const index = (currentIndex + i + allTech.length) % allTech.length;
       result.push(allTech[index]);
     }
     return result;
@@ -64,50 +66,105 @@ const LoadingScreen = ({ onFinish }) => {
 
   const visibleTech = getVisibleTech();
 
-  // Buat string titik loading
-  const dots = '.'.repeat(dotCount);
-
   return (
     <div className={`loading-screen ${fadeOut ? 'fade-out' : 'fade-in'}`}>
       <div className="matrix-bg"></div>
       
       <div className="loading-content">
-        {/* 3 Tech Stack Bergulir */}
-        <div className="tech-stack-container">
-          <div className="tech-stack-wrapper">
-            {visibleTech.map((tech, index) => (
-              <div 
-                key={index} 
-                className={`tech-stack-item ${index === 1 ? 'center' : 'side'}`}
+        {/* Tech Stack dengan Animasi Circular */}
+        <div className="tech-carousel">
+          {visibleTech.map((tech, idx) => {
+            const position = idx - 1; // -1, 0, 1
+            
+            return (
+              <div
+                key={`${tech}-${idx}`}
+                className={`tech-card ${position === 0 ? 'center' : 'side'}`}
                 style={{
-                  transform: `translateX(${(index - 1) * 120}px) scale(${index === 1 ? 1 : 0.8})`,
-                  opacity: index === 1 ? 1 : 0.6,
-                  zIndex: index === 1 ? 3 : 2 - index,
+                  '--direction': slideDirection,
+                  '--position': position,
+                  '--delay': `${Math.abs(position) * 0.1}s`,
+                  transform: `
+                    translateX(${position * 120}%)
+                    scale(${position === 0 ? 1 : 0.7})
+                    rotateY(${position * 15}deg)
+                  `,
+                  opacity: position === 0 ? 1 : 0.4,
+                  zIndex: position === 0 ? 3 : 2 - Math.abs(position),
+                  filter: `blur(${Math.abs(position) * 2}px)`,
                 }}
               >
-                <span className="tech-text">{tech}</span>
+                <span className="tech-name">{tech}</span>
+                {position === 0 && (
+                  <div className="tech-glow"></div>
+                )}
               </div>
+            );
+          })}
+        </div>
+
+        {/* Progress Ring */}
+        <div className="progress-ring">
+          <svg className="progress-svg" viewBox="0 0 120 120">
+            <circle
+              className="progress-track"
+              cx="60"
+              cy="60"
+              r="54"
+              fill="none"
+              stroke="rgba(255,255,255,0.1)"
+              strokeWidth="4"
+            />
+            <circle
+              className="progress-fill"
+              cx="60"
+              cy="60"
+              r="54"
+              fill="none"
+              stroke="#4CAF50"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeDasharray="339.292"
+              strokeDashoffset="339.292"
+              style={{
+                animation: 'fillProgress 2.8s linear forwards',
+              }}
+            />
+          </svg>
+          <div className="progress-dots">
+            {[1, 2, 3].map((num) => (
+              <span
+                key={num}
+                className={`dot ${dotCount >= num ? 'active' : ''}`}
+              />
             ))}
           </div>
         </div>
 
-        {/* Loading Text dengan Animasi Titik */}
-        <div className="loading-text-container">
-          <span className="loading-text">{text.loading}</span>
-          <span className="loading-dots">{dots}</span>
+        {/* Loading Text */}
+        <div className="loading-wrapper">
+          <span className="loading-label">{text.loading}</span>
+          <div className="loading-wave">
+            <span style={{ '--i': 1 }}></span>
+            <span style={{ '--i': 2 }}></span>
+            <span style={{ '--i': 3 }}></span>
+          </div>
         </div>
 
-        {/* Tech Stack Cloud Background */}
-        <div className="tech-cloud-bg">
-          {allTech.slice(0, 10).map((tech, index) => (
-            <span key={index} className="cloud-item" style={{
-              animationDelay: `${index * 0.3}s`,
-              left: `${(index * 7) % 100}%`,
-              top: `${(index * 5) % 80}%`,
-              fontSize: `${0.7 + (index % 3) * 0.2}rem`,
-            }}>
+        {/* Particle Effects */}
+        <div className="tech-particles">
+          {allTech.slice(0, 8).map((tech, index) => (
+            <div
+              key={index}
+              className="particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${index * 0.2}s`,
+                animationDuration: `${4 + Math.random() * 4}s`,
+              }}
+            >
               {tech}
-            </span>
+            </div>
           ))}
         </div>
       </div>
