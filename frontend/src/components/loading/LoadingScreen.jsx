@@ -5,58 +5,36 @@ import './LoadingScreen.css';
 
 const LoadingScreen = ({ onFinish }) => {
   const { language } = useApp();
-  const [progress, setProgress] = useState(0);
   const [show, setShow] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-  const [activeTechIndex, setActiveTechIndex] = useState(0);
   
-  // Kumpulkan semua tech stack dari projects
+  // Kumpulkan semua tech stack dari semua project
   const allTech = [...new Set(projects.flatMap(p => p.tech_stack))].sort();
-  
+
   const t = {
     en: {
-      loading: 'Loading',
-      complete: 'Ready'
+      welcome: 'Welcome to my portfolio'
     },
     id: {
-      loading: 'Memuat',
-      complete: 'Siap'
+      welcome: 'Selamat datang di portfolio saya'
     }
   };
 
   const text = t[language] || t.en;
 
   useEffect(() => {
-    // Rotasi tech stack setiap 200ms
-    const techInterval = setInterval(() => {
-      setActiveTechIndex((prev) => (prev + 1) % allTech.length);
-    }, 200);
+    // Timer untuk fade out
+    const timer = setTimeout(() => {
+      setFadeOut(true);
+      
+      setTimeout(() => {
+        setShow(false);
+        onFinish();
+      }, 800);
+    }, 2500); // Loading selama 2.5 detik
 
-    // Progress bar
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(progressInterval);
-          clearInterval(techInterval);
-          
-          setFadeOut(true);
-          
-          setTimeout(() => {
-            setShow(false);
-            onFinish();
-          }, 800);
-          
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 30);
-
-    return () => {
-      clearInterval(progressInterval);
-      clearInterval(techInterval);
-    };
-  }, [onFinish, allTech.length]);
+    return () => clearTimeout(timer);
+  }, [onFinish]);
 
   if (!show) return null;
 
@@ -65,48 +43,31 @@ const LoadingScreen = ({ onFinish }) => {
       <div className="matrix-bg"></div>
       
       <div className="loading-content">
-        {/* Tech Stack Micro Animation */}
-        <div className="tech-micro-container">
-          <div className="tech-micro-wrapper">
-            {allTech.map((tech, index) => (
-              <div
-                key={index}
-                className={`tech-micro-item ${index === activeTechIndex ? 'active' : ''}`}
-                style={{
-                  transform: `translateX(${index - activeTechIndex}00%) scale(${index === activeTechIndex ? 1 : 0.7})`,
-                  opacity: index === activeTechIndex ? 1 : 0.2,
-                  zIndex: index === activeTechIndex ? 10 : 1,
-                }}
-              >
-                <span className="tech-micro-text">{tech}</span>
-              </div>
+        {/* Welcome Text */}
+        <h1 className="welcome-text">
+          <span className="welcome">{text.welcome}</span>
+        </h1>
+        
+        {/* Tech Stack Marquee - Semua tech bergulir perlahan */}
+        <div className="tech-marquee-container">
+          <div className="tech-marquee-track">
+            {/* Duplicate untuk infinite scroll */}
+            {[...allTech, ...allTech, ...allTech].map((tech, index) => (
+              <span key={`${tech}-${index}`} className="tech-marquee-item">
+                {tech}
+              </span>
             ))}
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="progress-container">
-          <div className="progress-bar-wrapper">
-            <div 
-              className="progress-bar-fill" 
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
-          <div className="progress-text">
-            <span className="progress-percentage">{progress}%</span>
-            <span className="progress-status">
-              {progress < 100 ? text.loading : text.complete}
-            </span>
-          </div>
-        </div>
-
-        {/* Tech Stack Cloud (background effect) */}
+        {/* Tech Stack Cloud Background */}
         <div className="tech-cloud-bg">
-          {allTech.slice(0, 10).map((tech, index) => (
+          {allTech.slice(0, 15).map((tech, index) => (
             <span key={index} className="cloud-item" style={{
-              animationDelay: `${index * 0.5}s`,
+              animationDelay: `${index * 0.3}s`,
               left: `${(index * 7) % 100}%`,
-              top: `${(index * 3) % 80}%`,
+              top: `${(index * 5) % 80}%`,
+              fontSize: `${0.8 + (index % 3) * 0.2}rem`,
             }}>
               {tech}
             </span>
