@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { projects } from '../../data/projects';
 import './LoadingScreen.css';
 
 const LoadingScreen = ({ onFinish }) => {
   const { language } = useApp();
   const [show, setShow] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [dotCount, setDotCount] = useState(1);
-  const [slideDirection, setSlideDirection] = useState('right');
-  
-  // Kumpulkan semua tech stack
-  const allTech = [...new Set(projects.flatMap(p => p.tech_stack))].sort();
 
   const t = {
     en: { loading: 'Loading' },
@@ -22,12 +16,6 @@ const LoadingScreen = ({ onFinish }) => {
   const text = t[language] || t.en;
 
   useEffect(() => {
-    // Timer untuk ganti tech stack dengan efek smooth
-    const techInterval = setInterval(() => {
-      setSlideDirection('right');
-      setCurrentIndex((prev) => (prev + 1) % allTech.length);
-    }, 500);
-
     // Timer untuk animasi titik loading
     const dotInterval = setInterval(() => {
       setDotCount((prev) => (prev % 3) + 1);
@@ -40,69 +28,23 @@ const LoadingScreen = ({ onFinish }) => {
       setTimeout(() => {
         setShow(false);
         onFinish();
-        clearInterval(techInterval);
         clearInterval(dotInterval);
       }, 800);
     }, 2800);
 
     return () => {
-      clearInterval(techInterval);
       clearInterval(dotInterval);
       clearTimeout(fadeTimer);
     };
-  }, [onFinish, allTech.length]);
+  }, [onFinish]);
 
   if (!show) return null;
-
-  // Ambil 3 tech stack dengan efek melingkar
-  const getVisibleTech = () => {
-    const result = [];
-    for (let i = -1; i <= 1; i++) {
-      const index = (currentIndex + i + allTech.length) % allTech.length;
-      result.push(allTech[index]);
-    }
-    return result;
-  };
-
-  const visibleTech = getVisibleTech();
 
   return (
     <div className={`loading-screen ${fadeOut ? 'fade-out' : 'fade-in'}`}>
       <div className="matrix-bg"></div>
       
       <div className="loading-content">
-        {/* Tech Stack dengan Animasi Circular */}
-        <div className="tech-carousel">
-          {visibleTech.map((tech, idx) => {
-            const position = idx - 1; // -1, 0, 1
-            
-            return (
-              <div
-                key={`${tech}-${idx}`}
-                className={`tech-card ${position === 0 ? 'center' : 'side'}`}
-                style={{
-                  '--direction': slideDirection,
-                  '--position': position,
-                  '--delay': `${Math.abs(position) * 0.1}s`,
-                  transform: `
-                    translateX(${position * 120}%)
-                    scale(${position === 0 ? 1 : 0.7})
-                    rotateY(${position * 15}deg)
-                  `,
-                  opacity: position === 0 ? 1 : 0.4,
-                  zIndex: position === 0 ? 3 : 2 - Math.abs(position),
-                  filter: `blur(${Math.abs(position) * 2}px)`,
-                }}
-              >
-                <span className="tech-name">{tech}</span>
-                {position === 0 && (
-                  <div className="tech-glow"></div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
         {/* Progress Ring */}
         <div className="progress-ring">
           <svg className="progress-svg" viewBox="0 0 120 120">
@@ -151,20 +93,18 @@ const LoadingScreen = ({ onFinish }) => {
           </div>
         </div>
 
-        {/* Particle Effects */}
-        <div className="tech-particles">
-          {allTech.slice(0, 8).map((tech, index) => (
+        {/* Particle Effects (Minimal) */}
+        <div className="minimal-particles">
+          {[...Array(6)].map((_, index) => (
             <div
               key={index}
-              className="particle"
+              className="minimal-particle"
               style={{
                 left: `${Math.random() * 100}%`,
-                animationDelay: `${index * 0.2}s`,
-                animationDuration: `${4 + Math.random() * 4}s`,
+                animationDelay: `${index * 0.3}s`,
+                animationDuration: `${3 + Math.random() * 3}s`,
               }}
-            >
-              {tech}
-            </div>
+            />
           ))}
         </div>
       </div>

@@ -203,9 +203,9 @@ export const projects = [
       "/images/project/Undangan Buka Bersama Coffe Shop/foto3.jpeg"
     ],
     tech_stack: ["HTML", "CSS", "JavaScript"],
-    github_link: null,
+    github_link: "https://github.com/KIRRUU0/bukber-tetangga.git",
     live_link: "https://bukber-tetangga.vercel.app/",
-    desain_link: "https://github.com/KIRRUU0/bukber-tetangga.git",
+    desain_link: null,
     featured: false,
     status: "published",
     views: 456,
