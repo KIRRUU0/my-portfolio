@@ -1,54 +1,68 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { useApp } from '../../context/AppContext';
 import ImageGallery from '../ImageGallery';
 import './ProjectPopup.css';
 
 const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
+  const { language } = useApp();
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
 
-  // Deteksi resize untuk mobile/tablet
+  const t = {
+    en: {
+      categories: 'Categories',
+      overview: 'Overview',
+      details: 'Key Features',
+      tech: 'Tech Stack',
+      links: 'Project Links',
+      visit: 'Visit Project',
+      viewCode: 'Source Code',
+      viewDesign: 'Design Mockup'
+    },
+    id: {
+      categories: 'Kategori',
+      overview: 'Ringkasan',
+      details: 'Fitur Utama',
+      tech: 'Teknologi',
+      links: 'Tautan Proyek',
+      visit: 'Kunjungi Situs',
+      viewCode: 'Kode Sumber',
+      viewDesign: 'Mockup Desain'
+    }
+  };
+
+  const text = t[language] || t.en;
+
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   if (!selectedProject) return null;
 
-  // Handle touch events untuk swipe gambar
-  const handleTouchStart = (e) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
+  const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
+  const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
   const handleTouchEnd = () => {
     if (!selectedProject.images || selectedProject.images.length <= 1) return;
-    
-    // Dapatkan instance ImageGallery melalui event custom
-    const event = new CustomEvent('swipe', {
-      detail: {
-        direction: touchStart - touchEnd > 50 ? 'left' : touchStart - touchEnd < -50 ? 'right' : null
-      }
-    });
-    window.dispatchEvent(event);
+    const direction = touchStart - touchEnd > 50 ? 'left' : touchStart - touchEnd < -50 ? 'right' : null;
+    if (direction) {
+      window.dispatchEvent(new CustomEvent('swipe', { detail: { direction } }));
+    }
   };
 
-  return (
-    <div className="popup-overlay" onClick={closeProjectPopup}>
+  return ReactDOM.createPortal(
+    <div className="project-popup-overlay" onClick={closeProjectPopup}>
       <div className="popup-content project-popup" onClick={(e) => e.stopPropagation()}>
-        <button className="popup-close" onClick={closeProjectPopup}>×</button>
+        <button className="popup-close" onClick={closeProjectPopup}>
+          <i className="bi bi-x-lg"></i>
+        </button>
         
-        <div className="popup-body-vertical">
-          {/* GAMBAR DI ATAS - dengan touch events */}
+        <div className="popup-body-scrollable">
           <div 
-            className="popup-image-vertical"
+            className="popup-image-section"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -56,90 +70,86 @@ const ProjectPopup = ({ selectedProject, closeProjectPopup, formatDate }) => {
             <ImageGallery 
               images={selectedProject.images || [selectedProject.image_url]} 
               title={selectedProject.title}
-              hideNavButtons={isMobile} // Prop baru untuk menyembunyikan tombol di mobile
+              hideNavButtons={isMobile}
             />
           </div>
           
-          {/* DATA DI BAWAH GAMBAR */}
-          <div className="popup-details-vertical">
-            <h2>{selectedProject.title}</h2>
-            
-            <div className="popup-meta">
-              <span className="popup-date">
-                {formatDate(selectedProject.created_at)}
-              </span>
-              
-              {selectedProject.status && (
-                <span className={`popup-status-badge ${selectedProject.status}`}>
-                  {selectedProject.status === 'published' ? 'PUBLISHED' : 'DRAFT'}
+          <div className="popup-info-section">
+            <div className="popup-header-main">
+              <h2 className="popup-title">{selectedProject.title}</h2>
+              <div className="popup-meta-badges">
+                <span className="popup-date-badge">
+                  <i className="bi bi-calendar3"></i> {formatDate(selectedProject.created_at)}
                 </span>
-              )}
-            </div>
-            
-            {/* Categories */}
-            {selectedProject.categories && selectedProject.categories.length > 0 && (
-              <div className="popup-categories">
-                <h3>Categories</h3>
-                <div className="popup-category-tags">
-                  {selectedProject.categories.map((category, i) => (
-                    <span key={i} className="category-badge-large">{category}</span>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {/* Overview */}
-            {selectedProject.description && (
-              <div className="popup-description-section">
-                <h3>Overview</h3>
-                <p className="popup-description">
-                  {selectedProject.description}
-                </p>
-              </div>
-            )}
-            
-            {/* Details */}
-            {selectedProject.content && (
-              <div className="popup-content-section">
-                <h3>Details</h3>
-                <div className="popup-content">
-                  {selectedProject.content}
-                </div>
-              </div>
-            )}
-            
-            {/* Technologies */}
-            <div className="popup-tech-stack">
-              <h3>Technologies</h3>
-              <div className="popup-tech-tags">
-                {selectedProject.tech_stack?.map((tech, i) => (
-                  <span key={i} className="tech-badge-large">{tech}</span>
-                ))}
+                {selectedProject.status && (
+                  <span className={`popup-status-badge ${selectedProject.status}`}>
+                    {selectedProject.status.toUpperCase()}
+                  </span>
+                )}
               </div>
             </div>
             
-            {/* Links */}
-            <div className="popup-links">
-              {selectedProject.github_link && (
-                <a href={selectedProject.github_link} target="_blank" rel="noopener noreferrer" className="popup-link">
-                  GitHub →
-                </a>
-              )}
-              {selectedProject.live_link && (
-                <a href={selectedProject.live_link} target="_blank" rel="noopener noreferrer" className="popup-link">
-                  Live Website →
-                </a>
-              )}
-              {selectedProject.desain_link && (
-                <a href={selectedProject.desain_link} target="_blank" rel="noopener noreferrer" className="popup-link">
-                  Design →
-                </a>
-              )}
+            <div className="popup-details-grid">
+              <div className="popup-main-content">
+                <div className="popup-section">
+                  <h3 className="section-subtitle"><i className="bi bi-info-circle"></i> {text.overview}</h3>
+                  <p className="popup-description">{selectedProject.description}</p>
+                </div>
+                
+                {selectedProject.content && (
+                  <div className="popup-section">
+                    <h3 className="section-subtitle"><i className="bi bi-stars"></i> {text.details}</h3>
+                    <div className="popup-rich-content">{selectedProject.content}</div>
+                  </div>
+                )}
+              </div>
+              
+              <div className="popup-side-content">
+                <div className="popup-section">
+                  <h3 className="section-subtitle"><i className="bi bi-tags"></i> {text.categories}</h3>
+                  <div className="popup-tags">
+                    {selectedProject.categories?.map((cat, i) => (
+                      <span key={i} className="popup-tag-cat">{cat}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="popup-section">
+                  <h3 className="section-subtitle"><i className="bi bi-cpu"></i> {text.tech}</h3>
+                  <div className="popup-tags-tech">
+                    {selectedProject.tech_stack?.map((tech, i) => (
+                      <span key={i} className="popup-tag-tech">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="popup-section">
+                  <h3 className="section-subtitle"><i className="bi bi-link-45deg"></i> {text.links}</h3>
+                  <div className="popup-action-links">
+                    {selectedProject.live_link && (
+                      <a href={selectedProject.live_link} target="_blank" rel="noopener noreferrer" className="btn-popup-primary">
+                        <i className="bi bi-globe"></i> {text.visit}
+                      </a>
+                    )}
+                    {selectedProject.github_link && (
+                      <a href={selectedProject.github_link} target="_blank" rel="noopener noreferrer" className="btn-popup-outline">
+                        <i className="bi bi-github"></i> {text.viewCode}
+                      </a>
+                    )}
+                    {selectedProject.desain_link && (
+                      <a href={selectedProject.desain_link} target="_blank" rel="noopener noreferrer" className="btn-popup-outline">
+                        <i className="bi bi-palette"></i> {text.viewDesign}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

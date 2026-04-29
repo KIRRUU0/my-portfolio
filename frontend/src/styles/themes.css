@@ -1,55 +1,96 @@
 :root {
-    /* Light Theme - Terang */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f5;
-    --bg-card: #f8f9fa;           /* Abu-abu terang untuk card */
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --text-muted: #999999;
-    --border-color: #e0e0e0;
-    --hover-bg: #f0f0f0;
-    --primary-color: #333333;
-    --primary-hover: #000000;
-    --danger-color: #dc2626;
+    /* Modern Slate & Indigo Theme - Light (Premium Refined) */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --text-primary: #0f172a;   /* Slate 900 */
+    --text-secondary: #334155; /* Slate 700 - Better contrast */
+    --text-muted: #64748b;    /* Slate 500 */
+    --border-color: rgba(99, 102, 241, 0.1);
+    --hover-bg: rgba(99, 102, 241, 0.05);
+    --primary-color: #6366f1; /* Indigo 500 */
+    --primary-hover: #4f46e5; /* Indigo 600 */
+    --danger-color: #ef4444;
     --danger-bg: #fee2e2;
-    --success-color: #16a34a;
-    --success-bg: #dcfce7;
-    --warning-color: #d97706;
+    --success-color: #10b981;
+    --success-bg: #d1fae5;
+    --warning-color: #f59e0b;
     --warning-bg: #fef3c7;
-    --chart-grid: rgba(0, 0, 0, 0.05);
-    --shadow-color: rgba(0, 0, 0, 0.05);
-    --overlay-bg: rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(15, 23, 42, 0.08);
+    --overlay-bg: rgba(15, 23, 42, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(99, 102, 241, 0.15);
+
+    /* Light-specific UI variables */
+    --card-overlay-bg: rgba(255, 255, 255, 0.92);
+    --card-overlay-text: #0f172a;
+    --card-overlay-sub: #334155;
+    --nav-btn-text: #0f172a;
+    --badge-bg: rgba(99, 102, 241, 0.12);
+    --badge-text: #4f46e5;
+    --popup-overlay-bg: rgba(15, 23, 42, 0.6);
+    --card-shadow: 0 4px 20px rgba(15, 23, 42, 0.1);
+    --card-hover-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+    --indicator-bg: rgba(99, 102, 241, 0.15);
+
+    /* Popup Sidebar - Specifically dark for premium contrast */
+    --popup-info-bg: #1e293b; 
+    --popup-info-text: #f8fafc;
+    --popup-info-sub: #94a3b8;
+    --popup-info-border: rgba(255, 255, 255, 0.05);
 }
 
 [data-theme="dark"] {
-    /* Dark Theme - Gelap */
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --bg-card: #2d2d2d;           /* Abu-abu gelap untuk card (konsisten) */
-    --text-primary: #ffffff;
-    --text-secondary: #cccccc;
-    --text-muted: #999999;
-    --border-color: #404040;
-    --hover-bg: #3d3d3d;
-    --primary-color: #ffffff;
-    --primary-hover: #e0e0e0;
+    /* Modern Slate & Indigo Theme - Dark */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: rgba(30, 41, 59, 0.7);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border-color: #334155;
+    --hover-bg: #334155;
+    --primary-color: #818cf8; /* Indigo 400 */
+    --primary-hover: #6366f1; /* Indigo 500 */
     --danger-color: #f87171;
     --danger-bg: #451a1a;
-    --success-color: #4ade80;
-    --success-bg: #14532d;
+    --success-color: #34d399;
+    --success-bg: #064e3b;
     --warning-color: #fbbf24;
-    --warning-bg: #422006;
-    --chart-grid: rgba(255, 255, 255, 0.05);
+    --warning-bg: #451a03;
     --shadow-color: rgba(0, 0, 0, 0.3);
-    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --overlay-bg: rgba(0, 0, 0, 0.6);
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Dark-specific UI variables */
+    --card-overlay-bg: rgba(15, 15, 20, 0.88);
+    --card-overlay-text: #f8fafc;
+    --card-overlay-sub: rgba(255, 255, 255, 0.8);
+    --nav-btn-text: #f8fafc;
+    --badge-bg: rgba(99, 102, 241, 0.9);
+    --badge-text: #ffffff;
+    --popup-overlay-bg: rgba(0, 0, 0, 0.92);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    --indicator-bg: rgba(255, 255, 255, 0.1);
+
+    /* Popup Sidebar - Slightly darker in dark mode */
+    --popup-info-bg: #0f172a;
+    --popup-info-text: #f8fafc;
+    --popup-info-sub: #94a3b8;
+    --popup-info-border: rgba(255, 255, 255, 0.05);
 }
 
-/* Transisi halus saat ganti theme */
 * {
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%);
+    background-attachment: fixed;
 }

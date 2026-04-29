@@ -20,13 +20,13 @@ section:last-child {
 }
 
 .section-title {
-  font-size: 1rem;
-  font-weight: 400; /* Ditingkatkan dari 300 */
-  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-color);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
-  opacity: 0.9; /* Sedikit lebih terang */
+  letter-spacing: 4px;
+  margin: 0 0 1rem 0;
+  opacity: 0.8;
 }
 
 .contact-subtitle {
@@ -80,11 +80,14 @@ section:last-child {
 }
 
 @media (max-width: 768px) {
-  .certificates-section .slider-track {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 1rem;
+  .section-title {
+    text-align: center;
   }
-  
+
+  .section-header {
+    text-align: center;
+  }
+
   .tech-marquee-track {
     gap: 1.5rem;
     animation: marquee 30s linear infinite;
@@ -92,10 +95,6 @@ section:last-child {
 }
 
 @media (max-width: 480px) {
-  .certificates-section .slider-track {
-    gap: 0.8rem;
-  }
-  
   .tech-marquee-track {
     gap: 1rem;
     animation: marquee 25s linear infinite;

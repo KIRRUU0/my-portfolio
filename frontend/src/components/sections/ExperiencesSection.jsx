@@ -29,7 +29,7 @@ const ExperiencesSection = ({ experiencesRef, experiences, formatDate }) => {
       </div>
       <div className="experiences-list">
         {experiences.map((exp, index) => (
-          <div key={exp.id} className="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
+          <div key={exp.id} className="experience-item">
             <div className="experience-period">
               {formatDate(exp.start_date)} — {exp.current ? text.present : formatDate(exp.end_date)}
             </div>

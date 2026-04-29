@@ -11,7 +11,7 @@ export const projects = [
       "/images/project/project_lsp_kampus/foto2.jpeg",
       "/images/project/project_lsp_kampus/foto3.jpeg"
     ],
-    tech_stack: ["PHP", "MySql"],
+    tech_stack: ["PHP", "MySQL"],
     github_link: "https://github.com/KIRRUU0/Tugas-LSP-Listrik-Pascabayar.git",
     live_link: null,
     featured: true,
@@ -32,7 +32,7 @@ export const projects = [
       "/images/project/clouthung_project_s6/foto2.jpeg",
       "/images/project/clouthung_project_s6/foto3.jpeg"
     ],
-    tech_stack: ["Laravel", "PHP", "CSS", "Mysql"],
+    tech_stack: ["Laravel", "PHP", "CSS", "MySQL"],
     github_link: "https://github.com/KIRRUU0/Project-S6-Outfitto-.git",
     live_link: null,
     featured: true,
@@ -211,5 +211,32 @@ export const projects = [
     views: 456,
     created_at: "2026-03-01T00:00:00Z",
     categories: ["frontend"]
+  },
+
+  {
+    id: 11,
+    title: "Aplikasi Kasir (Point of Sale)",
+    slug: "aplikasi-kasir",
+    description: "Sistem Point of Sale (POS) modern berbasis web skala enterprise yang dirancang khusus untuk operasional Coffee Shop (Toko Kopi). Aplikasi ini memfasilitasi transaksi secara mulus dengan dukungan kalkulasi pajak PPN otomatis, diskon persentase, dan pemilihan metode pembayaran (Cash/QRIS). Dilengkapi dengan fitur-fitur mutakhir seperti Kitchen Display System (KDS) real-time untuk barista, pencatatan tutup shift kasir tingkat lanjut, serta Dashboard khusus Owner yang menampilkan analitik bisnis, peringatan stok menipis, dan ekspor laporan ke Excel.",
+    content: "Sebuah platform Kasir cerdas dan komprehensif. Menawarkan dua antarmuka (interface) terpisah untuk Kasir dan Barista yang tersinkronisasi secara real-time. Kasir dapat dengan mudah memproses pesanan Dine-in (dengan nomor meja) maupun Takeaway, menambahkan catatan khusus, serta mencetak struk secara instan. Di sisi lain, Owner dimanjakan dengan visualisasi data transaksi, pelacakan pengeluaran operasional, dan pemantauan pergerakan inventaris.",
+    image_url: "/images/project/Aplikasi_Kasir/foto1.png",
+    images: [
+      "/images/project/Aplikasi_Kasir/foto1.png",
+      "/images/project/Aplikasi_Kasir/foto2.png",
+      "/images/project/Aplikasi_Kasir/foto3.png",
+      "/images/project/Aplikasi_Kasir/foto4.png",
+      "/images/project/Aplikasi_Kasir/foto5.png",
+      "/images/project/Aplikasi_Kasir/foto6.png",
+      "/images/project/Aplikasi_Kasir/foto7.png",
+    ],
+    tech_stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL", "Maatwebsite Excel"],
+    github_link: "https://github.com/KIRRUU0/aplikasi-kasir.git",
+    live_link: "",
+    desain_link: null,
+    featured: true,
+    status: "published",
+    views: 0,
+    created_at: "2026-04-28T00:00:00Z",
+    categories: ["fullstack", "laravel", "livewire"]
   },
 ];

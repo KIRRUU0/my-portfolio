@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './ContactSection.css';
 
 const ContactSection = ({ contactRef }) => {
   const { language } = useApp();
-  
   const t = {
     en: {
       contactTitle: 'Contact',
@@ -29,7 +28,6 @@ const ContactSection = ({ contactRef }) => {
 
   const text = t[language] || t.en;
   
-  // Data kontak dengan Bootstrap Icons
   const contacts = [
     {
       id: 'phone',
@@ -41,7 +39,7 @@ const ContactSection = ({ contactRef }) => {
     },
     {
       id: 'email',
-      icon: <i className="bi bi-envelope-at"></i>, // Icon email sesuai permintaan
+      icon: <i className="bi bi-envelope-at"></i>,
       label: text.email,
       value: 'haekalarrafi@gmail.com',
       link: 'mailto:haekalarrafi@gmail.com',
@@ -51,7 +49,7 @@ const ContactSection = ({ contactRef }) => {
       id: 'linkedin',
       icon: <i className="bi bi-linkedin"></i>,
       label: text.linkedin,
-      value: 'linkedin.com/in/muhammad-haekal-arrafi',
+      value: 'M Haekal Arrafi',
       link: 'https://www.linkedin.com/in/muhammad-haekal-arrafi-961991282',
       copyable: false
     },
@@ -65,9 +63,12 @@ const ContactSection = ({ contactRef }) => {
     }
   ];
 
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text);
-    alert(text.copied || 'Copied!');
+  const [copiedId, setCopiedId] = useState(null);
+  
+  const handleCopy = (val, id) => {
+    navigator.clipboard.writeText(val);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
   return (
@@ -76,32 +77,25 @@ const ContactSection = ({ contactRef }) => {
         <h2 className="section-title">{text.contactTitle}</h2>
       </div>
       
-      <div className="contact-container" data-aos="fade-up" data-aos-duration="800">
+      <div className="contact-container">
         <div className="contact-grid">
           {contacts.map((contact) => (
             <div key={contact.id} className="contact-card">
-              <div className="contact-icon">
-                {contact.icon}
-              </div>
+              <div className="contact-icon">{contact.icon}</div>
               <div className="contact-info">
                 <div className="contact-label">{contact.label}</div>
                 <div className="contact-value">
-                  {contact.link ? (
-                    <a href={contact.link} target="_blank" rel="noopener noreferrer">
-                      {contact.value}
-                    </a>
-                  ) : (
-                    <span>{contact.value}</span>
-                  )}
+                  <a href={contact.link} target="_blank" rel="noopener noreferrer">
+                    {contact.value}
+                  </a>
                 </div>
               </div>
               {contact.copyable && (
                 <button 
                   className="contact-copy" 
-                  onClick={() => handleCopy(contact.value)}
-                  title={text.copy}
+                  onClick={(e) => { e.preventDefault(); handleCopy(contact.value, contact.id); }}
                 >
-                  <i className="bi bi-files"></i>
+                  <i className={`bi ${copiedId === contact.id ? 'bi-check2 text-success' : 'bi-files'}`}></i>
                 </button>
               )}
             </div>

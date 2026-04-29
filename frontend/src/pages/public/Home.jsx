@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useApp } from '../../context/AppContext';
 import { projects } from '../../data/projects';
 import { experiences } from '../../data/experiences';
@@ -11,9 +12,12 @@ import CertificatesSection from '../../components/sections/CertificatesSection';
 import TechStackSection from '../../components/sections/TechStackSection';
 import ContactSection from '../../components/sections/ContactSection';
 import ProjectPopup from '../../components/sections/ProjectPopup';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Home.css';
+
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
   const { language } = useApp();
@@ -28,7 +32,7 @@ const Home = () => {
   const [projectCount, setProjectCount] = useState(0);
   const [techCount, setTechCount] = useState(0);
   
-  // Refs untuk scroll
+  // Refs untuk scroll dan GSAP
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
@@ -41,7 +45,6 @@ const Home = () => {
   const totalProjects = projects.length;
   const totalTech = [...new Set(projects.flatMap(p => p.tech_stack))].length;
   
-  // Hitung total tahun pengalaman
   const calculateTotalYears = () => {
     let total = 0;
     experiences.forEach(exp => {
@@ -57,7 +60,6 @@ const Home = () => {
 
   // Efek counter untuk statistik
   useEffect(() => {
-    // Counter untuk tahun pengalaman
     let startExp = 0;
     const expInterval = setInterval(() => {
       startExp += 0.1;
@@ -69,7 +71,6 @@ const Home = () => {
       }
     }, 50);
 
-    // Counter untuk jumlah project
     let startProject = 0;
     const projectInterval = setInterval(() => {
       startProject += 1;
@@ -81,7 +82,6 @@ const Home = () => {
       }
     }, 50);
 
-    // Counter untuk jumlah tech
     let startTech = 0;
     const techInterval = setInterval(() => {
       startTech += 1;
@@ -98,31 +98,56 @@ const Home = () => {
       clearInterval(projectInterval);
       clearInterval(techInterval);
     };
+  }, [totalExpYears, totalProjects, totalTech]);
+
+  // GSAP ScrollTrigger Effects
+  useEffect(() => {
+    const sections = [
+      { ref: aboutRef, selector: ".about-container" },
+      { ref: projectsRef, selector: ".projects-grid-2col" },
+      { ref: experiencesRef, selector: ".experiences-list" },
+      { ref: certificatesRef, selector: ".certificate-slider-section" },
+      { ref: techRef, selector: ".tech-categories-grid" },
+      { ref: contactRef, selector: ".contact-container" }
+    ];
+
+    const timer = setTimeout(() => {
+      sections.forEach((section) => {
+        if (section.ref.current) {
+          const el = section.ref.current.querySelector(section.selector);
+          if (el) {
+            gsap.fromTo(el,
+              { y: 60, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: section.ref.current,
+                  start: "top 85%",
+                  toggleActions: "play none none none"
+                }
+              }
+            );
+          }
+        }
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
   }, []);
 
+  // Handle URL hash for smooth scrolling on mount
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: false, // false agar animasi muncul setiap kali scroll
-      mirror: true, // true agar animasi muncul saat scroll naik juga
-      offset: 100,
-      easing: 'ease-in-out',
-      delay: 100
-    });
-
     const hash = window.location.hash.substring(1);
     if (hash) {
-      setTimeout(() => {
-        scrollToSection(hash);
-      }, 500);
+      setTimeout(() => scrollToSection(hash), 500);
     }
-
-    return () => {};
   }, []);
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [language]);
 
   const scrollToSection = (sectionId) => {
     const refs = {
@@ -140,8 +165,14 @@ const Home = () => {
     }
   };
 
-  const openProjectPopup = (project) => setSelectedProject(project);
-  const closeProjectPopup = () => setSelectedProject(null);
+  const openProjectPopup = (project) => {
+    setSelectedProject(project);
+    document.body.style.overflow = 'hidden';
+  };
+  const closeProjectPopup = () => {
+    setSelectedProject(null);
+    document.body.style.overflow = '';
+  };
 
   const handleFormChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -150,34 +181,21 @@ const Home = () => {
     setFormError('');
     setFormLoading(true);
 
-    // Validasi
     if (!formData.name.trim() || !formData.message.trim()) {
       setFormError('Nama dan pesan harus diisi');
       setFormLoading(false);
       return;
     }
 
-    // Nomor WhatsApp Anda (format internasional tanpa +)
     const phoneNumber = '6285158125501';
-    
-    // Format pesan
     const message = `*Pesan Baru dari Portfolio*\n\n*Nama:* ${formData.name}\n*Pesan:* ${formData.message}`;
-    
-    // Encode untuk URL
     const encodedMessage = encodeURIComponent(message);
-    
-    // Buat link WhatsApp
     const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
-    // Redirect ke WhatsApp
     window.open(waLink, '_blank');
-    
-    // Reset form
     setFormData({ name: '', message: '' });
     setFormSuccess(true);
     setFormLoading(false);
-    
-    // Hilangkan pesan sukses setelah 3 detik
     setTimeout(() => setFormSuccess(false), 3000);
   };
 
@@ -191,6 +209,10 @@ const Home = () => {
 
   return (
     <div className="home">
+      <Helmet>
+        <title>Portfolio | Haekal Arrafi</title>
+        <meta name="description" content="Portfolio of Haekal Arrafi, a Frontend Developer and UI/UX Designer showcasing projects, experiences, and certificates." />
+      </Helmet>
       <HeroSection homeRef={homeRef} />
       <AboutSection 
         aboutRef={aboutRef}

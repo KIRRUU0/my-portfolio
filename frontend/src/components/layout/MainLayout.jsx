@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import ThemeToggle from '../ThemeToggle';
 import LanguageSelector from '../LanguageSelector';
+import BackToTop from '../BackToTop';
 import './MainLayout.css';
 
 const MainLayout = () => {
@@ -10,6 +11,8 @@ const MainLayout = () => {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
     
     const t = {
         en: {
@@ -19,20 +22,46 @@ const MainLayout = () => {
             experiences: 'Experiences',
             certificates: 'Certificates',
             tech: 'Tech Stack',
-            contact: 'Contact'
+            contact: 'Contact',
+            status: 'System Status: Optimized',
+            copyright: '© 2026 M. Haekal Arrafi'
         },
         id: {
-            home: 'Beranda',
+            home: 'Home',
             about: 'Tentang',
             projects: 'Proyek',
             experiences: 'Pengalaman',
             certificates: 'Sertifikat',
             tech: 'Teknologi',
-            contact: 'Kontak'
+            contact: 'Kontak',
+            status: 'Status Sistem: Optimal',
+            copyright: '© 2026 M. Haekal Arrafi'
         }
     };
 
     const text = t[language] || t.en;
+
+    // Handle scroll for header state and active section
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+
+            // Logic to determine active section
+            const sections = ['home', 'about', 'projects', 'experiences', 'certificates', 'tech', 'contact'];
+            const current = sections.find(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    return rect.top <= 150 && rect.bottom >= 150;
+                }
+                return false;
+            });
+            if (current) setActiveSection(current);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const scrollToSection = (sectionId) => {
         setMobileMenuOpen(false);
@@ -58,35 +87,30 @@ const MainLayout = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    useEffect(() => {
-        setMobileMenuOpen(false);
-    }, [location]);
-
     return (
         <div className="main-layout">
-            <header className="main-header">
+            <header className={`main-header ${scrolled ? 'scrolled' : ''}`}>
                 <div className="header-container">
-                    {/* HAPUS ATAU COMMENT BAGIAN LOGO INI */}
-                    {/* <Link to="/" className="logo">
-                        <span className="logo-text">MHA</span>
-                    </Link> */}
-                    
+                    <div className="header-left-spacer"></div>
+
                     {/* Desktop Navigation */}
                     <nav className="desktop-nav">
-                        <button onClick={() => scrollToSection('home')} className="nav-link">{text.home}</button>
-                        <button onClick={() => scrollToSection('about')} className="nav-link">{text.about}</button>
-                        <button onClick={() => scrollToSection('projects')} className="nav-link">{text.projects}</button>
-                        <button onClick={() => scrollToSection('experiences')} className="nav-link">{text.experiences}</button>
-                        <button onClick={() => scrollToSection('certificates')} className="nav-link">{text.certificates}</button>
-                        <button onClick={() => scrollToSection('tech')} className="nav-link">{text.tech}</button>
-                        <button onClick={() => scrollToSection('contact')} className="nav-link">{text.contact}</button>
+                        {['home', 'about', 'projects', 'experiences', 'certificates', 'tech', 'contact'].map(section => (
+                            <button 
+                                key={section}
+                                onClick={() => scrollToSection(section)} 
+                                className={`nav-link ${activeSection === section ? 'active' : ''}`}
+                            >
+                                {text[section]}
+                            </button>
+                        ))}
                     </nav>
                     
                     <div className="header-controls">
                         <ThemeToggle />
                         <LanguageSelector />
-                        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
-                            {mobileMenuOpen ? '✕' : '☰'}
+                        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                            <i className={`bi ${mobileMenuOpen ? 'bi-x-lg' : 'bi-list'}`}></i>
                         </button>
                     </div>
                 </div>
@@ -94,21 +118,22 @@ const MainLayout = () => {
                 {/* Mobile Navigation */}
                 <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
                     <div className="mobile-nav-header">
-                        <span className="mobile-logo">MHA</span>
-                        <button className="mobile-close-btn" onClick={() => setMobileMenuOpen(false)}>✕</button>
+                        <span className="mobile-nav-logo">MENU</span>
+                        <button className="mobile-close-btn" onClick={() => setMobileMenuOpen(false)}>
+                            <i className="bi bi-x-lg"></i>
+                        </button>
                     </div>
-                    <nav className="mobile-nav-links">
-                        <button onClick={() => scrollToSection('home')} className="mobile-nav-link">{text.home}</button>
-                        <button onClick={() => scrollToSection('about')} className="mobile-nav-link">{text.about}</button>
-                        <button onClick={() => scrollToSection('projects')} className="mobile-nav-link">{text.projects}</button>
-                        <button onClick={() => scrollToSection('experiences')} className="mobile-nav-link">{text.experiences}</button>
-                        <button onClick={() => scrollToSection('certificates')} className="mobile-nav-link">{text.certificates}</button>
-                        <button onClick={() => scrollToSection('tech')} className="mobile-nav-link">{text.tech}</button>
-                        <button onClick={() => scrollToSection('contact')} className="mobile-nav-link">{text.contact}</button>
-                    </nav>
-                    <div className="mobile-nav-footer">
-                        <ThemeToggle />
-                        <LanguageSelector />
+                    <div className="mobile-nav-links">
+                        {['home', 'about', 'projects', 'experiences', 'certificates', 'tech', 'contact'].map(section => (
+                            <button 
+                                key={section}
+                                onClick={() => scrollToSection(section)} 
+                                className={`mobile-nav-link ${activeSection === section ? 'active' : ''}`}
+                            >
+                                <span className="link-number">0{['home', 'about', 'projects', 'experiences', 'certificates', 'tech', 'contact'].indexOf(section) + 1}</span>
+                                {text[section]}
+                            </button>
+                        ))}
                     </div>
                 </div>
                 
@@ -119,12 +144,32 @@ const MainLayout = () => {
                 <Outlet />
             </main>
             
-            {/* FOOTER - HANYA TEKS DI TENGAH */}
             <footer className="main-footer">
                 <div className="footer-container">
-                    <p>© 2026 Muhammad Haekal Arrafi</p>
+                    <div className="footer-status">
+                        <span className="status-indicator"></span>
+                        {text.status}
+                    </div>
+                    
+                    <div className="footer-copyright">
+                        {text.copyright}
+                    </div>
+                    
+                    <div className="footer-socials">
+                        <a href="https://linkedin.com/in/muhammadhaekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon">
+                            <i className="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/haekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon">
+                            <i className="bi bi-github"></i>
+                        </a>
+                        <a href="mailto:haekalarrafi24@gmail.com" className="social-icon">
+                            <i className="bi bi-envelope-fill"></i>
+                        </a>
+                    </div>
                 </div>
             </footer>
+            
+            <BackToTop />
         </div>
     );
 };

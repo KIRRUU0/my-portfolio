@@ -6,19 +6,16 @@ import './ProjectsSection.css';
 const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }) => {
   const { language } = useApp();
   const [filter, setFilter] = useState('newest');
-  
   const t = {
     en: { featuredTitle: 'featured projects' },
     id: { featuredTitle: 'proyek unggulan' }
   };
-
   const text = t[language] || t.en;
-
   // Urutkan project berdasarkan filter
   const sortedProjects = useMemo(() => {
     const sorted = [...projects].sort((a, b) => {
-      const dateA = new Date(a.created_at);
-      const dateB = new Date(b.created_at);
+      const dateA = new Date(a.created_at).getTime();
+      const dateB = new Date(b.created_at).getTime();
       
       if (filter === 'newest') {
         return dateB - dateA; // Terbaru dulu (descending)
@@ -38,7 +35,7 @@ const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }
       
       <div className="projects-grid-2col">
         {sortedProjects.map((project, index) => (
-          <div key={project.id} className="project-card-2col" data-aos="fade-up" data-aos-delay={index * 100} onClick={() => openProjectPopup(project)}>
+          <div key={project.id} className="project-card-2col" onClick={() => openProjectPopup(project)}>
             <div className="project-card-content">
               <div className="project-card-image">
                 <img src={project.image_url} alt={project.title} loading="lazy" />

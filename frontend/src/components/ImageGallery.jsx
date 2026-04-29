@@ -116,8 +116,8 @@ const ImageGallery = ({ images, title, hideNavButtons = false }) => {
         {/* Navigation Buttons - HANYA TAMPIL JIKA hideNavButtons = false */}
         {!hideNavButtons && (
           <>
-            <button className="gallery-nav prev" onClick={handlePrev}>←</button>
-            <button className="gallery-nav next" onClick={handleNext}>→</button>
+            <button className="gallery-nav prev" onClick={handlePrev}><i className="bi bi-chevron-left"></i></button>
+            <button className="gallery-nav next" onClick={handleNext}><i className="bi bi-chevron-right"></i></button>
           </>
         )}
         
@@ -152,8 +152,8 @@ const ImageGallery = ({ images, title, hideNavButtons = false }) => {
               alt={title} 
               className="fullscreen-image" 
             />
-            <button className="fullscreen-nav prev" onClick={handlePrev}>←</button>
-            <button className="fullscreen-nav next" onClick={handleNext}>→</button>
+            <button className="fullscreen-nav prev" onClick={handlePrev}><i className="bi bi-chevron-left"></i></button>
+            <button className="fullscreen-nav next" onClick={handleNext}><i className="bi bi-chevron-right"></i></button>
             <div className="fullscreen-counter">
               {currentIndex + 1} / {imageArray.length}
             </div>

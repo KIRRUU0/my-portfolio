@@ -8,16 +8,16 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
   const t = {
     en: {
       about: 'About Me',
-      role: 'WEB DEVELOPER & DESIGNER',
-      aboutDesc: 'An Information Technology student at Bina Sarana Informatika University with expertise in backend development using Laravel, UI/UX design, and web layout using Figma. He has a foundation in Python programming and experience in web-based system development. He is proficient in Git, MySQL database management, and REST API development. He also understands network design using Cisco Packet Tracer.',
+      role: 'FULLSTACK DEVELOPER & UI/UX DESIGNER',
+      aboutDesc: 'An Information Technology student at Bina Sarana Informatika University with expertise in Fullstack Web Development. Experienced in building robust backend systems with Laravel and REST APIs, while crafting intuitive frontend interfaces using React and Tailwind CSS. Proficient in UI/UX design with Figma and database management using MySQL.',
       yearsExp: 'Years Experience',
       projects: 'Projects',
       technologies: 'Technologies'
     },
     id: {
       about: 'Tentang Saya',
-      role: 'WEB DEVELOPER & DESIGNER',
-      aboutDesc: 'Mahasiswa TeknologiInformasi Universitas Bina Sarana Informatika dengan keahlian dalam pengembangan backend menggunakan Laravel serta perancangan UI/UX dan tata letak web melalui Figma. Memiliki dasar pemrograman Python dan pengalaman dalam pembuatan sistem berbasis web. Menguasai penggunaan Git, manajemen basis data MySQL, serta pengembangan REST API. Juga memahami perancangan jaringan menggunakan Cisco Packet Tracer.',
+      role: 'FULLSTACK DEVELOPER & UI/UX DESIGNER',
+      aboutDesc: 'Mahasiswa Teknologi Informasi Universitas Bina Sarana Informatika dengan keahlian dalam pengembangan Fullstack Web. Berpengalaman membangun sistem backend yang handal dengan Laravel dan REST API, serta merancang antarmuka frontend yang modern menggunakan React dan Tailwind CSS. Menguasai desain UI/UX dengan Figma dan manajemen basis data MySQL.',
       yearsExp: 'Tahun Pengalaman',
       projects: 'Proyek',
       technologies: 'Teknologi'
@@ -29,13 +29,13 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
   return (
     <section id="about" ref={aboutRef} className="about-section">
       <div className="about-container">
-        <div className="about-image" data-aos="fade-right">
+        <div className="about-image">
           <div className="about-image-border">
             <img src="/images/profile.jpeg" alt="Muhammad Haekal Arrafi" className="about-photo" />
           </div>
         </div>
         
-        <div className="about-content" data-aos="fade-left">
+        <div className="about-content">
           <h2 className="about-title">{text.about}</h2>
           <p className="about-role">{text.role}</p>
           <p className="about-description">{text.aboutDesc}</p>

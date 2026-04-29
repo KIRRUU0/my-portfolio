@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { useApp } from '../context/AppContext';
 import './CertificateSlider.css';
 
@@ -9,7 +10,7 @@ const CertificateSlider = ({ certificates }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
 
   const t = {
     en: {
@@ -30,7 +31,6 @@ const CertificateSlider = ({ certificates }) => {
 
   const text = t[language] || t.en;
 
-  // Deteksi resize untuk mobile/tablet
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -40,16 +40,24 @@ const CertificateSlider = ({ certificates }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Urutkan sertifikat berdasarkan tanggal (terbaru dulu)
   const sortedCertificates = [...certificates].sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
 
-  // Hitung jumlah halaman (setiap halaman 3 sertifikat - UNTUK SEMUA DEVICE)
   const itemsPerPage = 3;
-  const pageCount = Math.ceil(sortedCertificates.length / itemsPerPage);
+  const totalSlides = sortedCertificates.length;
+  const pageCount = Math.ceil(totalSlides / itemsPerPage);
   
-  // Dapatkan sertifikat untuk halaman saat ini (3 item)
+  // Each slide is (100 / totalSlides)% of track width.
+  // Each page = itemsPerPage slides = (itemsPerPage / totalSlides * 100)% of track.
+  // Clamp last page so we don't overshoot into empty space.
+  const getTranslateX = () => {
+    const slideWidthPercent = 100 / totalSlides;
+    const pageShift = currentIndex * itemsPerPage * slideWidthPercent;
+    const maxShift = (totalSlides - itemsPerPage) * slideWidthPercent;
+    return Math.min(pageShift, maxShift);
+  };
+
   const currentCertificates = sortedCertificates.slice(
     currentIndex * itemsPerPage,
     currentIndex * itemsPerPage + itemsPerPage
@@ -73,7 +81,6 @@ const CertificateSlider = ({ certificates }) => {
     setTimeout(() => setIsTransitioning(false), 400);
   };
 
-  // Handle touch events untuk slide dengan jari
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -84,21 +91,21 @@ const CertificateSlider = ({ certificates }) => {
 
   const handleTouchEnd = () => {
     if (touchStart - touchEnd > 50) {
-      // Swipe left
       handleNext();
     }
     if (touchStart - touchEnd < -50) {
-      // Swipe right
       handlePrev();
     }
   };
 
   const openPopup = (cert) => {
     setSelectedCert(cert);
+    document.body.style.overflow = 'hidden';
   };
 
   const closePopup = () => {
     setSelectedCert(null);
+    document.body.style.overflow = '';
   };
 
   const formatDate = (dateString) => {
@@ -125,134 +132,134 @@ const CertificateSlider = ({ certificates }) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Tombol navigasi hanya tampil di desktop (>768px) */}
         {!isMobile && (
-          <button className="slider-nav prev" onClick={handlePrev}>←</button>
+          <button 
+            className="slider-nav prev" 
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+          >
+            <i className="bi bi-chevron-left"></i>
+          </button>
         )}
 
-        <div className={`slider-track ${isTransitioning ? 'transitioning' : ''}`}>
-          {currentCertificates.map((cert) => (
-            <div 
-              key={cert.id} 
-              className="certificate-slide"
-              onClick={() => openPopup(cert)}
-            >
-              <div className="certificate-card">
-                <div className="certificate-image">
-                  <img src={cert.image_url} alt={cert.name} />
-                </div>
-                <div className="certificate-overlay">
-                  <h3>{cert.name}</h3>
-                  <p>{cert.vendor}</p>
-                  <span className="view-detail">
-                    {language === 'en' ? 'Click to view' : 'Klik untuk lihat'}
-                  </span>
+        <div className="slider-view">
+          <div 
+            className="slider-track"
+            style={{ 
+              width: `${(sortedCertificates.length / itemsPerPage) * 100}%`,
+              transform: `translateX(-${getTranslateX()}%)`,
+            }}
+          >
+            {sortedCertificates.map((cert) => (
+              <div 
+                key={cert.id} 
+                className="certificate-slide"
+                style={{ width: `${100 / sortedCertificates.length}%` }}
+                onClick={() => openPopup(cert)}
+              >
+                <div className="certificate-card">
+                  <div className="verified-badge">
+                    <i className="bi bi-patch-check-fill"></i> Verified
+                  </div>
+                  <div className="certificate-image">
+                    <img src={cert.image_url} alt={cert.name} />
+                  </div>
+                  <div className="certificate-overlay">
+                    <h3>{cert.name}</h3>
+                    <p>{cert.vendor}</p>
+                    <div className="view-detail">
+                      {language === 'en' ? 'Click to view' : 'Klik untuk lihat'} <i className="bi bi-arrow-right"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Tombol navigasi hanya tampil di desktop (>768px) */}
         {!isMobile && (
-          <button className="slider-nav next" onClick={handleNext}>→</button>
+          <button 
+            className="slider-nav next" 
+            onClick={handleNext}
+            disabled={currentIndex === pageCount - 1}
+          >
+            <i className="bi bi-chevron-right"></i>
+          </button>
         )}
       </div>
 
-      {/* Indicator halaman - TAMPIL DI SEMUA DEVICE - MAKSIMAL 3 DOT */}
       {pageCount > 1 && (
         <div className="slider-indicators">
-          {Array.from({ length: Math.min(pageCount, 3) }).map((_, index) => {
-            // Hitung index yang sesuai dengan halaman saat ini
-            let dotIndex = index;
-            let isActive = false;
-            
-            if (pageCount <= 3) {
-              dotIndex = index;
-              isActive = index === currentIndex;
-            } else {
-              if (currentIndex === 0) {
-                dotIndex = index;
-                isActive = index === 0;
-              } else if (currentIndex === pageCount - 1) {
-                dotIndex = pageCount - 3 + index;
-                isActive = (pageCount - 3 + index) === currentIndex;
-              } else {
-                dotIndex = currentIndex - 1 + index;
-                isActive = index === 1;
-              }
-            }
-            
-            return (
-              <button
-                key={index}
-                className={`indicator-dot ${isActive ? 'active' : ''}`}
-                onClick={() => {
-                  if (!isTransitioning) {
-                    setIsTransitioning(true);
-                    setCurrentIndex(dotIndex);
-                    setTimeout(() => setIsTransitioning(false), 400);
-                  }
-                }}
-                aria-label={`Go to page ${dotIndex + 1}`}
-              />
-            );
-          })}
+          {Array.from({ length: pageCount }).map((_, index) => (
+            <button
+              key={index}
+              className={`indicator-dot ${index === currentIndex ? 'active' : ''}`}
+              onClick={() => {
+                if (!isTransitioning) {
+                  setIsTransitioning(true);
+                  setCurrentIndex(index);
+                  setTimeout(() => setIsTransitioning(false), 400);
+                }
+              }}
+            />
+          ))}
         </div>
       )}
 
-      {/* POPUP MODAL - LAYOUT VERTIKAL GAMBAR DI ATAS */}
-      {selectedCert && (
-        <div className="popup-overlay" onClick={closePopup}>
-          <div className="popup-content certificate-popup" onClick={(e) => e.stopPropagation()}>
-            <button className="popup-close" onClick={closePopup}>×</button>
+      {selectedCert && ReactDOM.createPortal(
+        <div className="cert-popup-overlay" onClick={closePopup}>
+          <div className="certificate-popup" onClick={(e) => e.stopPropagation()}>
+            <button className="popup-close" onClick={closePopup}>
+              <i className="bi bi-x-lg"></i>
+            </button>
             
-            <div className="popup-body-vertical">
-              {/* GAMBAR DI ATAS */}
-              <div className="popup-image-vertical">
-                <img src={selectedCert.image_url} alt={selectedCert.name} />
+            <div className="popup-image-section">
+              <img src={selectedCert.image_url} alt={selectedCert.name} />
+            </div>
+            
+            <div className="popup-info-section">
+              <h2 className="popup-title">{selectedCert.name}</h2>
+              <div className="popup-date-badge">
+                <i className="bi bi-calendar3"></i> {formatDate(selectedCert.date)}
               </div>
               
-              {/* DATA DI BAWAH GAMBAR */}
-              <div className="popup-details-vertical">
-                <h2>{selectedCert.name}</h2>
+              <div className="popup-details-container">
+                <div className="popup-section">
+                  <h3 className="section-subtitle"><i className="bi bi-building"></i> {text.issuedBy}</h3>
+                  <p className="popup-description">{selectedCert.vendor}</p>
+                </div>
                 
-                <div className="popup-info">
-                  <p className="popup-vendor">
-                    <strong>{text.issuedBy}:</strong> {selectedCert.vendor}
+                <div className="popup-section">
+                  <h3 className="section-subtitle"><i className="bi bi-info-circle"></i> {language === 'en' ? 'Description' : 'Deskripsi'}</h3>
+                  <p className="popup-description">
+                    {selectedCert.description || (language === 'en' ? 'No description available.' : 'Tidak ada deskripsi tersedia.')}
                   </p>
-                  <p className="popup-date">
-                    <strong>{text.issuedDate}:</strong> {formatDate(selectedCert.date)}
-                  </p>
-                  
-                  {selectedCert.description && (
-                    <div className="popup-description-container">
-                      <h3>Description</h3>
-                      <p className="popup-description">{selectedCert.description}</p>
-                    </div>
-                  )}
-                  
-                  {selectedCert.credential_id && (
-                    <p className="popup-credential">
-                      <strong>{text.credentialId}:</strong> {selectedCert.credential_id}
-                    </p>
-                  )}
-                  
-                  {selectedCert.credential_url && (
+                </div>
+
+                {selectedCert.credential_id && (
+                  <div className="popup-section">
+                    <h3 className="section-subtitle"><i className="bi bi-card-checklist"></i> {text.credentialId}</h3>
+                    <p className="popup-description">{selectedCert.credential_id}</p>
+                  </div>
+                )}
+
+                {selectedCert.credential_url && (
+                  <div className="popup-actions">
                     <a 
                       href={selectedCert.credential_url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="popup-link"
+                      className="btn-popup-primary"
                     >
-                      {text.viewCredential} →
+                      <i className="bi bi-award"></i> {text.viewCredential}
                     </a>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
