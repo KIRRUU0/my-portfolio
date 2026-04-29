@@ -135,7 +135,7 @@ export const certificates = [
     name: "PCAP: Programming Essentials in Python",
     vendor: "Python Institute",
     date: "2023-7-05T00:00:00Z",
-    image_url: "/images/certificates/Sertifikat PCAP: Programming Essentials in Python.jpg",
+    image_url: "/images/certificates/Sertifikat PCAP - Programming Essentials in Python.jpg",
     description: null,
     credential_id: null,
     credential_url: null
