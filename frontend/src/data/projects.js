@@ -4,7 +4,7 @@ export const projects = [
     title: "Project LSP Kampus S6",
     slug: "project-lsp-kampus-s6",
     description: "Program ini dibuat dengan tema yang disesuaikan yaitu \"Pembayaran Listrik Pascabayar\".",
-    content: "Program ini dibuat menggunakan PHP dan MySql untuk menyimpan data karyawan, data agen dan data transaksi lainnya.",
+    content: "Program ini dibangun menggunakan PHP dan MySQL untuk mengelola data karyawan, agen, serta transaksi listrik pascabayar.",
     image_url: "/images/project/project_lsp_kampus/foto1.jpeg",
     images: [ // Array foto untuk popup
       "/images/project/project_lsp_kampus/foto1.jpeg",
@@ -22,10 +22,10 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Project Kuliah S6 \"Clouthung\".",
+    title: "Project Kuliah S6 \"Clouthung\"",
     slug: "project-kuliah-s6-clouthung",
     description: "Project ini merupakan tugas kuliah S6 yang berfokus pada pembuatan sistem e-commerce.",
-    content: "Project kampus yang dibangun dengan Laravel menggunakan framework PHP. Mendukung layanan penjualan online, setiap pembelian dan pengelolaan data pelanggan tersimpan di database MySQL.",
+    content: "Proyek e-commerce berbasis web yang dibangun menggunakan Laravel dan MySQL untuk mendukung transaksi penjualan produk fashion secara online.",
     image_url: "/images/project/clouthung_project_s6/foto1.jpeg",
     images: [
       "/images/project/clouthung_project_s6/foto1.jpeg",
@@ -46,10 +46,10 @@ export const projects = [
     title: "Banner 17 Agustus 2025",
     slug: "banner-17-agustus-2025",
     description: "Banner khusus perayaan Hari Kemerdekaan Indonesia 17 Agustus 2025.",
-    content: "Banner digital yang dibuat untuk memperingati Hari Kemerdekaan Indonesia. Dibuat dengan desain modern dan warna-warna khas Indonesia.",
+    content: "Desain banner digital kreatif untuk memeriahkan Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-80.",
     image_url: "/images/project/Banner_17Agust/foto1.jpeg",
     images: [ // Array foto untuk popup
-      "/images/project/Banner_17Agust/foto1.jpeg",
+      "/images/project/Banner_17Agust/foto1.jpeg"
     ],
     tech_stack: ["Canva"],
     github_link: null,
@@ -66,7 +66,7 @@ export const projects = [
     title: "UI/UX Website Clouthung",
     slug: "ui-ux-website-clouthung",
     description: "Desain UI/UX untuk website e-commerce Clouthung.",
-    content: "Desain antarmuka pengguna dan pengalaman pengguna untuk website e-commerce Clouthung. Dibuat dengan fokus pada kenyamanan pengguna dan estetika visual yang menarik.",
+    content: "Perancangan UI/UX (user interface & user experience) untuk website e-commerce Clouthung yang berfokus pada kemudahan navigasi dan estetika visual modern.",
     image_url: "/images/project/Clouthung_Figma_S6/foto1.jpeg",
     images: [ // Array foto untuk popup (bisa 1 foto saja)
       "/images/project/Clouthung_Figma_S6/foto1.jpeg",
@@ -76,7 +76,7 @@ export const projects = [
     tech_stack: ["Figma"],
     github_link: null,
     live_link: null,
-    desain_link:"https://www.figma.com/design/1XwBZE92uk3gOxJNZYXsGi/Untitled?m=auto&t=6xGXFOTmOGT0y0Ws-1",
+    desain_link: "https://www.figma.com/design/1XwBZE92uk3gOxJNZYXsGi/Untitled?m=auto&t=6xGXFOTmOGT0y0Ws-1",
     featured: true,
     status: "published",
     views: 1567,
@@ -88,11 +88,11 @@ export const projects = [
     title: "Poster 17 Agustus 2025",
     slug: "poster-17-agustus-2025",
     description: "Poster khusus perayaan Hari Kemerdekaan Indonesia 17 Agustus 2025.",
-    content: "Poster digital yang dibuat untuk memperingati Hari Kemerdekaan Indonesia. Dibuat dengan desain modern dan warna-warna khas Indonesia.",
+    content: "Desain poster digital bertema kemerdekaan untuk perayaan Hari Ulang Tahun Republik Indonesia ke-80.",
     image_url: "/images/project/Poster_Canva_17Agust/foto1.jpeg",
     images: [ // Bisa juga tidak punya multiple images
       "/images/project/Poster_Canva_17Agust/foto1.jpeg",
-      "/images/project/Poster_Canva_17Agust/foto2.png",
+      "/images/project/Poster_Canva_17Agust/foto2.png"
     ],
     tech_stack: ["Canva"],
     github_link: null,
@@ -109,7 +109,7 @@ export const projects = [
     title: "Project Magang Company Profile",
     slug: "project-magang-company-profile",
     description: "Project magang yang berfokus pada pembuatan company profile untuk tempat saya magang.",
-    content : "Project magang ini saya diposisi sebagai Backend Developer, saya membuat API untuk dashboard admin menggunakan Laravel dan MySQL untuk menyimpan data perusahaan, data content, dan data lainnya yang diperlukan untuk company profile.",
+    content: "Berperan sebagai Backend Developer dalam membangun RESTful API untuk dashboard manajemen konten profil perusahaan menggunakan Laravel dan MySQL.",
     image_url: "/images/project/Project_Magang_Sore/foto1.jpeg",
     images: [ // Array foto untuk popup
       "/images/project/Project_Magang_Sore/foto1.jpeg",
@@ -131,11 +131,11 @@ export const projects = [
     title: "UI Mobile App Ruang Belajar",
     slug: "ui-mobile-app-ruang-belajar",
     description: "Desain UI untuk aplikasi mobile Ruang Belajar.",
-    content: "Desain antarmuka pengguna untuk aplikasi mobile Ruang Belajar. Fokus pada kemudahan pembelajaran secara online dengan tampilan yang menarik dan user-friendly.",
+    content: "Perancangan UI aplikasi mobile pembelajaran daring (e-learning) Ruang Belajar untuk menciptakan pengalaman belajar yang intuitif bagi pengguna.",
     image_url: "/images/project/Ruang_Belajar_Figma/foto1.jpeg",
     images: [
       "/images/project/Ruang_Belajar_Figma/foto1.jpeg",
-      "/images/project/Ruang_Belajar_Figma/foto2.jpeg",
+      "/images/project/Ruang_Belajar_Figma/foto2.jpeg"
     ],
     tech_stack: ["Figma"],
     github_link: null,
@@ -152,7 +152,7 @@ export const projects = [
     title: "Tracking Expense App",
     slug: "tracking-expense-app",
     description: "Aplikasi mobile untuk melacak pengeluaran harian.",
-    content: "Aplikasi mobile yang memungkinkan pengguna untuk mencatat dan melacak pengeluaran harian mereka. Pengguna dapat menambahkan kategori pengeluaran, melihat grafik pengeluaran bulanan, dan mengatur anggaran.",
+    content: "Aplikasi pelacak keuangan harian berbasis mobile yang membantu pengguna mencatat pengeluaran, mengelompokkan kategori transaksi, dan memvisualisasikan data keuangan bulanan.",
     image_url: "/images/project/Tracking_Expense_Project_S6/foto1.jpeg",
     images: [
       "/images/project/Tracking_Expense_Project_S6/foto1.jpeg",
@@ -174,13 +174,13 @@ export const projects = [
     title: "Personal Portfolio Website",
     slug: "personal-portfolio-website",
     description: "Membuat website portofolio pribadi untuk menampilkan karya dan pengalaman saya.",
-    content: "Website portofolio pribadi yang dibuat menggunakan React.js. Website ini menampilkan proyek-proyek yang telah saya kerjakan, pengalaman kerja, dan informasi kontak.",
+    content: "Website portofolio pribadi responsif yang dibangun menggunakan React dan CSS Modern untuk menyajikan galeri proyek, riwayat kerja, sertifikasi, serta formulir kontak.",
     image_url: "/images/project/Portofolio/gambar1.jpeg",
     images: [
       "/images/project/Portofolio/gambar1.jpeg",
-      "/images/project/Portofolio/gambar2.jpeg",
+      "/images/project/Portofolio/gambar2.jpeg"
     ],
-    tech_stack: ["React.js", "JavaScript","GO"],
+    tech_stack: ["React.js", "JavaScript", "Go"],
     github_link: "https://github.com/KIRRUU0/my-portfolio.git",
     live_link: "https://my-portfolio-tan-five.vercel.app/",
     desain_link: null,
@@ -194,8 +194,8 @@ export const projects = [
     id: 10,
     title: "Undangan Buka Bersama Coffee Shop",
     slug: "undangan-buka-bersama-coffee-shop",
-    description: "Sebuah platform undangan digital berbasis web yang dirancang khusus untuk acara \"Buka Bersama Tetangga Tuku Cinere\". Proyek ini mengedepankan estetika minimalis, organik, dan approachable, mengadopsi identitas visual dari brand Kopi Tuku (Clean White, Coffee Brown, dan Botanical Green). Fokus utama proyek ini adalah memberikan pengalaman pengguna yang ringan (fast-loading) dan responsif bagi tamu undangan yang mengakses melalui perangkat mobile .",
-    content: "Undangan digital untuk acara buka bersama di coffee shop. Undangan ini memiliki desain menarik dan fitur interaktif untuk memudahkan konfirmasi kehadiran.",
+    description: "Sebuah platform undangan digital berbasis web yang dirancang khusus untuk acara \"Buka Bersama Tetangga Tuku Cinere\". Proyek ini mengedepankan estetika minimalis, organik, dan approachable, mengadopsi identitas visual dari brand Kopi Tuku (Clean White, Coffee Brown, dan Botanical Green). Fokus utama proyek ini adalah memberikan pengalaman pengguna yang ringan (fast-loading) dan responsif bagi tamu undangan yang mengakses melalui perangkat mobile.",
+    content: "Undangan web interaktif untuk acara buka bersama dengan desain minimalis terinspirasi dari identitas visual Kopi Tuku, dioptimalkan untuk akses seluler yang cepat.",
     image_url: "/images/project/Undangan Buka Bersama Coffe Shop/foto1.jpeg",
     images: [
       "/images/project/Undangan Buka Bersama Coffe Shop/foto1.jpeg",
@@ -212,7 +212,6 @@ export const projects = [
     created_at: "2026-03-01T00:00:00Z",
     categories: ["frontend"]
   },
-
   {
     id: 11,
     title: "Aplikasi Kasir (Point of Sale)",
@@ -227,7 +226,7 @@ export const projects = [
       "/images/project/Aplikasi_Kasir/foto4.png",
       "/images/project/Aplikasi_Kasir/foto5.png",
       "/images/project/Aplikasi_Kasir/foto6.png",
-      "/images/project/Aplikasi_Kasir/foto7.png",
+      "/images/project/Aplikasi_Kasir/foto7.png"
     ],
     tech_stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL", "Maatwebsite Excel"],
     github_link: "https://github.com/KIRRUU0/aplikasi-kasir.git",
@@ -238,5 +237,5 @@ export const projects = [
     views: 0,
     created_at: "2026-04-28T00:00:00Z",
     categories: ["fullstack", "laravel", "livewire"]
-  },
+  }
 ];

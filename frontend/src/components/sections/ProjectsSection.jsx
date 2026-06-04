@@ -34,7 +34,7 @@ const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }
       </div>
       
       <div className="projects-grid-2col">
-        {sortedProjects.map((project, index) => (
+        {sortedProjects.map((project) => (
           <div key={project.id} className="project-card-2col" onClick={() => openProjectPopup(project)}>
             <div className="project-card-content">
               <div className="project-card-image">

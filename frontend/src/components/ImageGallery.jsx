@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './ImageGallery.css';
 
 const ImageGallery = ({ images, title, hideNavButtons = false }) => {
@@ -6,6 +6,21 @@ const ImageGallery = ({ images, title, hideNavButtons = false }) => {
   const [showFullscreen, setShowFullscreen] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+
+  const imageArray = images ? (Array.isArray(images) ? images : [images]) : [];
+
+  // Handle prev/next (declared first and memoized)
+  const handlePrev = useCallback((e) => {
+    if (e) e.stopPropagation();
+    if (imageArray.length === 0) return;
+    setCurrentIndex((prev) => (prev === 0 ? imageArray.length - 1 : prev - 1));
+  }, [imageArray.length]);
+
+  const handleNext = useCallback((e) => {
+    if (e) e.stopPropagation();
+    if (imageArray.length === 0) return;
+    setCurrentIndex((prev) => (prev === imageArray.length - 1 ? 0 : prev + 1));
+  }, [imageArray.length]);
 
   // Listen for swipe events from parent
   useEffect(() => {
@@ -19,15 +34,12 @@ const ImageGallery = ({ images, title, hideNavButtons = false }) => {
 
     window.addEventListener('swipe', handleSwipe);
     return () => window.removeEventListener('swipe', handleSwipe);
-  }, [currentIndex, images.length]);
+  }, [handleNext, handlePrev]);
 
-  // Validasi images
-  if (!images || images.length === 0) {
+  // Validasi images (early return placed after hooks)
+  if (imageArray.length === 0) {
     return null;
   }
-
-  // Pastikan images adalah array
-  const imageArray = Array.isArray(images) ? images : [images];
 
   // Handle touch events untuk swipe
   const handleTouchStart = (e) => {
@@ -49,17 +61,6 @@ const ImageGallery = ({ images, title, hideNavButtons = false }) => {
       // Swipe right
       handlePrev();
     }
-  };
-
-  // Handle prev/next
-  const handlePrev = (e) => {
-    if (e) e.stopPropagation();
-    setCurrentIndex((prev) => (prev === 0 ? imageArray.length - 1 : prev - 1));
-  };
-
-  const handleNext = (e) => {
-    if (e) e.stopPropagation();
-    setCurrentIndex((prev) => (prev === imageArray.length - 1 ? 0 : prev + 1));
   };
 
   // Buka fullscreen

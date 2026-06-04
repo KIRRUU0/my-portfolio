@@ -58,10 +58,16 @@ const CertificateSlider = ({ certificates }) => {
     return Math.min(pageShift, maxShift);
   };
 
-  const currentCertificates = sortedCertificates.slice(
-    currentIndex * itemsPerPage,
-    currentIndex * itemsPerPage + itemsPerPage
-  );
+  useEffect(() => {
+    if (selectedCert) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedCert]);
 
   const handlePrev = () => {
     if (isTransitioning) return;
@@ -100,12 +106,10 @@ const CertificateSlider = ({ certificates }) => {
 
   const openPopup = (cert) => {
     setSelectedCert(cert);
-    document.body.style.overflow = 'hidden';
   };
 
   const closePopup = () => {
     setSelectedCert(null);
-    document.body.style.overflow = '';
   };
 
   const formatDate = (dateString) => {

@@ -4,7 +4,91 @@
     flex-direction: column;
     background: var(--bg-primary);
     color: var(--text-primary);
-    transition: all 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ===== ABSTRACT BACKGROUND ===== */
+.abstract-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.abstract-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.04;
+    background: var(--text-primary);
+}
+
+[data-theme="dark"] .abstract-blob {
+    opacity: 0.03;
+    background: #ffffff;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    top: -10%;
+    right: -5%;
+    animation: blobFloat1 20s ease-in-out infinite;
+}
+
+.blob-2 {
+    width: 450px;
+    height: 450px;
+    bottom: 20%;
+    left: -8%;
+    animation: blobFloat2 25s ease-in-out infinite;
+}
+
+.blob-3 {
+    width: 350px;
+    height: 350px;
+    top: 50%;
+    right: 15%;
+    animation: blobFloat3 18s ease-in-out infinite;
+}
+
+.abstract-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, var(--border-color) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.35;
+}
+
+@keyframes blobFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-30px, 40px) scale(1.05); }
+    66% { transform: translate(20px, -20px) scale(0.95); }
+}
+
+@keyframes blobFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.08); }
+    66% { transform: translate(-20px, 20px) scale(0.92); }
+}
+
+@keyframes blobFloat3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-25px, 35px) scale(1.1); }
+}
+
+/* Ensure all content sits above abstract background */
+.main-header, .main-content, .main-footer {
+    position: relative;
+    z-index: 1;
 }
 
 /* ===== HEADER ===== */
@@ -85,7 +169,7 @@
 }
 
 .nav-link.active {
-    color: #ffffff; /* Always white for best contrast on primary color */
+    color: var(--bg-primary);
     background: var(--primary-color);
     box-shadow: 0 4px 12px var(--shadow-color);
 }

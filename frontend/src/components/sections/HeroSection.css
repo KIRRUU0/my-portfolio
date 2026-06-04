@@ -210,8 +210,8 @@
 
 .pill {
   padding: 4px 12px;
-  background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50px;
   font-size: 0.75rem;
   color: var(--primary-color);

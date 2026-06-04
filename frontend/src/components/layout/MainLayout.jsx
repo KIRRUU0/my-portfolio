@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import ThemeToggle from '../ThemeToggle';
 import LanguageSelector from '../LanguageSelector';
@@ -9,6 +9,7 @@ import './MainLayout.css';
 const MainLayout = () => {
     const { language } = useApp();
     const location = useLocation();
+    const navigate = useNavigate();
     const isHomePage = location.pathname === '/';
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -66,7 +67,7 @@ const MainLayout = () => {
     const scrollToSection = (sectionId) => {
         setMobileMenuOpen(false);
         if (!isHomePage) {
-            window.location.href = `/#${sectionId}`;
+            navigate(`/#${sectionId}`);
             return;
         }
         
@@ -89,6 +90,13 @@ const MainLayout = () => {
 
     return (
         <div className="main-layout">
+            {/* Abstract background decorations */}
+            <div className="abstract-bg" aria-hidden="true">
+                <div className="abstract-blob blob-1"></div>
+                <div className="abstract-blob blob-2"></div>
+                <div className="abstract-blob blob-3"></div>
+                <div className="abstract-grid"></div>
+            </div>
             <header className={`main-header ${scrolled ? 'scrolled' : ''}`}>
                 <div className="header-container">
                     <div className="header-left-spacer"></div>

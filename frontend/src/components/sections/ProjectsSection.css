@@ -135,14 +135,14 @@
 }
 
 .category-badge {
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(0, 0, 0, 0.06);
   color: var(--primary-color);
   padding: 4px 12px;
   border-radius: 6px;
   font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .project-card-description {
@@ -173,7 +173,7 @@
 }
 
 .project-card-2col:hover .tech-badge {
-  border-color: rgba(99, 102, 241, 0.2);
+  border-color: rgba(0, 0, 0, 0.1);
   color: var(--text-primary);
 }
 

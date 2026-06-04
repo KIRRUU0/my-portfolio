@@ -184,7 +184,7 @@
   border: 1px solid var(--popup-info-border);
 }
 
-.popup-tag-cat { background: rgba(99, 102, 241, 0.15); color: var(--primary-color); }
+.popup-tag-cat { background: rgba(0, 0, 0, 0.08); color: var(--primary-color); }
 .popup-tag-tech { background: rgba(255, 255, 255, 0.05); color: var(--popup-info-sub); }
 
 .popup-action-links {

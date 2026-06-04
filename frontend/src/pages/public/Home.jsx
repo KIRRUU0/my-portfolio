@@ -107,11 +107,13 @@ const Home = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       // Set final values immediately
-      setExpYears(totalExpYears);
-      setProjectCount(totalProjects);
-      setTechCount(totalTech);
-      setCounterStarted(true);
-      return;
+      const reduceMotionTimer = setTimeout(() => {
+        setExpYears(totalExpYears);
+        setProjectCount(totalProjects);
+        setTechCount(totalTech);
+        setCounterStarted(true);
+      }, 0);
+      return () => clearTimeout(reduceMotionTimer);
     }
 
     const timer = setTimeout(() => {
@@ -278,14 +280,6 @@ const Home = () => {
     };
   }, [startCounter, totalExpYears, totalProjects, totalTech]);
 
-  // Handle URL hash for smooth scrolling on mount
-  useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-      setTimeout(() => scrollToSection(hash), 500);
-    }
-  }, []);
-
   const scrollToSection = (sectionId) => {
     const refs = {
       home: homeRef,
@@ -301,6 +295,14 @@ const Home = () => {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Handle URL hash for smooth scrolling on mount
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      setTimeout(() => scrollToSection(hash), 500);
+    }
+  }, []);
 
   const openProjectPopup = (project) => {
     setSelectedProject(project);

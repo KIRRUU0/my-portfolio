@@ -93,7 +93,7 @@
 .certificate-card:hover .certificate-overlay {
   transform: translateY(0);
   background: var(--bg-card);
-  border-color: rgba(99, 102, 241, 0.3);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .certificate-overlay h3 {
@@ -273,7 +273,7 @@
   align-items: center;
   gap: 8px;
   padding: 0.5rem 1rem;
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(0, 0, 0, 0.06);
   color: var(--primary-color);
   border-radius: 50px;
   font-size: 0.85rem;

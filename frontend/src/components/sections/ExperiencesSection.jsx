@@ -28,7 +28,7 @@ const ExperiencesSection = ({ experiencesRef, experiences, formatDate }) => {
         <h2 className="section-title">{text.experiencesTitle}</h2>
       </div>
       <div className="experiences-list">
-        {experiences.map((exp, index) => (
+        {experiences.map((exp) => (
           <div key={exp.id} className="experience-item">
             <div className="experience-period">
               {formatDate(exp.start_date)} — {exp.current ? text.present : formatDate(exp.end_date)}

@@ -23,14 +23,14 @@
 }
 
 .lang-btn:hover:not(.active) {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(0, 0, 0, 0.06);
     color: var(--primary-color);
 }
 
 .lang-btn.active {
     background: var(--primary-color);
     color: #ffffff;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
