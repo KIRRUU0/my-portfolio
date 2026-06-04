@@ -207,7 +207,7 @@
 
 .btn-popup-primary {
   background: var(--primary-color);
-  color: #ffffff;
+  color: var(--bg-primary);
   padding: 0.8rem 1.5rem;
   flex: 1;
 }

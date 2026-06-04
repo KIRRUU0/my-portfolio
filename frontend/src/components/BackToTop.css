@@ -6,7 +6,7 @@
   height: 50px;
   border-radius: 16px;
   background: var(--primary-color);
-  color: white;
+  color: var(--bg-primary);
   border: none;
   cursor: pointer;
   display: flex;
