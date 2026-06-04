@@ -1,7 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import ProjectFilter from './ProjectFilter';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ProjectsSection.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }) => {
   const { language } = useApp();
@@ -25,6 +29,40 @@ const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }
     });
     return sorted;
   }, [projects, filter]);
+
+  // Project Image Parallax Scroll
+  useEffect(() => {
+    // Respect reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let ctx;
+    const timer = setTimeout(() => {
+      ctx = gsap.context(() => {
+        const projectImages = document.querySelectorAll('.project-card-image img');
+        projectImages.forEach(img => {
+          gsap.fromTo(img,
+            { y: "-10%" },
+            {
+              y: "10%",
+              ease: "none",
+              scrollTrigger: {
+                trigger: img.closest('.project-card-3col'),
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            }
+          );
+        });
+      });
+    }, 150); // slight delay to allow React DOM render to finish
+
+    return () => {
+      clearTimeout(timer);
+      if (ctx) ctx.revert();
+    };
+  }, [filter, sortedProjects]);
 
   return (
     <section id="projects" ref={projectsRef} className="projects-section">

@@ -92,3 +92,14 @@ code {
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) var(--bg-primary);
 }
+
+/* Section Title Masking Reveal styles */
+.section-title, .about-section-title, .slider-header h2 {
+  overflow: hidden;
+  line-height: 1.25;
+}
+
+.section-title .mask-span, .about-section-title .mask-span, .slider-header h2 .mask-span {
+  display: inline-block;
+  will-change: transform;
+}

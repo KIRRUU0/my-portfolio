@@ -243,17 +243,25 @@ const Home = () => {
         }
       }
 
-      // --- Section headers: Subtle fade-in for titles ---
-      const sectionHeaders = document.querySelectorAll('.section-header, .slider-header');
-      if (sectionHeaders.length) {
-        sectionHeaders.forEach(header => {
-          gsap.fromTo(header,
-            { y: 20, opacity: 0 },
+      // --- Section headers: Text mask reveal ---
+      const sectionTitles = document.querySelectorAll('.section-title, .about-section-title, .slider-header h2');
+      sectionTitles.forEach(title => {
+        if (!title.querySelector('.mask-span')) {
+          const originalText = title.innerHTML;
+          title.innerHTML = `<span class="mask-span" style="display: inline-block; will-change: transform;">${originalText}</span>`;
+        }
+      });
+
+      const titleSpans = document.querySelectorAll('.section-title .mask-span, .about-section-title .mask-span, .slider-header h2 .mask-span');
+      if (titleSpans.length) {
+        titleSpans.forEach(span => {
+          gsap.fromTo(span,
+            { y: "105%", opacity: 0 },
             {
-              y: 0, opacity: 1, duration: 0.6, ease: "power2.out",
+              y: "0%", opacity: 1, duration: 0.8, ease: "power3.out",
               scrollTrigger: {
-                trigger: header,
-                start: "top 88%",
+                trigger: span.parentElement,
+                start: "top 90%",
                 toggleActions: "play none none none"
               }
             }
@@ -267,6 +275,8 @@ const Home = () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, [startCounter, totalExpYears, totalProjects, totalTech]);
+
+
 
   const scrollToSection = (sectionId) => {
     const refs = {
