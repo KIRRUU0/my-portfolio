@@ -6,13 +6,22 @@ const ThemeToggle = () => {
     const { theme, toggleTheme } = useApp();
 
     return (
-        <input
-            type="checkbox"
-            className="theme-checkbox"
-            checked={theme === 'dark'}
-            onChange={toggleTheme}
-            aria-label="Toggle dark mode"
-        />
+        <div className="theme-selector">
+            <button 
+                className={`theme-btn ${theme === 'light' ? 'active' : ''}`}
+                onClick={() => theme === 'dark' && toggleTheme()}
+                aria-label="Light mode"
+            >
+                <i className="bi bi-sun-fill"></i>
+            </button>
+            <button 
+                className={`theme-btn ${theme === 'dark' ? 'active' : ''}`}
+                onClick={() => theme === 'light' && toggleTheme()}
+                aria-label="Dark mode"
+            >
+                <i className="bi bi-moon-fill"></i>
+            </button>
+        </div>
     );
 };
 
