@@ -14,8 +14,8 @@ const ScrambleText = ({ text = '', className = '', duration = 1.0, delay = 0 }) 
         if (isAnimating.current || !originalText.current) return;
         isAnimating.current = true;
 
-        const chars = '!<>-_\\/[]{}—=+*^?#________';
         const target = originalText.current;
+        const validChars = target.replace(/[^a-zA-Z0-9]/g, '') || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
         let frame = 0;
         const totalFrames = Math.max(1, duration * 60); 
         const revealStep = target.length / totalFrames;
@@ -30,10 +30,8 @@ const ScrambleText = ({ text = '', className = '', duration = 1.0, delay = 0 }) 
                     current += target[i];
                 } else if (target[i] === ' ') {
                     current += ' ';
-                } else if (i < revealedLength + 5) {
-                    current += chars[Math.floor(Math.random() * chars.length)];
                 } else {
-                    current += '.';
+                    current += validChars[Math.floor(Math.random() * validChars.length)];
                 }
             }
 
