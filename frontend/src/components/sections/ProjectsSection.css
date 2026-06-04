@@ -62,10 +62,12 @@
 }
 
 .project-card-2col:hover {
-  transform: translateY(-12px);
+  transform: translateY(-8px);
   background: var(--hover-bg);
   border-color: var(--primary-color);
-  box-shadow: 0 30px 60px var(--shadow-color);
+  box-shadow: 
+    0 20px 40px var(--shadow-color),
+    0 0 0 1px var(--primary-color);
 }
 
 .project-card-image {

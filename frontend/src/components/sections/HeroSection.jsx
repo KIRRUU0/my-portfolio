@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import gsap from 'gsap';
 import './HeroSection.css';
@@ -6,9 +6,6 @@ import './HeroSection.css';
 const HeroSection = ({ homeRef }) => {
   const { language } = useApp();
   const heroRef = useRef(null);
-  const textRef = useRef(null);
-  const visualRef = useRef(null);
-  const bubblesRef = useRef([]);
 
   const t = {
     en: {
@@ -30,11 +27,36 @@ const HeroSection = ({ homeRef }) => {
   const text = t[language] || t.en;
 
   useLayoutEffect(() => {
+    // Respect reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     let ctx = gsap.context(() => {
-      // Entrance
-      gsap.from(".digital-canvas", { opacity: 0, scale: 0.95, duration: 1.5, ease: "power3.out" });
+      // Staggered text reveal timeline
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       
+      tl.from(".hero-greeting", { 
+        opacity: 0, x: -30, duration: 0.6 
+      })
+      .from(".hero-title", { 
+        opacity: 0, y: 30, duration: 0.7 
+      }, "-=0.3")
+      .from(".hero-description", { 
+        opacity: 0, y: 20, duration: 0.6 
+      }, "-=0.3")
+      .from(".hero-cta-group .cta-primary", { 
+        opacity: 0, y: 20, duration: 0.5 
+      }, "-=0.2")
+      .from(".hero-cta-group .cta-secondary", { 
+        opacity: 0, y: 20, duration: 0.5 
+      }, "-=0.3")
+      .from(".digital-canvas", { 
+        opacity: 0, scale: 0.88, duration: 1, ease: "power2.out" 
+      }, "-=0.8");
+
+      // Mouse parallax on glass card
       const handleMouseMove = (e) => {
+        if (!heroRef.current) return;
         const { clientX, clientY } = e;
         const rect = heroRef.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
@@ -43,16 +65,16 @@ const HeroSection = ({ homeRef }) => {
         const xPos = (clientX - centerX) / (rect.width / 2);
         const yPos = (clientY - centerY) / (rect.height / 2);
 
-        // Simple Parallax
         gsap.to(".layer-1", { 
-          x: xPos * 15, y: yPos * 15, rotateY: xPos * 5, rotateX: -yPos * 5, duration: 0.8 
+          x: xPos * 12, y: yPos * 12, 
+          rotateY: xPos * 4, rotateX: -yPos * 4, 
+          duration: 0.8, ease: "power2.out"
         });
       };
 
       window.addEventListener("mousemove", handleMouseMove);
       return () => {
         window.removeEventListener("mousemove", handleMouseMove);
-        gsap.killTweensOf("*");
       };
     }, heroRef);
 

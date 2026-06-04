@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useApp } from '../../context/AppContext';
 import { projects } from '../../data/projects';
@@ -31,6 +31,7 @@ const Home = () => {
   const [expYears, setExpYears] = useState(0);
   const [projectCount, setProjectCount] = useState(0);
   const [techCount, setTechCount] = useState(0);
+  const [counterStarted, setCounterStarted] = useState(false);
   
   // Refs untuk scroll dan GSAP
   const homeRef = useRef(null);
@@ -58,8 +59,12 @@ const Home = () => {
   
   const totalExpYears = calculateTotalYears();
 
-  // Efek counter untuk statistik
-  useEffect(() => {
+  // Counter animation function — triggered by ScrollTrigger
+  const startCounter = useCallback(() => {
+    if (counterStarted) return;
+    setCounterStarted(true);
+
+    // Experience years counter
     let startExp = 0;
     const expInterval = setInterval(() => {
       startExp += 0.1;
@@ -71,6 +76,7 @@ const Home = () => {
       }
     }, 50);
 
+    // Project counter
     let startProject = 0;
     const projectInterval = setInterval(() => {
       startProject += 1;
@@ -82,6 +88,7 @@ const Home = () => {
       }
     }, 50);
 
+    // Tech counter
     let startTech = 0;
     const techInterval = setInterval(() => {
       startTech += 1;
@@ -92,54 +99,184 @@ const Home = () => {
         setTechCount(startTech);
       }
     }, 50);
+  }, [counterStarted, totalExpYears, totalProjects, totalTech]);
 
-    return () => {
-      clearInterval(expInterval);
-      clearInterval(projectInterval);
-      clearInterval(techInterval);
-    };
-  }, [totalExpYears, totalProjects, totalTech]);
-
-  // GSAP ScrollTrigger Effects
+  // GSAP ScrollTrigger Effects — unique animation per section
   useEffect(() => {
-    const sections = [
-      { ref: aboutRef, selector: ".about-container" },
-      { ref: projectsRef, selector: ".projects-grid-2col" },
-      { ref: experiencesRef, selector: ".experiences-list" },
-      { ref: certificatesRef, selector: ".certificate-slider-section" },
-      { ref: techRef, selector: ".tech-categories-grid" },
-      { ref: contactRef, selector: ".contact-container" }
-    ];
+    // Respect reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      // Set final values immediately
+      setExpYears(totalExpYears);
+      setProjectCount(totalProjects);
+      setTechCount(totalTech);
+      setCounterStarted(true);
+      return;
+    }
 
     const timer = setTimeout(() => {
-      sections.forEach((section) => {
-        if (section.ref.current) {
-          const el = section.ref.current.querySelector(section.selector);
-          if (el) {
-            gsap.fromTo(el,
-              { y: 60, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 1.2,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: section.ref.current,
-                  start: "top 85%",
-                  toggleActions: "play none none none"
-                }
+      // --- About Section: Split entrance (image from left, content from right) ---
+      if (aboutRef.current) {
+        const aboutImg = aboutRef.current.querySelector('.about-image');
+        const aboutContent = aboutRef.current.querySelector('.about-content');
+        
+        if (aboutImg) {
+          gsap.fromTo(aboutImg,
+            { x: -60, opacity: 0 },
+            {
+              x: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+              scrollTrigger: {
+                trigger: aboutRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
               }
-            );
-          }
+            }
+          );
         }
-      });
-    }, 100);
+        if (aboutContent) {
+          gsap.fromTo(aboutContent,
+            { x: 60, opacity: 0 },
+            {
+              x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.15,
+              scrollTrigger: {
+                trigger: aboutRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        }
+
+        // Counter triggered when About section enters viewport
+        ScrollTrigger.create({
+          trigger: aboutRef.current,
+          start: "top 75%",
+          onEnter: startCounter,
+          once: true
+        });
+      }
+
+      // --- Projects Section: Staggered card grid ---
+      if (projectsRef.current) {
+        const projectCards = projectsRef.current.querySelectorAll('.project-card');
+        if (projectCards.length) {
+          gsap.fromTo(projectCards,
+            { y: 40, opacity: 0, scale: 0.95 },
+            {
+              y: 0, opacity: 1, scale: 1,
+              duration: 0.6, ease: "power3.out",
+              stagger: 0.1,
+              scrollTrigger: {
+                trigger: projectsRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        }
+      }
+
+      // --- Experiences Section: Timeline cascade ---
+      if (experiencesRef.current) {
+        const expItems = experiencesRef.current.querySelectorAll('.experience-item');
+        if (expItems.length) {
+          gsap.fromTo(expItems,
+            { y: 30, opacity: 0, x: -20 },
+            {
+              y: 0, opacity: 1, x: 0,
+              duration: 0.6, ease: "power3.out",
+              stagger: 0.15,
+              scrollTrigger: {
+                trigger: experiencesRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        }
+      }
+
+      // --- Certificates Section: Smooth slide-in ---
+      if (certificatesRef.current) {
+        const certSlider = certificatesRef.current.querySelector('.certificate-slider-section');
+        if (certSlider) {
+          gsap.fromTo(certSlider,
+            { y: 50, opacity: 0 },
+            {
+              y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+              scrollTrigger: {
+                trigger: certificatesRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        }
+      }
+
+      // --- Tech Stack Section: Category cards fan-in with subtle rotation ---
+      if (techRef.current) {
+        const techCards = techRef.current.querySelectorAll('.tech-category-card');
+        if (techCards.length) {
+          gsap.fromTo(techCards,
+            { y: 40, opacity: 0, rotateX: 8 },
+            {
+              y: 0, opacity: 1, rotateX: 0,
+              duration: 0.7, ease: "power3.out",
+              stagger: 0.12,
+              scrollTrigger: {
+                trigger: techRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        }
+      }
+
+      // --- Contact Section: Form scale + fade ---
+      if (contactRef.current) {
+        const contactForm = contactRef.current.querySelector('.contact-container');
+        if (contactForm) {
+          gsap.fromTo(contactForm,
+            { y: 40, opacity: 0, scale: 0.97 },
+            {
+              y: 0, opacity: 1, scale: 1,
+              duration: 0.8, ease: "power3.out",
+              scrollTrigger: {
+                trigger: contactRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        }
+      }
+
+      // --- Section headers: Subtle fade-in for titles ---
+      const sectionHeaders = document.querySelectorAll('.section-header, .slider-header');
+      if (sectionHeaders.length) {
+        sectionHeaders.forEach(header => {
+          gsap.fromTo(header,
+            { y: 20, opacity: 0 },
+            {
+              y: 0, opacity: 1, duration: 0.6, ease: "power2.out",
+              scrollTrigger: {
+                trigger: header,
+                start: "top 88%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        });
+      }
+    }, 150);
 
     return () => {
       clearTimeout(timer);
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
-  }, []);
+  }, [startCounter, totalExpYears, totalProjects, totalTech]);
 
   // Handle URL hash for smooth scrolling on mount
   useEffect(() => {

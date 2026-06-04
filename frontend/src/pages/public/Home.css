@@ -35,35 +35,6 @@ section:last-child {
   margin-top: 0.5rem;
 }
 
-/* AOS Custom Animations */
-[data-aos="fade-up"] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition-property: opacity, transform;
-}
-
-[data-aos="fade-up"].aos-animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .loading {
   text-align: center;
   padding: 4rem;
@@ -86,17 +57,5 @@ section:last-child {
 
   .section-header {
     text-align: center;
-  }
-
-  .tech-marquee-track {
-    gap: 1.5rem;
-    animation: marquee 30s linear infinite;
-  }
-}
-
-@media (max-width: 480px) {
-  .tech-marquee-track {
-    gap: 1rem;
-    animation: marquee 25s linear infinite;
   }
 }
