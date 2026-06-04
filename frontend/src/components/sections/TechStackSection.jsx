@@ -22,7 +22,7 @@ const TechStackSection = ({ techRef }) => {
         { name: 'Tailwind CSS', iconName: 'tailwindcss' },
         { name: 'JavaScript', iconName: 'js' },
         { name: 'HTML5/CSS3', iconName: 'html5' },
-        { name: 'Bootstrap', iconName: 'bootstrap5' }
+        { name: 'Flutter', iconName: 'flutter' }
       ]
     },
     {
@@ -33,7 +33,7 @@ const TechStackSection = ({ techRef }) => {
         { name: 'Laravel', iconName: 'laravel' },
         { name: 'PHP', iconName: 'php' },
         { name: 'MySQL', iconName: 'mysql' },
-        { name: 'REST API', iconName: 'openapi' },
+        { name: 'Go', iconName: 'go' },
         { name: 'Node.js', iconName: 'nodejs' }
       ]
     },
@@ -46,7 +46,7 @@ const TechStackSection = ({ techRef }) => {
         { name: 'Git & GitHub', iconName: 'git' },
         { name: 'Postman', iconName: 'postman' },
         { name: 'VS Code', iconName: 'vscode' },
-        { name: 'UI/UX Design', iconName: 'sketch' }
+        { name: 'Canva', iconName: 'canva' }
       ]
     }
   ];
