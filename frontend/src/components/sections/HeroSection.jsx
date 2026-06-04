@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
+import ScrambleText from '../ScrambleText';
 import gsap from 'gsap';
 import './HeroSection.css';
 
@@ -91,8 +92,12 @@ const HeroSection = ({ homeRef }) => {
       <div className="hero-background-glow"></div>
       <div className="hero-container">
         <div className="hero-text">
-          <span className="hero-greeting">{text.greeting}</span>
-          <h1 className="hero-title">{text.role}</h1>
+          <span className="hero-greeting">
+            <ScrambleText text={text.greeting} duration={1.0} delay={0.1} />
+          </span>
+          <h1 className="hero-title">
+            <ScrambleText text={text.role} duration={1.4} delay={0.3} />
+          </h1>
           <p className="hero-description">{text.description}</p>
           <div className="hero-cta-group">
             <button className="cta-primary" onClick={() => scrollToRef('projects')}>

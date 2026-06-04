@@ -117,29 +117,17 @@ const Home = () => {
     }
 
     const timer = setTimeout(() => {
-      // --- About Section: Split entrance (image from left, content from right) ---
+      // --- About Section: Bento Grid Staggered entrance ---
       if (aboutRef.current) {
-        const aboutImg = aboutRef.current.querySelector('.about-image');
-        const aboutContent = aboutRef.current.querySelector('.about-content');
+        const bentoCards = aboutRef.current.querySelectorAll('.bento-card');
         
-        if (aboutImg) {
-          gsap.fromTo(aboutImg,
-            { x: -60, opacity: 0 },
+        if (bentoCards.length) {
+          gsap.fromTo(bentoCards,
+            { y: 50, opacity: 0, scale: 0.96 },
             {
-              x: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-              scrollTrigger: {
-                trigger: aboutRef.current,
-                start: "top 80%",
-                toggleActions: "play none none none"
-              }
-            }
-          );
-        }
-        if (aboutContent) {
-          gsap.fromTo(aboutContent,
-            { x: 60, opacity: 0 },
-            {
-              x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.15,
+              y: 0, opacity: 1, scale: 1,
+              duration: 0.7, ease: "power3.out",
+              stagger: 0.15,
               scrollTrigger: {
                 trigger: aboutRef.current,
                 start: "top 80%",
