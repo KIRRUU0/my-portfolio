@@ -30,8 +30,10 @@ const ScrambleText = ({ text = '', className = '', duration = 1.0, delay = 0 }) 
                     current += target[i];
                 } else if (target[i] === ' ') {
                     current += ' ';
-                } else {
+                } else if (i < revealedLength + 5) {
                     current += chars[Math.floor(Math.random() * chars.length)];
+                } else {
+                    current += '.';
                 }
             }
 

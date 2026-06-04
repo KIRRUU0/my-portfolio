@@ -258,7 +258,7 @@
   align-items: center;
   gap: 8px;
   padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--hover-bg);
   border: 1px solid var(--popup-info-border);
   color: var(--primary-color);
   border-radius: 50px;
@@ -314,9 +314,9 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--hover-bg);
   border: 1px solid var(--popup-info-border);
-  color: #ffffff;
+  color: var(--popup-info-text);
   cursor: pointer;
   display: flex;
   align-items: center;

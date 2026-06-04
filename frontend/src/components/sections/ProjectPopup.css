@@ -104,7 +104,7 @@
   gap: 0.6rem;
   padding: 0 14px;
   height: 32px; /* Force same height */
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--hover-bg);
   border: 1px solid var(--popup-info-border);
   border-radius: 50px;
   font-weight: 600;
@@ -184,8 +184,8 @@
   border: 1px solid var(--popup-info-border);
 }
 
-.popup-tag-cat { background: rgba(0, 0, 0, 0.08); color: var(--primary-color); }
-.popup-tag-tech { background: rgba(255, 255, 255, 0.05); color: var(--popup-info-sub); }
+.popup-tag-cat { background: var(--hover-bg); color: var(--primary-color); }
+.popup-tag-tech { background: var(--hover-bg); color: var(--popup-info-sub); }
 
 .popup-action-links {
   display: flex;
@@ -220,15 +220,15 @@
 
 .btn-popup-outline {
   border: 1px solid var(--popup-info-border);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--hover-bg);
   color: var(--popup-info-text);
   padding: 0.8rem 1.5rem;
 }
 
 .btn-popup-outline:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--primary-color);
   border-color: var(--primary-color);
-  color: #ffffff;
+  color: var(--bg-primary);
   transform: translateY(-2px);
 }
 
@@ -239,10 +239,10 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--hover-bg);
   backdrop-filter: blur(8px);
   border: 1px solid var(--popup-info-border);
-  color: #ffffff;
+  color: var(--popup-info-text);
   z-index: 1000;
   cursor: pointer;
   display: flex;
