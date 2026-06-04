@@ -98,31 +98,38 @@
 
 .tech-items-grid {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .tech-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 0.8rem 1.2rem;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.5rem 0.8rem;
   background: var(--hover-bg);
-  border-radius: 14px;
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--border-color);
   position: relative;
+  flex: 1 1 calc(33.333% - 0.7rem);
+  min-width: 90px;
+  max-width: calc(33.333% - 0.7rem);
 }
 
 .tech-item:hover {
   background: var(--bg-card);
   border-color: var(--primary-color);
-  transform: translateX(8px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px var(--shadow-color);
 }
 
 .tech-icon {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,35 +149,21 @@
 .tech-item:hover .tech-icon {
   filter: grayscale(0%);
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
 .tech-name {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  font-weight: 600;
+  font-weight: 700;
   transition: 0.3s;
+  text-align: center;
+  letter-spacing: -0.2px;
 }
 
 .tech-item:hover .tech-name {
   color: var(--text-primary);
 }
-
-/* Floating Animation for Items */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0px); }
-}
-
-.tech-category-card:hover .tech-item {
-  animation: float 3s ease-in-out infinite;
-}
-
-.tech-category-card .tech-item:nth-child(2) { animation-delay: 0.2s; }
-.tech-category-card .tech-item:nth-child(3) { animation-delay: 0.4s; }
-.tech-category-card .tech-item:nth-child(4) { animation-delay: 0.6s; }
-.tech-category-card .tech-item:nth-child(5) { animation-delay: 0.8s; }
 
 /* Responsive */
 @media (max-width: 1024px) {
