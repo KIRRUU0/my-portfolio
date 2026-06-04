@@ -5,12 +5,8 @@ import './CertificateSlider.css';
 
 const CertificateSlider = ({ certificates }) => {
   const { language } = useApp();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCert, setSelectedCert] = useState(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const t = {
     en: {
@@ -31,32 +27,9 @@ const CertificateSlider = ({ certificates }) => {
 
   const text = t[language] || t.en;
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const sortedCertificates = [...certificates].sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
-
-  const itemsPerPage = 3;
-  const totalSlides = sortedCertificates.length;
-  const pageCount = Math.ceil(totalSlides / itemsPerPage);
-  
-  // Each slide is (100 / totalSlides)% of track width.
-  // Each page = itemsPerPage slides = (itemsPerPage / totalSlides * 100)% of track.
-  // Clamp last page so we don't overshoot into empty space.
-  const getTranslateX = () => {
-    const slideWidthPercent = 100 / totalSlides;
-    const pageShift = currentIndex * itemsPerPage * slideWidthPercent;
-    const maxShift = (totalSlides - itemsPerPage) * slideWidthPercent;
-    return Math.min(pageShift, maxShift);
-  };
 
   useEffect(() => {
     if (selectedCert) {
@@ -69,47 +42,16 @@ const CertificateSlider = ({ certificates }) => {
     };
   }, [selectedCert]);
 
-  const handlePrev = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? pageCount - 1 : prevIndex - 1
-    );
-    setTimeout(() => setIsTransitioning(false), 400);
-  };
-
-  const handleNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => 
-      prevIndex === pageCount - 1 ? 0 : prevIndex + 1
-    );
-    setTimeout(() => setIsTransitioning(false), 400);
-  };
-
-  const handleTouchStart = (e) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
-      handleNext();
-    }
-    if (touchStart - touchEnd < -50) {
-      handlePrev();
-    }
-  };
-
   const openPopup = (cert) => {
     setSelectedCert(cert);
   };
 
   const closePopup = () => {
     setSelectedCert(null);
+  };
+
+  const loadMore = () => {
+    setVisibleCount(prev => prev + 4);
   };
 
   const formatDate = (dateString) => {
@@ -125,88 +67,42 @@ const CertificateSlider = ({ certificates }) => {
   }
 
   return (
-    <div className="certificate-slider-section">
-      <div className="slider-header">
+    <div className="certificate-grid-section">
+      <div className="section-header">
         <h2 className="section-title">{text.certificates}</h2>
       </div>
 
-      <div 
-        className="slider-container"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {!isMobile && (
-          <button 
-            className="slider-nav prev" 
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-          >
-            <i className="bi bi-chevron-left"></i>
-          </button>
-        )}
-
-        <div className="slider-view">
+      <div className="certificate-grid">
+        {sortedCertificates.slice(0, visibleCount).map((cert) => (
           <div 
-            className="slider-track"
-            style={{ 
-              width: `${(sortedCertificates.length / itemsPerPage) * 100}%`,
-              transform: `translateX(-${getTranslateX()}%)`,
-            }}
+            key={cert.id} 
+            className="certificate-grid-item"
+            onClick={() => openPopup(cert)}
           >
-            {sortedCertificates.map((cert) => (
-              <div 
-                key={cert.id} 
-                className="certificate-slide"
-                style={{ width: `${100 / sortedCertificates.length}%` }}
-                onClick={() => openPopup(cert)}
-              >
-                <div className="certificate-card">
-                  <div className="verified-badge">
-                    <i className="bi bi-patch-check-fill"></i> Verified
-                  </div>
-                  <div className="certificate-image">
-                    <img src={cert.image_url} alt={cert.name} />
-                  </div>
-                  <div className="certificate-overlay">
-                    <h3>{cert.name}</h3>
-                    <p>{cert.vendor}</p>
-                    <div className="view-detail">
-                      {language === 'en' ? 'Click to view' : 'Klik untuk lihat'} <i className="bi bi-arrow-right"></i>
-                    </div>
-                  </div>
+            <div className="certificate-card">
+              <div className="verified-badge">
+                <i className="bi bi-patch-check-fill"></i> Verified
+              </div>
+              <div className="certificate-image">
+                <img src={cert.image_url} alt={cert.name} />
+              </div>
+              <div className="certificate-overlay">
+                <h3>{cert.name}</h3>
+                <p>{cert.vendor}</p>
+                <div className="view-detail">
+                  {language === 'en' ? 'Click to view' : 'Klik untuk lihat'} <i className="bi bi-arrow-right"></i>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-
-        {!isMobile && (
-          <button 
-            className="slider-nav next" 
-            onClick={handleNext}
-            disabled={currentIndex === pageCount - 1}
-          >
-            <i className="bi bi-chevron-right"></i>
-          </button>
-        )}
+        ))}
       </div>
 
-      {pageCount > 1 && (
-        <div className="slider-indicators">
-          {Array.from({ length: pageCount }).map((_, index) => (
-            <button
-              key={index}
-              className={`indicator-dot ${index === currentIndex ? 'active' : ''}`}
-              onClick={() => {
-                if (!isTransitioning) {
-                  setIsTransitioning(true);
-                  setCurrentIndex(index);
-                  setTimeout(() => setIsTransitioning(false), 400);
-                }
-              }}
-            />
-          ))}
+      {visibleCount < sortedCertificates.length && (
+        <div className="more-btn-container">
+          <button className="btn-more-certificates" onClick={loadMore}>
+            {language === 'en' ? 'Show More Certificates' : 'Tampilkan Lebih Banyak'} <i className="bi bi-arrow-down-short"></i>
+          </button>
         </div>
       )}
 

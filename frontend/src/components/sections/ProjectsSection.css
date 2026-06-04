@@ -12,18 +12,16 @@
   gap: 2rem;
 }
 
-
-
-.projects-grid-2col {
+.projects-grid-3col {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  max-width: 1200px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 /* PREMIUM PROJECT CARD */
-.project-card-2col {
+.project-card-3col {
   background: var(--bg-card);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -39,7 +37,7 @@
   position: relative;
 }
 
-.project-card-2col::before {
+.project-card-3col::before {
   content: '';
   position: absolute;
   top: 0;
@@ -57,11 +55,11 @@
   z-index: 1;
 }
 
-.project-card-2col:hover::before {
+.project-card-3col:hover::before {
   left: 150%;
 }
 
-.project-card-2col:hover {
+.project-card-3col:hover {
   transform: translateY(-8px);
   background: var(--hover-bg);
   border-color: var(--primary-color);
@@ -73,7 +71,7 @@
 .project-card-image {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 200px;
   overflow: hidden;
   background: #1a1a1a;
 }
@@ -85,7 +83,7 @@
   transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.project-card-2col:hover .project-card-image img {
+.project-card-3col:hover .project-card-image img {
   transform: scale(1.1);
 }
 
@@ -110,15 +108,15 @@
 }
 
 .project-card-info {
-  padding: 2.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
   flex: 1;
 }
 
 .project-card-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1.2;
@@ -147,7 +145,7 @@
 
 .project-card-description {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
   opacity: 0.8;
@@ -172,7 +170,7 @@
   transition: all 0.3s;
 }
 
-.project-card-2col:hover .tech-badge {
+.project-card-3col:hover .tech-badge {
   border-color: rgba(0, 0, 0, 0.1);
   color: var(--text-primary);
 }
@@ -202,10 +200,10 @@
   transform: translateX(5px);
 }
 
-/* Responsive Mobile */
-@media (max-width: 1024px) {
-  .projects-grid-2col {
-    grid-template-columns: 1fr;
+/* Responsive Mobile & Tablet */
+@media (max-width: 1200px) {
+  .projects-grid-3col {
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding: 0 1.5rem;
   }
@@ -222,6 +220,11 @@
     margin-bottom: 2rem;
     flex-direction: column;
     align-items: center;
+  }
+  
+  .projects-grid-3col {
+    grid-template-columns: 1fr;
+    padding: 0;
   }
   
   .project-card-info {

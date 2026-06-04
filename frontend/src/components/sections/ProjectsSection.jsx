@@ -33,9 +33,9 @@ const ProjectsSection = ({ projectsRef, projects, formatDate, openProjectPopup }
         <ProjectFilter currentFilter={filter} onFilterChange={setFilter} />
       </div>
       
-      <div className="projects-grid-2col">
+      <div className="projects-grid-3col">
         {sortedProjects.map((project) => (
-          <div key={project.id} className="project-card-2col" onClick={() => openProjectPopup(project)}>
+          <div key={project.id} className="project-card-3col" onClick={() => openProjectPopup(project)}>
             <div className="project-card-content">
               <div className="project-card-image">
                 <img src={project.image_url} alt={project.title} loading="lazy" />
