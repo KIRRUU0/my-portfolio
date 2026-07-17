@@ -27,5 +27,20 @@ export const experiences = [
       "Mengimplementasikan sistem keamanan dan autentikasi pengguna berbasis peran (Role-Based Access Control).",
       "Mengembangkan logika bisnis backend dan sistem manajemen penyimpanan file media."
     ]
+  },
+  {
+    id: 3,
+    company: "Bali United",
+    position: "IT Support Intern",
+    description: "Bekerja di Divisi Tech & IT untuk melakukan pengelolaan data CMS serta melakukan pengujian kualitas (Quality Assurance/Testing) terhadap berbagai platform digital milik Bali United.",
+    location: "Jl. Panjang No.29, RT.8/RW.1, Kedoya Sel., Kec. Kb. Jeruk, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11510",
+    start_date: "2026-03-30T00:00:00Z",
+    end_date: "2026-07-03T00:00:00Z",
+    current: false,
+    achievements: [
+      "Mengelola migrasi, pemrosesan, dan pengecekan data pemain (player) serta pelatih (coach) dari format Excel ke sistem CMS.",
+      "Melakukan functional testing, pengujian UI/UX, dan uji performa pada website Bali Store, Bali United Creative, dan aplikasi mobile Bali United.",
+      "Melakukan verifikasi data pengguna yang belum terverifikasi serta melakukan pengujian akhir (final testing) untuk sistem Academy Bali."
+    ]
   }
 ];
