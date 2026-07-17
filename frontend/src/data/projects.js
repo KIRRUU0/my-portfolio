@@ -192,28 +192,6 @@ export const projects = [
   },
   {
     id: 10,
-    title: "Undangan Buka Bersama Coffee Shop",
-    slug: "undangan-buka-bersama-coffee-shop",
-    description: "Sebuah platform undangan digital berbasis web yang dirancang khusus untuk acara \"Buka Bersama Tetangga Tuku Cinere\". Proyek ini mengedepankan estetika minimalis, organik, dan approachable, mengadopsi identitas visual dari brand Kopi Tuku (Clean White, Coffee Brown, dan Botanical Green). Fokus utama proyek ini adalah memberikan pengalaman pengguna yang ringan (fast-loading) dan responsif bagi tamu undangan yang mengakses melalui perangkat mobile.",
-    content: "Undangan web interaktif untuk acara buka bersama dengan desain minimalis terinspirasi dari identitas visual Kopi Tuku, dioptimalkan untuk akses seluler yang cepat.",
-    image_url: "/images/project/Undangan Buka Bersama Coffe Shop/foto1.jpeg",
-    images: [
-      "/images/project/Undangan Buka Bersama Coffe Shop/foto1.jpeg",
-      "/images/project/Undangan Buka Bersama Coffe Shop/foto2.jpeg",
-      "/images/project/Undangan Buka Bersama Coffe Shop/foto3.jpeg"
-    ],
-    tech_stack: ["HTML", "CSS", "JavaScript"],
-    github_link: "https://github.com/KIRRUU0/bukber-tetangga.git",
-    live_link: "https://bukber-tetangga.vercel.app/",
-    desain_link: null,
-    featured: false,
-    status: "published",
-    views: 456,
-    created_at: "2026-03-01T00:00:00Z",
-    categories: ["frontend"]
-  },
-  {
-    id: 11,
     title: "Aplikasi Kasir (Point of Sale)",
     slug: "aplikasi-kasir",
     description: "Sistem Point of Sale (POS) modern berbasis web skala enterprise yang dirancang khusus untuk operasional Coffee Shop (Toko Kopi). Aplikasi ini memfasilitasi transaksi secara mulus dengan dukungan kalkulasi pajak PPN otomatis, diskon persentase, dan pemilihan metode pembayaran (Cash/QRIS). Dilengkapi dengan fitur-fitur mutakhir seperti Kitchen Display System (KDS) real-time untuk barista, pencatatan tutup shift kasir tingkat lanjut, serta Dashboard khusus Owner yang menampilkan analitik bisnis, peringatan stok menipis, dan ekspor laporan ke Excel.",
