@@ -190,27 +190,79 @@
   letter-spacing: 1px;
 }
 
-.code-block {
-  margin: 0;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.8rem;
-  line-height: 1.6;
-  text-align: left;
-  white-space: pre-wrap;
-  word-break: break-all;
+.ttt-status {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
-.code-brace {
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: var(--glass-border);
+  padding: 8px;
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--glass-border);
+}
+
+.ttt-cell {
+  aspect-ratio: 1;
+  background: var(--bg-primary);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-primary);
+  padding: 0;
+}
+
+.ttt-cell:hover:not(:disabled) {
+  background: var(--hover-bg);
+  border-color: var(--text-muted);
+}
+
+.ttt-cell:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.ttt-cell.x-cell {
+  color: var(--text-primary);
+}
+
+.ttt-cell.o-cell {
   color: var(--text-muted);
 }
 
-.code-key {
-  color: var(--text-primary);
-  font-weight: 600;
+.ttt-reset-btn {
+  width: 100%;
+  background: var(--primary-color);
+  color: var(--bg-primary);
+  border: none;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px var(--shadow-color);
 }
 
-.code-value {
-  color: var(--text-secondary);
+.ttt-reset-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px var(--shadow-color);
 }
 
 .ambient-glow {
