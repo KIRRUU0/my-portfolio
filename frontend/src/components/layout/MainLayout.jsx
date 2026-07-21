@@ -5,12 +5,7 @@ import ThemeToggle from '../ThemeToggle';
 import LanguageSelector from '../LanguageSelector';
 import BackToTop from '../BackToTop';
 import CustomCursor from '../CustomCursor';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './MainLayout.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const MainLayout = () => {
     const { language } = useApp();
@@ -48,54 +43,7 @@ const MainLayout = () => {
 
     const text = t[language] || t.en;
 
-    // Initialize Lenis smooth scroll
-    useEffect(() => {
-        // Respect reduced motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) return;
 
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // exponential easing
-            smoothWheel: true,
-            touchMultiplier: 1.5
-        });
-
-        // Sync with ScrollTrigger
-        lenis.on('scroll', ScrollTrigger.update);
-
-        const tick = (time) => {
-            lenis.raf(time * 1000);
-        };
-        gsap.ticker.add(tick);
-        gsap.ticker.lagSmoothing(0);
-
-        return () => {
-            lenis.destroy();
-            gsap.ticker.remove(tick);
-        };
-    }, []);
-
-    // Track mouse coordinates for background glow and card spotlight effects
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            // Global background glow coordinates
-            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-
-            // Local card spotlight hover coordinates
-            const card = e.target.closest('.project-card-3col, .certificate-card');
-            if (card) {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x-card', `${x}px`);
-                card.style.setProperty('--mouse-y-card', `${y}px`);
-            }
-        };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
 
     // Handle scroll for header state and active section
     useEffect(() => {

@@ -55,28 +55,6 @@ const HeroSection = ({ homeRef }) => {
         opacity: 0, scale: 0.88, duration: 1, ease: "power2.out" 
       }, "-=0.8");
 
-      // Mouse parallax on glass card
-      const handleMouseMove = (e) => {
-        if (!heroRef.current) return;
-        const { clientX, clientY } = e;
-        const rect = heroRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const xPos = (clientX - centerX) / (rect.width / 2);
-        const yPos = (clientY - centerY) / (rect.height / 2);
-
-        gsap.to(".layer-1", { 
-          x: xPos * 12, y: yPos * 12, 
-          rotateY: xPos * 4, rotateX: -yPos * 4, 
-          duration: 0.8, ease: "power2.out"
-        });
-      };
-
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-      };
     }, heroRef);
 
     return () => ctx.revert();
