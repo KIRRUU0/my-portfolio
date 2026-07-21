@@ -142,8 +142,6 @@
 .minimal-glass-card {
   width: 320px;
   background: var(--glass-bg);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 1.5rem;
@@ -154,68 +152,65 @@
 .card-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--glass-border);
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #22c55e;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #22c55e;
-  animation: pulse-status 2s infinite;
+.window-dots {
+  display: flex;
+  gap: 6px;
 }
 
-@keyframes pulse-status {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+.window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.window-dot.red {
+  background: #ff5f56;
+}
+
+.window-dot.yellow {
+  background: #ffbd2e;
+}
+
+.window-dot.green {
+  background: #27c93f;
 }
 
 .status-text {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-secondary);
-  text-transform: uppercase;
+  text-transform: lowercase;
   letter-spacing: 1px;
 }
 
-.user-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 1.5rem;
+.code-block {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
-.info-label {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  text-transform: uppercase;
+.code-brace {
+  color: var(--text-muted);
 }
 
-.info-value {
-  font-size: 1.1rem;
-  font-weight: 700;
+.code-key {
   color: var(--text-primary);
+  font-weight: 600;
 }
 
-.tech-pills {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.pill {
-  padding: 4px 12px;
-  background: rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50px;
-  font-size: 0.75rem;
-  color: var(--primary-color);
-  font-weight: 500;
+.code-value {
+  color: var(--text-secondary);
 }
 
 .ambient-glow {

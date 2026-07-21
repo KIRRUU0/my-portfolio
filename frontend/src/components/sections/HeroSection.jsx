@@ -94,19 +94,24 @@ const HeroSection = ({ homeRef }) => {
             <div className="visual-layer layer-1">
               <div className="minimal-glass-card">
                 <div className="card-header">
-                  <div className="status-dot"></div>
-                  <span className="status-text">System Active</span>
+                  <div className="window-dots">
+                    <span className="window-dot red"></span>
+                    <span className="window-dot yellow"></span>
+                    <span className="window-dot green"></span>
+                  </div>
+                  <span className="status-text">developer.json</span>
                 </div>
                 <div className="card-body">
-                  <div className="user-info">
-                    <span className="info-label">Developer ID</span>
-                    <span className="info-value">#MHA-2026</span>
-                  </div>
-                  <div className="tech-pills">
-                    <span className="pill">Laravel</span>
-                    <span className="pill">React</span>
-                    <span className="pill">UI/UX</span>
-                  </div>
+                  <pre className="code-block">
+                    <span className="code-brace">{"{"}</span>{"\n"}
+                    <span className="code-key">  "name"</span><span className="code-brace">:</span> <span className="code-value">"Haekal Arrafi"</span><span className="code-brace">,</span>{"\n"}
+                    <span className="code-key">  "role"</span><span className="code-brace">:</span> <span className="code-value">"Fullstack Developer"</span><span className="code-brace">,</span>{"\n"}
+                    <span className="code-key">  "status"</span><span className="code-brace">:</span> <span className="code-value">"Open to Work"</span><span className="code-brace">,</span>{"\n"}
+                    <span className="code-key">  "stack"</span><span className="code-brace">:</span> <span className="code-brace">[</span>
+                    <span className="code-value">"Laravel"</span><span className="code-brace">,</span> <span className="code-value">"React"</span><span className="code-brace">,</span> <span className="code-value">"Go"</span>
+                    <span className="code-brace">]</span>{"\n"}
+                    <span className="code-brace">{"}"}</span>
+                  </pre>
                 </div>
               </div>
             </div>
