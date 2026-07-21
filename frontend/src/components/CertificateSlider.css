@@ -21,8 +21,6 @@
   overflow: hidden;
   aspect-ratio: 16/10; /* Diploma ratio */
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
   cursor: pointer;
@@ -86,7 +84,6 @@
   right: 12px;
   padding: 1.5rem;
   background: var(--card-overlay-bg);
-  backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid var(--glass-border);
   transform: translateY(10px);
@@ -142,7 +139,6 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  backdrop-filter: blur(5px);
   z-index: 2;
   box-shadow: 0 5px 15px var(--shadow-color);
   display: flex;
@@ -194,7 +190,6 @@
   right: 0;
   bottom: 0;
   background: var(--popup-overlay-bg);
-  backdrop-filter: blur(20px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -209,8 +204,6 @@
   width: 100%;
   max-height: calc(100vh - 4rem);
   background: var(--glass-bg);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
   border-radius: 32px;
   overflow: hidden;
