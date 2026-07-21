@@ -159,5 +159,15 @@ export const certificates = [
     description: "Workshop intensif sebagai bagian dari IT Bootcamp Software Development di Universitas Bina Sarana Informatika.",
     credential_id: null,
     credential_url: null
+  },
+  {
+    id: 17,
+    name: "Certificate of internship Bali United",
+    vendor: "Bali United",
+    date: "2026-10-05T00:00:00Z",
+    image_url: "/images/certificates/Sertifikat Magang - Muhammad Haekal Arrafi Bali.jpg",
+    description: "Sertifikat penyelesaian magang di klub sepak bola Bali United.",
+    credential_id: null,
+    credential_url: null
   }
 ];
