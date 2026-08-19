@@ -215,5 +215,46 @@ export const projects = [
     views: 0,
     created_at: "2026-04-28T00:00:00Z",
     categories: ["fullstack", "laravel", "livewire"]
+  },
+  {
+    id: 11,
+    title: "Banner Kemerdekaan HUT RI 81",
+    slug: "banner-hut-ri-81",
+    description: "Banner perayaan HUT RI 81",
+    content: "Desain banner untuk memeriahkan Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-81.",
+    image_url: "/images/project/banner_hut81/1.png",
+    images: [
+      "/images/project/banner_hut81/1.png",
+      "/images/project/banner_hut81/2.png"
+    ],
+    tech_stack: ["Canva"],
+    github_link: null,
+    live_link: null,
+    desain_link: null,
+    featured: false,
+    status: "published",
+    views : 0,
+    created_at : "2026-08-17T00:00:00Z",
+    categories : ["design"]
+  },
+  {
+    id: 12,
+    title: "Nametag HUT RI 81",
+    slug: "nametag-hut-ri-81",
+    description: "Desain Nametag panitia perayaan HUT RI 81",
+    content: "Desain nametag (ID card) untuk panitia acara perayaan Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-81.",
+    image_url: "/images/project/NameTag_hut81/IREMDA HUT - 81.png",
+    images: [
+      "/images/project/NameTag_hut81/IREMDA HUT - 81.png"
+    ],
+    tech_stack: ["Canva"],
+    github_link: null,
+    live_link: null,
+    desain_link: null,
+    featured: false,
+    status: "published",
+    views : 0,
+    created_at : "2026-08-17T00:00:00Z",
+    categories : ["design"]
   }
 ];
