@@ -6,7 +6,7 @@ export const certificates = [
     vendor: "Badan Nasional Sertifikasi Profesi",
     date: "2022-07-15T00:00:00Z",
     image_url: "/images/certificates/BNSP SKILL PASSPORT.jpg",
-    description: null,
+    description: "Sertifikat Skill Passport pada bidang Teknik Komputer dan Jaringan dari Badan Nasional Sertifikasi Profesi (BNSP).",
     credential_id: "0000098/611000/SKK/TKJ/LSP.HDY1/VII/2022",
     credential_url: null
   },
@@ -16,7 +16,7 @@ export const certificates = [
     vendor: "Badan Nasional Sertifikasi Profesi",
     date: "2022-10-22T00:00:00Z",
     image_url: "/images/certificates/BNSP Teknik Komputer Jaringan.jpg",
-    description: null,
+    description: "Sertifikat Uji Kompetensi Keahlian KKNI Level II bidang Teknik Komputer dan Jaringan dari Badan Nasional Sertifikasi Profesi (BNSP).",
     credential_id: null,
     credential_url: null
   },
@@ -26,7 +26,7 @@ export const certificates = [
     vendor: "BSI INNOVATION CENTER",
     date: "2022-10-10T00:00:00Z",
     image_url: "/images/certificates/Gemastik.jpg",
-    description: null,
+    description: "Sertifikat kepesertaan dalam ajang kompetisi Pagelaran Mahasiswa Nasional Bidang Teknologi Informasi dan Komunikasi (GEMASTIK).",
     credential_id: "9229/4.07/UBSI/WR2/X/2022",
     credential_url: null
   },
@@ -76,7 +76,7 @@ export const certificates = [
     vendor: "Universitas Bina Sarana Informatika",
     date: "2022-10-05T00:00:00Z",
     image_url: "/images/certificates/Seminar Entrepreneurship.jpg",
-    description: null,
+    description: "Sertifikat partisipasi Seminar Kewirausahaan 'Entrepreneurship For a Better Future' yang diselenggarakan oleh Universitas Bina Sarana Informatika.",
     credential_id: null,
     credential_url: null
   },
@@ -136,7 +136,7 @@ export const certificates = [
     vendor: "Python Institute",
     date: "2023-07-05T00:00:00Z",
     image_url: "/images/certificates/Sertifikat PCAP - Programming Essentials in Python.jpg",
-    description: null,
+    description: "Sertifikat kelulusan kursus dasar pemrograman Python standar industri dari Python Institute (PCAP: Programming Essentials in Python).",
     credential_id: null,
     credential_url: null
   },
@@ -168,6 +168,16 @@ export const certificates = [
     image_url: "/images/certificates/Sertifikat Magang - Muhammad Haekal Arrafi Bali.jpg",
     description: "Sertifikat penyelesaian magang di klub sepak bola Bali United.",
     credential_id: null,
+    credential_url: null
+  },
+  {
+    id: 18,
+    name: "Sertifikat Kompetensi Analis Program (Program Analyst)",
+    vendor: "Badan Nasional Sertifikasi Profesi (BNSP) - LSP BSI",
+    date: "2025-09-15T00:00:00Z",
+    image_url: "/images/certificates/ProgramBNSP.jpg",
+    description: "Sertifikasi Kompetensi Kerja Nasional Indonesia bidang Pengembang Perangkat Lunak (Software Development) dengan Kualifikasi/Kompetensi Analis Program (Program Analyst).",
+    credential_id: "62010 2514 0004214 2025 / No. Reg. TIK.1241.02969 2025",
     credential_url: null
   }
 ];
