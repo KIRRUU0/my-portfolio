@@ -179,5 +179,15 @@ export const certificates = [
     description: "Sertifikasi Kompetensi Kerja Nasional Indonesia bidang Pengembang Perangkat Lunak (Software Development) dengan Kualifikasi/Kompetensi Analis Program (Program Analyst).",
     credential_id: "62010 2514 0004214 2025 / No. Reg. TIK.1241.02969 2025",
     credential_url: null
+  },
+  {
+    id: 19,
+    name: "TOEFL Prediction Test (Score: 550)",
+    vendor: "Lembaga Bahasa Universitas Bina Sarana Informatika",
+    date: "2026-08-28T00:00:00Z",
+    image_url: "/images/certificates/SertifikatDigitalBahasa.jpg",
+    description: "Sertifikat resmi TOEFL Prediction Test dengan skor total 550 (Listening: 32, Structure & Written Expression: 67, Reading: 66) yang diterbitkan oleh Lembaga Bahasa Universitas Bina Sarana Informatika.",
+    credential_id: null,
+    credential_url: null
   }
 ];
