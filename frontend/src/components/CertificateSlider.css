@@ -17,51 +17,28 @@
 
 .certificate-card {
   position: relative;
-  border-radius: 28px;
+  border-radius: 20px;
   overflow: hidden;
   aspect-ratio: 16/10; /* Diploma ratio */
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  box-shadow: var(--shadow-color);
-  padding: 12px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  padding: 10px;
   width: 100%;
 }
 
 .certificate-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
   border-color: var(--primary-color);
-  box-shadow: var(--card-hover-shadow);
-}
-
-.certificate-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background: radial-gradient(350px circle at var(--mouse-x-card, 0px) var(--mouse-y-card, 0px), rgba(255, 255, 255, 0.08), transparent 80%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 2;
-  pointer-events: none;
-}
-
-[data-theme="light"] .certificate-card::after {
-  background: radial-gradient(350px circle at var(--mouse-x-card, 0px) var(--mouse-y-card, 0px), rgba(0, 0, 0, 0.03), transparent 80%);
-}
-
-.certificate-card:hover::after {
-  opacity: 1;
+  box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .certificate-image {
   width: 100%;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 14px;
   overflow: hidden;
   position: relative;
 }
@@ -70,31 +47,31 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease;
 }
 
 .certificate-card:hover .certificate-image img {
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
 .certificate-overlay {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
-  padding: 1.5rem;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  padding: 1.25rem;
   background: var(--card-overlay-bg);
-  border-radius: 20px;
-  border: 1px solid var(--glass-border);
-  transform: translateY(10px);
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  transform: translateY(6px);
   opacity: 0.95;
-  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .certificate-card:hover .certificate-overlay {
   transform: translateY(0);
   background: var(--bg-card);
-  border-color: rgba(0, 0, 0, 0.15);
+  border-color: var(--border-color);
 }
 
 .certificate-overlay h3 {

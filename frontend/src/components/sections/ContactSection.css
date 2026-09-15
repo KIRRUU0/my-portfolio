@@ -22,47 +22,43 @@
   gap: 2rem;
 }
 
-/* PREMIUM CONTACT CARD */
+/* MINIMALIST CONTACT CARD */
 .contact-card {
   background: var(--bg-card);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 1.75rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 1.25rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   text-decoration: none;
 }
 
 .contact-card:hover {
-  transform: translateY(-8px);
-  background: var(--hover-bg);
+  transform: translateY(-4px);
   border-color: var(--primary-color);
-  box-shadow: 0 20px 40px var(--shadow-color);
+  box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .contact-icon {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
   background: var(--hover-bg);
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
-  transition: 0.3s;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .contact-card:hover .contact-icon {
   background: var(--primary-color);
   color: var(--bg-primary);
-  transform: scale(1.1) rotate(5deg);
 }
 
 .contact-info {

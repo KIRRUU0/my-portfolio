@@ -4,7 +4,6 @@ import { useApp } from '../../context/AppContext';
 import ThemeToggle from '../ThemeToggle';
 import LanguageSelector from '../LanguageSelector';
 import BackToTop from '../BackToTop';
-import CustomCursor from '../CustomCursor';
 import './MainLayout.css';
 
 const MainLayout = () => {
@@ -93,13 +92,8 @@ const MainLayout = () => {
 
     return (
         <div className="main-layout">
-            {/* Abstract background decorations */}
-            <div className="abstract-bg" aria-hidden="true">
-                <div className="abstract-blob blob-1"></div>
-                <div className="abstract-blob blob-2"></div>
-                <div className="abstract-blob blob-3"></div>
-                <div className="abstract-grid"></div>
-            </div>
+            {/* Minimalist background grid */}
+            <div className="minimal-grid-bg" aria-hidden="true"></div>
             <header className={`main-header ${scrolled ? 'scrolled' : ''}`}>
                 <div className="header-container">
                     <div className="header-left-spacer"></div>
@@ -181,7 +175,6 @@ const MainLayout = () => {
             </footer>
             
             <BackToTop />
-            <CustomCursor />
         </div>
     );
 };

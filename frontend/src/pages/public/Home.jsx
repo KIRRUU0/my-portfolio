@@ -123,14 +123,14 @@ const Home = () => {
         
         if (bentoCards.length) {
           gsap.fromTo(bentoCards,
-            { y: 50, opacity: 0, scale: 0.96 },
+            { y: 30, opacity: 0 },
             {
-              y: 0, opacity: 1, scale: 1,
-              duration: 0.7, ease: "power3.out",
-              stagger: 0.15,
+              y: 0, opacity: 1,
+              duration: 0.5, ease: "power2.out",
+              stagger: 0.1,
               scrollTrigger: {
                 trigger: aboutRef.current,
-                start: "top 80%",
+                start: "top 85%",
                 toggleActions: "play none none none"
               }
             }
@@ -140,7 +140,7 @@ const Home = () => {
         // Counter triggered when About section enters viewport
         ScrollTrigger.create({
           trigger: aboutRef.current,
-          start: "top 75%",
+          start: "top 80%",
           onEnter: startCounter,
           once: true
         });
@@ -148,17 +148,17 @@ const Home = () => {
 
       // --- Projects Section: Staggered card grid ---
       if (projectsRef.current) {
-        const projectCards = projectsRef.current.querySelectorAll('.project-card');
+        const projectCards = projectsRef.current.querySelectorAll('.project-card-3col');
         if (projectCards.length) {
           gsap.fromTo(projectCards,
-            { y: 40, opacity: 0, scale: 0.95 },
+            { y: 30, opacity: 0 },
             {
-              y: 0, opacity: 1, scale: 1,
-              duration: 0.6, ease: "power3.out",
-              stagger: 0.1,
+              y: 0, opacity: 1,
+              duration: 0.5, ease: "power2.out",
+              stagger: 0.08,
               scrollTrigger: {
                 trigger: projectsRef.current,
-                start: "top 80%",
+                start: "top 85%",
                 toggleActions: "play none none none"
               }
             }
@@ -171,14 +171,14 @@ const Home = () => {
         const expItems = experiencesRef.current.querySelectorAll('.experience-item');
         if (expItems.length) {
           gsap.fromTo(expItems,
-            { y: 30, opacity: 0, x: -20 },
+            { y: 20, opacity: 0 },
             {
-              y: 0, opacity: 1, x: 0,
-              duration: 0.6, ease: "power3.out",
-              stagger: 0.15,
+              y: 0, opacity: 1,
+              duration: 0.5, ease: "power2.out",
+              stagger: 0.1,
               scrollTrigger: {
                 trigger: experiencesRef.current,
-                start: "top 80%",
+                start: "top 85%",
                 toggleActions: "play none none none"
               }
             }
@@ -186,17 +186,19 @@ const Home = () => {
         }
       }
 
-      // --- Certificates Section: Smooth slide-in ---
+      // --- Certificates Section: Smooth fade-in ---
       if (certificatesRef.current) {
-        const certSlider = certificatesRef.current.querySelector('.certificate-slider-section');
-        if (certSlider) {
-          gsap.fromTo(certSlider,
-            { y: 50, opacity: 0 },
+        const certCards = certificatesRef.current.querySelectorAll('.certificate-card');
+        if (certCards.length) {
+          gsap.fromTo(certCards,
+            { y: 30, opacity: 0 },
             {
-              y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+              y: 0, opacity: 1,
+              duration: 0.5, ease: "power2.out",
+              stagger: 0.1,
               scrollTrigger: {
                 trigger: certificatesRef.current,
-                start: "top 80%",
+                start: "top 85%",
                 toggleActions: "play none none none"
               }
             }
@@ -204,19 +206,19 @@ const Home = () => {
         }
       }
 
-      // --- Tech Stack Section: Category cards fan-in with subtle rotation ---
+      // --- Tech Stack Section: Category cards fade-in ---
       if (techRef.current) {
         const techCards = techRef.current.querySelectorAll('.tech-category-card');
         if (techCards.length) {
           gsap.fromTo(techCards,
-            { y: 40, opacity: 0, rotateX: 8 },
+            { y: 30, opacity: 0 },
             {
-              y: 0, opacity: 1, rotateX: 0,
-              duration: 0.7, ease: "power3.out",
-              stagger: 0.12,
+              y: 0, opacity: 1,
+              duration: 0.5, ease: "power2.out",
+              stagger: 0.1,
               scrollTrigger: {
                 trigger: techRef.current,
-                start: "top 80%",
+                start: "top 85%",
                 toggleActions: "play none none none"
               }
             }
@@ -224,51 +226,26 @@ const Home = () => {
         }
       }
 
-      // --- Contact Section: Form scale + fade ---
+      // --- Contact Section: Form fade-in ---
       if (contactRef.current) {
-        const contactForm = contactRef.current.querySelector('.contact-container');
-        if (contactForm) {
-          gsap.fromTo(contactForm,
-            { y: 40, opacity: 0, scale: 0.97 },
+        const contactCards = contactRef.current.querySelectorAll('.contact-card');
+        if (contactCards.length) {
+          gsap.fromTo(contactCards,
+            { y: 20, opacity: 0 },
             {
-              y: 0, opacity: 1, scale: 1,
-              duration: 0.8, ease: "power3.out",
+              y: 0, opacity: 1,
+              duration: 0.5, ease: "power2.out",
+              stagger: 0.1,
               scrollTrigger: {
                 trigger: contactRef.current,
-                start: "top 80%",
+                start: "top 85%",
                 toggleActions: "play none none none"
               }
             }
           );
         }
       }
-
-      // --- Section headers: Text mask reveal ---
-      const sectionTitles = document.querySelectorAll('.section-title, .about-section-title, .slider-header h2');
-      sectionTitles.forEach(title => {
-        if (!title.querySelector('.mask-span')) {
-          const originalText = title.innerHTML;
-          title.innerHTML = `<span class="mask-span" style="display: inline-block; will-change: transform;">${originalText}</span>`;
-        }
-      });
-
-      const titleSpans = document.querySelectorAll('.section-title .mask-span, .about-section-title .mask-span, .slider-header h2 .mask-span');
-      if (titleSpans.length) {
-        titleSpans.forEach(span => {
-          gsap.fromTo(span,
-            { y: "105%", opacity: 0 },
-            {
-              y: "0%", opacity: 1, duration: 0.8, ease: "power3.out",
-              scrollTrigger: {
-                trigger: span.parentElement,
-                start: "top 90%",
-                toggleActions: "play none none none"
-              }
-            }
-          );
-        });
-      }
-    }, 150);
+    }, 100);
 
     return () => {
       clearTimeout(timer);
