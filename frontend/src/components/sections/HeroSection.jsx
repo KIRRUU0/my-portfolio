@@ -13,20 +13,14 @@ const HeroSection = ({ homeRef }) => {
       role: "Fullstack Developer & UI/UX Designer",
       description: "Developing robust backend systems and intuitive digital experiences. Specializing in Laravel, React, Tailwind, and modern UI/UX design.",
       ctaPrimary: "View Projects",
-      ctaSecondary: "Contact Me",
-      statusText: "Open to Work",
-      techTitle: "Core Focus",
-      experienceTag: "Verified & Certified"
+      ctaSecondary: "Contact Me"
     },
     id: {
       greeting: "Halo, Saya Haekal",
       role: "Fullstack Developer & UI/UX Designer",
       description: "Mengembangkan sistem backend yang handal dan pengalaman digital yang intuitif. Memiliki spesialisasi dalam Laravel, React, Tailwind, dan desain UI/UX.",
       ctaPrimary: "Lihat Proyek",
-      ctaSecondary: "Hubungi Saya",
-      statusText: "Terbuka untuk Peluang Kerja",
-      techTitle: "Fokus Keahlian",
-      experienceTag: "Tersertifikasi BNSP"
+      ctaSecondary: "Hubungi Saya"
     }
   };
 
@@ -43,7 +37,7 @@ const HeroSection = ({ homeRef }) => {
         .from(".hero-title", { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
         .from(".hero-description", { opacity: 0, y: 15, duration: 0.5 }, "-=0.3")
         .from(".hero-cta-group", { opacity: 0, y: 15, duration: 0.5 }, "-=0.3")
-        .from(".hero-card-minimal", { opacity: 0, y: 20, duration: 0.6 }, "-=0.4");
+        .from(".hero-code-window", { opacity: 0, y: 20, duration: 0.6 }, "-=0.4");
     }, heroRef);
 
     return () => ctx.revert();
@@ -72,38 +66,68 @@ const HeroSection = ({ homeRef }) => {
         </div>
         
         <div className="hero-visual">
-          <div className="hero-card-minimal">
-            <div className="hero-card-header">
-              <div className="status-badge">
-                <span className="status-dot"></span>
-                <span>{text.statusText}</span>
+          <div className="hero-code-window">
+            <div className="code-window-header">
+              <div className="window-controls">
+                <span className="window-dot dot-close"></span>
+                <span className="window-dot dot-min"></span>
+                <span className="window-dot dot-expand"></span>
               </div>
-              <span className="hero-card-tag">{text.experienceTag}</span>
+              <div className="window-tab">
+                <span className="tab-ts-icon">TS</span>
+                <span className="tab-title">haekal.config.ts</span>
+              </div>
+              <div className="window-badge">TypeScript</div>
             </div>
             
-            <div className="hero-card-body">
-              <div className="dev-identity">
-                <div className="dev-avatar">
-                  <span>MHA</span>
-                </div>
-                <div className="dev-meta">
-                  <h3>M. Haekal Arrafi</h3>
-                  <p>Software Engineer</p>
-                </div>
+            <div className="code-window-body">
+              <div className="code-line-numbers">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
               </div>
+              <pre className="code-content">
+                <code>
+                  <span className="code-keyword">export const </span>
+                  <span className="code-var">developer</span>
+                  <span className="code-punct">: </span>
+                  <span className="code-type">DeveloperProfile</span>
+                  <span className="code-punct"> = </span>
+                  <span className="code-bracket">{'{'}</span>
+                  {'\n'}
+                  {'  '}<span className="code-prop">name</span><span className="code-punct">: </span><span className="code-string">"M. Haekal Arrafi"</span><span className="code-punct">,</span>
+                  {'\n'}
+                  {'  '}<span className="code-prop">role</span><span className="code-punct">: </span><span className="code-string">"Fullstack Developer"</span><span className="code-punct">,</span>
+                  {'\n'}
+                  {'  '}<span className="code-prop">location</span><span className="code-punct">: </span><span className="code-string">"Indonesia"</span><span className="code-punct">,</span>
+                  {'\n'}
+                  {'  '}<span className="code-prop">stack</span><span className="code-punct">: [</span>
+                  {'\n'}
+                  {'    '}<span className="code-string">"Laravel"</span><span className="code-punct">, </span><span className="code-string">"React"</span><span className="code-punct">, </span><span className="code-string">"TypeScript"</span><span className="code-punct">,</span>
+                  {'\n'}
+                  {'    '}<span className="code-string">"Go"</span><span className="code-punct">, </span><span className="code-string">"Tailwind"</span><span className="code-punct">, </span><span className="code-string">"MySQL"</span>
+                  {'\n'}
+                  {'  '}<span className="code-punct">]</span>
+                  {'\n'}
+                  <span className="code-bracket">{'}'}</span><span className="code-punct">;</span>
+                </code>
+              </pre>
+            </div>
 
-              <div className="hero-divider"></div>
-
-              <div className="tech-focus">
-                <span className="focus-label">{text.techTitle}</span>
-                <div className="tech-pills-grid">
-                  <span className="tech-pill">Laravel</span>
-                  <span className="tech-pill">PHP</span>
-                  <span className="tech-pill">React.js</span>
-                  <span className="tech-pill">Go (Golang)</span>
-                  <span className="tech-pill">MySQL</span>
-                  <span className="tech-pill">Figma</span>
-                </div>
+            <div className="code-window-footer">
+              <div className="footer-left">
+                <span className="footer-check">✓</span>
+                <span>0 errors, 0 warnings</span>
+              </div>
+              <div className="footer-right">
+                <span>UTF-8</span>
+                <span>Spaces: 2</span>
               </div>
             </div>
           </div>

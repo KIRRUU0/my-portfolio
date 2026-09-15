@@ -15,8 +15,8 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
       technologies: 'Technologies Mastered',
       educationTitle: 'Education',
       educationDesc: 'Information Technology at Bina Sarana Informatika University',
-      statusTitle: 'Current Status',
-      statusText: 'Open to Work / Freelance Opportunities'
+      specializationTitle: 'Core Focus',
+      specializationDesc: 'Fullstack Web Development & UI/UX Design'
     },
     id: {
       about: 'Tentang Saya',
@@ -27,8 +27,8 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
       technologies: 'Teknologi Dikuasai',
       educationTitle: 'Pendidikan',
       educationDesc: 'Teknologi Informasi di Universitas Bina Sarana Informatika',
-      statusTitle: 'Status Saat Ini',
-      statusText: 'Terbuka untuk Kerja / Peluang Freelance'
+      specializationTitle: 'Fokus Utama',
+      specializationDesc: 'Pengembangan Fullstack Web & Desain UI/UX'
     }
   };
 
@@ -77,14 +77,11 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
           </div>
         </div>
 
-        {/* Card 4: Education & Professional Status */}
+        {/* Card 4: Education & Focus */}
         <div className="bento-card status-card">
-          <div className="status-section">
-            <span className="card-tag">{text.statusTitle}</span>
-            <div className="availability-indicator">
-              <span className="glow-dot"></span>
-              <span className="availability-text">{text.statusText}</span>
-            </div>
+          <div className="specialization-section">
+            <span className="card-tag">{text.specializationTitle}</span>
+            <p className="education-text">{text.specializationDesc}</p>
           </div>
           <div className="education-section">
             <span className="card-tag">{text.educationTitle}</span>

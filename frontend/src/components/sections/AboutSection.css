@@ -196,7 +196,7 @@
   color: var(--text-muted);
 }
 
-/* Status & Education Card (Col 3, Row 2) */
+/* Focus & Education Card (Col 3, Row 2) */
 .status-card {
   grid-column: 3;
   grid-row: 2;
@@ -204,42 +204,9 @@
   gap: 1.5rem;
 }
 
-.status-section, .education-section {
+.specialization-section, .education-section {
   display: flex;
   flex-direction: column;
-}
-
-.availability-indicator {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: var(--hover-bg);
-  padding: 8px 16px;
-  border-radius: 12px;
-  border: 1px solid var(--glass-border);
-  width: fit-content;
-  margin-top: 0.25rem;
-}
-
-.glow-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #10b981;
-  border-radius: 50%;
-  box-shadow: 0 0 12px #10b981;
-  animation: pulse-green 2s infinite;
-}
-
-@keyframes pulse-green {
-  0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1.2); opacity: 0.7; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-  100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-.availability-text {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-primary);
 }
 
 .education-text {
