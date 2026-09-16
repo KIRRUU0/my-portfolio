@@ -47,19 +47,13 @@ const MainLayout = () => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
 
-            // If near the top, active section is home
-            if (window.scrollY < window.innerHeight * 0.4) {
-                setActiveSection('home');
-                return;
-            }
-
-            // Logic to determine active section for curtain sections
-            const sections = ['about', 'projects', 'experiences', 'certificates', 'tech', 'contact'];
+            // Active section detection for multi-section curtain layers (topmost layer priority)
+            const sections = ['contact', 'tech', 'certificates', 'experiences', 'projects', 'about', 'home'];
             const current = sections.find(section => {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    return rect.top <= 200 && rect.bottom >= 150;
+                    return rect.top <= 120 && rect.bottom > 120;
                 }
                 return false;
             });
