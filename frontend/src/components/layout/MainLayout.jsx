@@ -24,7 +24,6 @@ const MainLayout = () => {
             certificates: 'Certificates',
             tech: 'Tech Stack',
             contact: 'Contact',
-            status: 'System Status: Optimized',
             copyright: '© 2026 M. Haekal Arrafi'
         },
         id: {
@@ -35,7 +34,6 @@ const MainLayout = () => {
             certificates: 'Sertifikat',
             tech: 'Teknologi',
             contact: 'Kontak',
-            status: 'Status Sistem: Optimal',
             copyright: '© 2026 M. Haekal Arrafi'
         }
     };
@@ -151,23 +149,18 @@ const MainLayout = () => {
             
             <footer className="main-footer">
                 <div className="footer-container">
-                    <div className="footer-status">
-                        <span className="status-indicator"></span>
-                        {text.status}
-                    </div>
-                    
                     <div className="footer-copyright">
                         {text.copyright}
                     </div>
                     
                     <div className="footer-socials">
-                        <a href="https://linkedin.com/in/muhammadhaekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href="https://linkedin.com/in/muhammadhaekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
                             <i className="bi bi-linkedin"></i>
                         </a>
-                        <a href="https://github.com/haekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href="https://github.com/haekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
                             <i className="bi bi-github"></i>
                         </a>
-                        <a href="mailto:haekalarrafi24@gmail.com" className="social-icon">
+                        <a href="mailto:haekalarrafi24@gmail.com" className="social-icon" aria-label="Email">
                             <i className="bi bi-envelope-fill"></i>
                         </a>
                     </div>
