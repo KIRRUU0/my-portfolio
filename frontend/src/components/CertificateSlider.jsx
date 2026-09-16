@@ -9,6 +9,9 @@ const CertificateSlider = ({ certificates }) => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [activeCategory, setActiveCategory] = useState('all');
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [copiedId, setCopiedId] = useState(false);
 
   const t = {
@@ -27,7 +30,9 @@ const CertificateSlider = ({ certificates }) => {
       course: 'Bootcamp & Courses',
       clickToView: 'View Certificate',
       showMore: 'Show More',
-      showing: 'Showing'
+      showing: 'Showing',
+      dragToPan: 'Drag image to pan',
+      resetPan: 'Reset View'
     },
     id: {
       certificates: 'Sertifikasi & Kredensial',
@@ -44,7 +49,9 @@ const CertificateSlider = ({ certificates }) => {
       course: 'Bootcamp & Kursus',
       clickToView: 'Lihat Sertifikat',
       showMore: 'Tampilkan Lebih Banyak',
-      showing: 'Menampilkan'
+      showing: 'Menampilkan',
+      dragToPan: 'Tarik / geser gambar untuk menjelajah',
+      resetPan: 'Reset Tampilan'
     }
   };
 
@@ -70,6 +77,7 @@ const CertificateSlider = ({ certificates }) => {
     if (selectedCert) {
       document.body.style.overflow = 'hidden';
       setZoomLevel(1);
+      setPosition({ x: 0, y: 0 });
       setCopiedId(false);
     } else {
       document.body.style.overflow = '';
@@ -92,6 +100,8 @@ const CertificateSlider = ({ certificates }) => {
 
   const openPopup = (cert) => {
     setSelectedCert(cert);
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
   };
 
   const closePopup = () => {
@@ -112,11 +122,58 @@ const CertificateSlider = ({ certificates }) => {
   };
 
   const handleZoomOut = () => {
-    setZoomLevel(prev => Math.max(prev - 0.3, 0.7));
+    setZoomLevel(prev => {
+      const next = Math.max(prev - 0.3, 0.7);
+      if (next <= 1) setPosition({ x: 0, y: 0 });
+      return next;
+    });
   };
 
   const handleZoomReset = () => {
     setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  // Mouse drag handlers
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    setPosition({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Touch drag handlers
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStart({
+        x: e.touches[0].clientX - position.x,
+        y: e.touches[0].clientY - position.y
+      });
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    setPosition({
+      x: e.touches[0].clientX - dragStart.x,
+      y: e.touches[0].clientY - dragStart.y
+    });
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
   };
 
   const handleCopyId = (id) => {
@@ -243,13 +300,31 @@ const CertificateSlider = ({ certificates }) => {
                 </a>
               </div>
 
-              {/* Scrollable image viewport */}
-              <div className="lightbox-image-viewport">
+              {/* Pannable image viewport */}
+              <div 
+                className={`lightbox-image-viewport ${isDragging ? 'is-dragging' : ''} ${zoomLevel > 1 ? 'is-zoomable' : ''}`}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {zoomLevel > 1 && (
+                  <div className="pan-hint-badge">
+                    <i className="bi bi-arrows-move"></i> {text.dragToPan}
+                  </div>
+                )}
                 <img 
                   src={selectedCert.image_url} 
                   alt={selectedCert.name} 
-                  style={{ transform: `scale(${zoomLevel})` }}
+                  style={{ 
+                    transform: `translate(${position.x}px, ${position.y}px) scale(${zoomLevel})`,
+                    transition: isDragging ? 'none' : 'transform 0.2s ease'
+                  }}
                   className="lightbox-zoom-img"
+                  draggable={false}
                 />
               </div>
             </div>

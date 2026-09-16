@@ -328,12 +328,23 @@
 
 .lightbox-image-viewport {
   flex: 1;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   min-height: 380px;
+  position: relative;
+  user-select: none;
+  touch-action: none;
+}
+
+.lightbox-image-viewport.is-zoomable {
+  cursor: grab;
+}
+
+.lightbox-image-viewport.is-dragging {
+  cursor: grabbing;
 }
 
 .lightbox-zoom-img {
@@ -342,8 +353,32 @@
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 10px 30px var(--shadow-color);
-  transition: transform 0.2s ease;
   transform-origin: center center;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.pan-hint-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px var(--shadow-color);
+  pointer-events: none;
+  z-index: 4;
+  animation: fadeIn 0.3s ease;
+  opacity: 0.92;
 }
 
 .popup-info-section {
