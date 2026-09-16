@@ -105,16 +105,6 @@ const MainLayout = () => {
             <div className="minimal-grid-bg" aria-hidden="true"></div>
             <header className={`main-header ${scrolled ? 'scrolled' : ''}`}>
                 <div className="header-container">
-                    {/* Brand Logo */}
-                    <button 
-                        className="header-brand" 
-                        onClick={() => scrollToSection('home')}
-                        aria-label="Haekal Arrafi - Back to top"
-                    >
-                        <span className="brand-dot"></span>
-                        <span className="brand-text">haekal<span className="brand-accent">.dev</span></span>
-                    </button>
-
                     {/* Desktop Navigation */}
                     <nav className="desktop-nav">
                         {['home', 'about', 'projects', 'experiences', 'certificates', 'tech', 'contact'].map(section => (
