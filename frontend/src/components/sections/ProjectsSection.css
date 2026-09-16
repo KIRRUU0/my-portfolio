@@ -1,6 +1,5 @@
 .projects-section {
-  margin-bottom: 8rem;
-  position: relative;
+  width: 100%;
 }
 
 .section-header {
@@ -357,11 +356,6 @@
 }
 
 @media (max-width: 768px) {
-  .projects-section {
-    margin-bottom: 5rem;
-    padding: 0 1.5rem;
-  }
-
   .section-header {
     text-align: center;
     margin-bottom: 2rem;

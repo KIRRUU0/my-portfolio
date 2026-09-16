@@ -1,5 +1,4 @@
 .certificate-grid-section {
-  margin-bottom: 8rem;
   width: 100%;
 }
 
@@ -566,11 +565,6 @@
   .certificate-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  .certificate-grid-section {
-    padding: 0 1.5rem;
-    margin-bottom: 5rem;
   }
 
   .cert-section-header {

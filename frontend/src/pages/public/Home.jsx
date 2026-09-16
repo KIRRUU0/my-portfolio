@@ -262,7 +262,7 @@ const Home = () => {
         }
       }
 
-      // --- Section Layered Depth: Scale-down & Fade Exit on Scroll ---
+      // --- Stacking Card Deck Effect: Section retreats & dims precisely as nextSection covers it ---
       const allSections = [
         homeRef.current,
         aboutRef.current,
@@ -274,18 +274,18 @@ const Home = () => {
       ].filter(Boolean);
 
       allSections.forEach((section, index) => {
-        // Apply exit animation to each section so it retreats backwards and dims as the next section covers it
         if (index < allSections.length - 1) {
+          const nextSection = allSections[index + 1];
           gsap.to(section, {
-            scale: 0.94,
+            scale: 0.93,
             opacity: 0.35,
-            y: -30,
-            ease: "power1.out",
+            y: -20,
+            ease: "none",
             scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.6,
+              trigger: nextSection,
+              start: "top 95%",
+              end: "top 80px",
+              scrub: true,
             }
           });
         }
