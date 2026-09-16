@@ -35,6 +35,7 @@ const Home = () => {
   
   // Refs untuk scroll dan GSAP
   const homeRef = useRef(null);
+  const curtainRef = useRef(null);
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
   const experiencesRef = useRef(null);
@@ -262,6 +263,22 @@ const Home = () => {
         }
       }
 
+      // --- Parallax Curtain Scroll: Hero dims & subtly recedes as curtain rises ---
+      if (homeRef.current && curtainRef.current) {
+        gsap.to(homeRef.current, {
+          opacity: 0.15,
+          scale: 0.94,
+          y: -40,
+          ease: "none",
+          scrollTrigger: {
+            trigger: curtainRef.current,
+            start: "top bottom",
+            end: "top 10%",
+            scrub: true,
+          }
+        });
+      }
+
     }, 100);
 
     return () => {
@@ -349,41 +366,48 @@ const Home = () => {
         <meta name="description" content="Portfolio of Haekal Arrafi, a Frontend Developer and UI/UX Designer showcasing projects, experiences, and certificates." />
       </Helmet>
 
+      {/* Fixed Hero Section in Background */}
       <HeroSection homeRef={homeRef} />
-      <AboutSection 
-        aboutRef={aboutRef}
-        expYears={expYears}
-        projectCount={projectCount}
-        techCount={techCount}
-      />
-      <ProjectsSection 
-        projectsRef={projectsRef}
-        projects={projects}
-        formatDate={formatDate}
-        openProjectPopup={openProjectPopup}
-      />
-      <ExperiencesSection 
-        experiencesRef={experiencesRef}
-        experiences={experiences}
-        formatDate={formatDate}
-      />
-      <CertificatesSection 
-        certificatesRef={certificatesRef}
-        certificates={certificates}
-      />
-      <TechStackSection 
-        techRef={techRef}
-        projects={projects}
-      />
-      <ContactSection 
-        contactRef={contactRef}
-        formData={formData}
-        formError={formError}
-        formSuccess={formSuccess}
-        formLoading={formLoading}
-        handleFormChange={handleFormChange}
-        handleFormSubmit={handleFormSubmit}
-      />
+
+      {/* Parallax Curtain Layer Rising Over Hero Section */}
+      <div ref={curtainRef} className="curtain-layer">
+        <div className="curtain-inner">
+          <AboutSection 
+            aboutRef={aboutRef}
+            expYears={expYears}
+            projectCount={projectCount}
+            techCount={techCount}
+          />
+          <ProjectsSection 
+            projectsRef={projectsRef}
+            projects={projects}
+            formatDate={formatDate}
+            openProjectPopup={openProjectPopup}
+          />
+          <ExperiencesSection 
+            experiencesRef={experiencesRef}
+            experiences={experiences}
+            formatDate={formatDate}
+          />
+          <CertificatesSection 
+            certificatesRef={certificatesRef}
+            certificates={certificates}
+          />
+          <TechStackSection 
+            techRef={techRef}
+            projects={projects}
+          />
+          <ContactSection 
+            contactRef={contactRef}
+            formData={formData}
+            formError={formError}
+            formSuccess={formSuccess}
+            formLoading={formLoading}
+            handleFormChange={handleFormChange}
+            handleFormSubmit={handleFormSubmit}
+          />
+        </div>
+      </div>
 
       <ProjectPopup 
         selectedProject={selectedProject}

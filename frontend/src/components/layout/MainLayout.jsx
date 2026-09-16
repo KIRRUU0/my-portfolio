@@ -47,13 +47,19 @@ const MainLayout = () => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
 
-            // Logic to determine active section
-            const sections = ['home', 'about', 'projects', 'experiences', 'certificates', 'tech', 'contact'];
+            // If near top, active section is home
+            if (window.scrollY < window.innerHeight * 0.4) {
+                setActiveSection('home');
+                return;
+            }
+
+            // Logic to determine active section for curtain sections
+            const sections = ['about', 'projects', 'experiences', 'certificates', 'tech', 'contact'];
             const current = sections.find(section => {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    return rect.top <= 150 && rect.bottom >= 150;
+                    return rect.top <= 200 && rect.bottom >= 150;
                 }
                 return false;
             });
