@@ -105,7 +105,15 @@ const MainLayout = () => {
             <div className="minimal-grid-bg" aria-hidden="true"></div>
             <header className={`main-header ${scrolled ? 'scrolled' : ''}`}>
                 <div className="header-container">
-                    <div className="header-left-spacer"></div>
+                    {/* Brand Logo */}
+                    <button 
+                        className="header-brand" 
+                        onClick={() => scrollToSection('home')}
+                        aria-label="Haekal Arrafi - Back to top"
+                    >
+                        <span className="brand-dot"></span>
+                        <span className="brand-text">haekal<span className="brand-accent">.dev</span></span>
+                    </button>
 
                     {/* Desktop Navigation */}
                     <nav className="desktop-nav">
@@ -123,7 +131,11 @@ const MainLayout = () => {
                     <div className="header-controls">
                         <ThemeToggle />
                         <LanguageSelector />
-                        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                        <button 
+                            className="mobile-menu-btn" 
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label="Toggle Navigation Menu"
+                        >
                             <i className={`bi ${mobileMenuOpen ? 'bi-x-lg' : 'bi-list'}`}></i>
                         </button>
                     </div>
