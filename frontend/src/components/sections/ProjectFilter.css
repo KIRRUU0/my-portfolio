@@ -1,12 +1,11 @@
 .project-filter {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.5rem;
   justify-content: flex-end;
   background: var(--bg-card);
-  padding: 6px;
+  padding: 5px;
   border-radius: 50px;
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
   width: fit-content;
 }
 
@@ -14,17 +13,13 @@
   background: transparent;
   border: none;
   color: var(--text-secondary);
-  padding: 0.6rem 1.4rem;
+  padding: 0.5rem 1.1rem;
   border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 0.75rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   font-family: inherit;
-  position: relative;
-  overflow: hidden;
 }
 
 .filter-btn:hover {
@@ -35,7 +30,6 @@
 .filter-btn.active {
   background: var(--primary-color);
   color: var(--bg-primary);
-  box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 /* Responsive */
@@ -47,8 +41,8 @@
   }
   
   .filter-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
     flex: 1;
   }
 }

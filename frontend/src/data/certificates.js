@@ -8,7 +8,8 @@ export const certificates = [
     image_url: "/images/certificates/BNSP SKILL PASSPORT.jpg",
     description: "Sertifikat Skill Passport pada bidang Teknik Komputer dan Jaringan dari Badan Nasional Sertifikasi Profesi (BNSP).",
     credential_id: "0000098/611000/SKK/TKJ/LSP.HDY1/VII/2022",
-    credential_url: null
+    credential_url: null,
+    category: "national"
   },
   {
     id: 2,
@@ -18,7 +19,8 @@ export const certificates = [
     image_url: "/images/certificates/BNSP Teknik Komputer Jaringan.jpg",
     description: "Sertifikat Uji Kompetensi Keahlian KKNI Level II bidang Teknik Komputer dan Jaringan dari Badan Nasional Sertifikasi Profesi (BNSP).",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "national"
   },
   {
     id: 3,
@@ -28,7 +30,8 @@ export const certificates = [
     image_url: "/images/certificates/Gemastik.jpg",
     description: "Sertifikat kepesertaan dalam ajang kompetisi Pagelaran Mahasiswa Nasional Bidang Teknologi Informasi dan Komunikasi (GEMASTIK).",
     credential_id: "9229/4.07/UBSI/WR2/X/2022",
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 4,
@@ -38,7 +41,8 @@ export const certificates = [
     image_url: "/images/certificates/IBI K-57 FUN CUP GANDA PUTRA.png",
     description: "Turnamen Ganda Putra pada kegiatan kampus IBI Kosgoro 1957.",
     credential_id: "001/PerbanmasVol.2/UKMOlahraga/IBI-K57/V/2025",
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 5,
@@ -48,7 +52,8 @@ export const certificates = [
     image_url: "/images/certificates/IT Bootcamp Software Developmen.jpg",
     description: "Mengikuti IT Bootcamp dengan fokus pada pembimbingan dan pelatihan pengembangan situs web selama 2 hari. Berperan sebagai UI/UX Designer yang bertugas merancang antarmuka (UI) dan pengalaman pengguna (UX) bekerja sama dengan anggota tim lainnya.",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 6,
@@ -58,7 +63,8 @@ export const certificates = [
     image_url: "/images/certificates/MTCA.jpg",
     description: "having successfully completed the appropriate training and certification requirements, is hereby recognised as a MikroTik Certified Network Associate",
     credential_id: "2402NA5304",
-    credential_url: "https://mikrotik.com/certificates"
+    credential_url: "https://mikrotik.com/certificates",
+    category: "course"
   },
   {
     id: 7,
@@ -68,7 +74,8 @@ export const certificates = [
     image_url: "/images/certificates/PANITIA BSI FLASH SPORT COMPETITION KOTA DEPOK 2023.jpg",
     description: "Sertifikat kepanitiaan acara BSI Flash, bertugas sebagai Analyst Assistant yang bertanggung jawab mencatat data KDA (Kill, Death, Assist) dalam setiap pertandingan tim.",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 8,
@@ -78,7 +85,8 @@ export const certificates = [
     image_url: "/images/certificates/Seminar Entrepreneurship.jpg",
     description: "Sertifikat partisipasi Seminar Kewirausahaan 'Entrepreneurship For a Better Future' yang diselenggarakan oleh Universitas Bina Sarana Informatika.",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 9,
@@ -88,7 +96,8 @@ export const certificates = [
     image_url: "/images/certificates/Sertifikat Google Cloud.jpg",
     description: "Bootcamp ini memberikan tugas berkala di setiap pertemuan dengan pencapaian akhir berupa Nilai: 96.8 (Excellent), Google Career Launchpad: 100% dari 31 badge, dan tingkat Kehadiran: 75% (8 Pertemuan).",
     credential_id: "1969555850-717/MSD/BLSDM.2/DL.2/09/2024",
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 10,
@@ -98,7 +107,8 @@ export const certificates = [
     image_url: "/images/certificates/Sertifikat Intensive Camp - M Haekal Arrafi.jpg",
     description: "Pelatihan pemrograman Python dasar secara online yang mencakup konsep-konsep dasar pembangunan sistem menggunakan bahasa Python.",
     credential_id: "SSB16G018",
-    credential_url: "https://specialskill.id/sertifikat"
+    credential_url: "https://specialskill.id/sertifikat",
+    category: "course"
   },
   {
     id: 11,
@@ -108,7 +118,8 @@ export const certificates = [
     image_url: "/images/certificates/Sertifikat Introduction to Cloud and Artificial Intelligence Applications for Digital Business.jpg",
     description: "Bootcamp online yang mencakup pengerjaan tugas analisis data menggunakan Python di Google Cloud Platform, setara dengan 21 jam pelatihan.",
     credential_id: "1969555850-717/DEA/BLSDM.Kominfo/2024",
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 12,
@@ -118,7 +129,8 @@ export const certificates = [
     image_url: "/images/certificates/SERTIFIKAT MAGANG KELULUSAN MAGANG KERJA SORE.jpg",
     description: "Sertifikat penyelesaian magang selama 6 bulan sebagai Backend Developer menggunakan framework Laravel di PT Inspirasi Solusi Kreatif.",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 13,
@@ -128,7 +140,8 @@ export const certificates = [
     image_url: "/images/certificates/Sertifikat Microsoft Excel.jpg",
     description: "Bootcamp kilat Excel secara online yang mencakup penggunaan rumus dasar dan analisis data, dilengkapi dengan pengerjaan studi kasus berbasis proyek.",
     credential_id: "HSBK-EX/031/07/2025",
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 14,
@@ -138,7 +151,8 @@ export const certificates = [
     image_url: "/images/certificates/Sertifikat PCAP - Programming Essentials in Python.jpg",
     description: "Sertifikat kelulusan kursus dasar pemrograman Python standar industri dari Python Institute (PCAP: Programming Essentials in Python).",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 15,
@@ -148,7 +162,8 @@ export const certificates = [
     image_url: "/images/certificates/SERTIFIKAT ZAHIR Basis Data.jpg",
     description: "Workshop ini dilaksanakan di kampus Universitas Bina Sarana Informatika dengan rincian kegiatan: Workshop Sistem Basis Data (3 Jam), Mini Project Sistem Basis Data (5 Jam), dan Evaluasi Akhir (30 Menit).",
     credential_id: "19162/ZHR/WRk/II/2024",
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 16,
@@ -158,7 +173,8 @@ export const certificates = [
     image_url: "/images/certificates/Workshop IT Bootcamp.jpg",
     description: "Workshop intensif sebagai bagian dari IT Bootcamp Software Development di Universitas Bina Sarana Informatika.",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 17,
@@ -168,7 +184,8 @@ export const certificates = [
     image_url: "/images/certificates/Sertifikat Magang - Muhammad Haekal Arrafi Bali.jpg",
     description: "Sertifikat penyelesaian magang di klub sepak bola Bali United.",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "course"
   },
   {
     id: 18,
@@ -178,7 +195,8 @@ export const certificates = [
     image_url: "/images/certificates/ProgramBNSP.jpg",
     description: "Sertifikasi Kompetensi Kerja Nasional Indonesia bidang Pengembang Perangkat Lunak (Software Development) dengan Kualifikasi/Kompetensi Analis Program (Program Analyst).",
     credential_id: "62010 2514 0004214 2025 / No. Reg. TIK.1241.02969 2025",
-    credential_url: null
+    credential_url: null,
+    category: "national"
   },
   {
     id: 19,
@@ -188,6 +206,7 @@ export const certificates = [
     image_url: "/images/certificates/SertifikatDigitalBahasa.jpg",
     description: "Sertifikat resmi TOEFL Prediction Test dengan skor total 550 (Listening: 32, Structure & Written Expression: 67, Reading: 66) yang diterbitkan oleh Lembaga Bahasa Universitas Bina Sarana Informatika.",
     credential_id: null,
-    credential_url: null
+    credential_url: null,
+    category: "language"
   }
 ];

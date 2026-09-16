@@ -146,8 +146,24 @@ const Home = () => {
         });
       }
 
-      // --- Projects Section: Staggered card grid ---
+      // --- Projects Section: Spotlight & Staggered card grid ---
       if (projectsRef.current) {
+        const spotlightCard = projectsRef.current.querySelector('.project-spotlight-card');
+        if (spotlightCard) {
+          gsap.fromTo(spotlightCard,
+            { y: 30, opacity: 0 },
+            {
+              y: 0, opacity: 1,
+              duration: 0.5, ease: "power2.out",
+              scrollTrigger: {
+                trigger: projectsRef.current,
+                start: "top 85%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        }
+
         const projectCards = projectsRef.current.querySelectorAll('.project-card-3col');
         if (projectCards.length) {
           gsap.fromTo(projectCards,
