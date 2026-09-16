@@ -47,13 +47,13 @@ const MainLayout = () => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
 
-            // Active section detection for multi-section curtain layers (topmost layer priority)
-            const sections = ['contact', 'tech', 'certificates', 'experiences', 'projects', 'about', 'home'];
+            // Logic to determine active section
+            const sections = ['home', 'about', 'projects', 'experiences', 'certificates', 'tech', 'contact'];
             const current = sections.find(section => {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    return rect.top <= 120 && rect.bottom > 120;
+                    return rect.top <= 150 && rect.bottom >= 150;
                 }
                 return false;
             });

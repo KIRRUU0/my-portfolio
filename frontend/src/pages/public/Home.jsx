@@ -262,35 +262,6 @@ const Home = () => {
         }
       }
 
-      // --- Universal Parallax Curtain Scroll: Each section recedes subtly as next curtain ascends ---
-      const allSections = [
-        homeRef.current,
-        aboutRef.current,
-        projectsRef.current,
-        experiencesRef.current,
-        certificatesRef.current,
-        techRef.current,
-        contactRef.current
-      ].filter(Boolean);
-
-      allSections.forEach((section, index) => {
-        if (index < allSections.length - 1) {
-          const nextSection = allSections[index + 1];
-          gsap.to(section, {
-            opacity: 0.25,
-            scale: 0.96,
-            y: -35,
-            ease: "none",
-            scrollTrigger: {
-              trigger: nextSection,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
-            }
-          });
-        }
-      });
-
     }, 100);
 
     return () => {

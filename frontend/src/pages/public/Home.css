@@ -1,86 +1,16 @@
 .home {
-  position: relative;
-  width: 100%;
+  padding: 0 1rem 6rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* ===== UNIVERSAL PARALLAX CURTAIN SHEETS ===== */
 section {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  min-height: 100vh;
-  background: var(--bg-primary);
-  scroll-margin-top: 0;
-  box-sizing: border-box;
-  transform-origin: center top;
-  will-change: transform, opacity;
-}
-
-/* Progressive Z-Index & Curtain Top Borders */
-.hero-section {
-  z-index: 1;
-}
-
-.about-section {
-  z-index: 2;
-  border-top-left-radius: 36px;
-  border-top-right-radius: 36px;
-  border-top: 1px solid var(--border-color);
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.25), 0 -4px 16px var(--shadow-color);
-  padding: 5rem 1.5rem 6rem 1.5rem;
-}
-
-.projects-section {
-  z-index: 3;
-  border-top-left-radius: 36px;
-  border-top-right-radius: 36px;
-  border-top: 1px solid var(--border-color);
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.25), 0 -4px 16px var(--shadow-color);
-  padding: 5rem 1.5rem 6rem 1.5rem;
-}
-
-.experiences-section {
-  z-index: 4;
-  border-top-left-radius: 36px;
-  border-top-right-radius: 36px;
-  border-top: 1px solid var(--border-color);
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.25), 0 -4px 16px var(--shadow-color);
-  padding: 5rem 1.5rem 6rem 1.5rem;
-}
-
-.certificates-section {
-  z-index: 5;
-  border-top-left-radius: 36px;
-  border-top-right-radius: 36px;
-  border-top: 1px solid var(--border-color);
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.25), 0 -4px 16px var(--shadow-color);
-  padding: 5rem 1.5rem 6rem 1.5rem;
-}
-
-.tech-section {
-  z-index: 6;
-  border-top-left-radius: 36px;
-  border-top-right-radius: 36px;
-  border-top: 1px solid var(--border-color);
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.25), 0 -4px 16px var(--shadow-color);
-  padding: 5rem 1.5rem 6rem 1.5rem;
-}
-
-.contact-section {
-  z-index: 7;
-  border-top-left-radius: 36px;
-  border-top-right-radius: 36px;
-  border-top: 1px solid var(--border-color);
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.25), 0 -4px 16px var(--shadow-color);
-  padding: 5rem 1.5rem 8rem 1.5rem;
+  scroll-margin-top: 80px;
 }
 
 /* ===== SECTION HEADER ===== */
 .section-header {
   margin-bottom: 3rem;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .section-title {
@@ -109,16 +39,8 @@ section {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .about-section,
-  .projects-section,
-  .experiences-section,
-  .certificates-section,
-  .tech-section,
-  .contact-section {
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
-    box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.2);
-    padding: 3.5rem 1rem 5rem 1rem;
+  .home {
+    padding: 0 1rem 4rem 1rem;
   }
 
   .section-title {
