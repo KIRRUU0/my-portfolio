@@ -261,6 +261,35 @@ const Home = () => {
           );
         }
       }
+
+      // --- Section Layered Depth: Scale-down & Fade Exit on Scroll ---
+      const allSections = [
+        homeRef.current,
+        aboutRef.current,
+        projectsRef.current,
+        experiencesRef.current,
+        certificatesRef.current,
+        techRef.current,
+        contactRef.current
+      ].filter(Boolean);
+
+      allSections.forEach((section, index) => {
+        // Apply exit animation to each section so it retreats backwards and dims as the next section covers it
+        if (index < allSections.length - 1) {
+          gsap.to(section, {
+            scale: 0.94,
+            opacity: 0.35,
+            y: -30,
+            ease: "power1.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+            }
+          });
+        }
+      });
     }, 100);
 
     return () => {

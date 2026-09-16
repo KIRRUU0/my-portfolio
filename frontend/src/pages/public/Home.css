@@ -2,13 +2,25 @@
   padding: 2rem 0;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
-/* Sections */
+/* Sections Layering and Depth Stacking */
 section {
   margin-bottom: 8rem;
   scroll-margin-top: 80px;
+  position: relative;
+  transform-origin: center top;
+  will-change: transform, opacity;
 }
+
+.hero-section { z-index: 1; }
+.about-section { z-index: 2; }
+.projects-section { z-index: 3; }
+.experiences-section { z-index: 4; }
+.certificates-section { z-index: 5; }
+.tech-section { z-index: 6; }
+.contact-section { z-index: 7; }
 
 section:last-child {
   margin-bottom: 2rem;
