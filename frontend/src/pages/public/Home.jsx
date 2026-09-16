@@ -262,34 +262,6 @@ const Home = () => {
         }
       }
 
-      // --- Stacking Card Deck Effect: Section retreats & dims precisely as nextSection covers it ---
-      const allSections = [
-        homeRef.current,
-        aboutRef.current,
-        projectsRef.current,
-        experiencesRef.current,
-        certificatesRef.current,
-        techRef.current,
-        contactRef.current
-      ].filter(Boolean);
-
-      allSections.forEach((section, index) => {
-        if (index < allSections.length - 1) {
-          const nextSection = allSections[index + 1];
-          gsap.to(section, {
-            scale: 0.93,
-            opacity: 0.35,
-            y: -20,
-            ease: "none",
-            scrollTrigger: {
-              trigger: nextSection,
-              start: "top 95%",
-              end: "top 80px",
-              scrub: true,
-            }
-          });
-        }
-      });
     }, 100);
 
     return () => {

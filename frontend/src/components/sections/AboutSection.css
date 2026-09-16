@@ -1,6 +1,7 @@
 /* Bento Grid Layout */
 .about-section {
-  width: 100%;
+  margin-bottom: 6rem;
+  padding: 3rem 0;
 }
 
 .about-section-header {

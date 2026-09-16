@@ -1,62 +1,11 @@
 .home {
-  padding: 1.5rem 1rem 8rem 1rem;
-  max-width: 1240px;
+  padding: 0 1rem 6rem 1rem;
+  max-width: 1200px;
   margin: 0 auto;
-  position: relative;
 }
 
-/* ===== STACKING CARDS (DECK EFFECT) ===== */
 section {
-  position: sticky;
-  top: 80px;
-  margin-bottom: 18vh;
   scroll-margin-top: 80px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 28px;
-  padding: 3.5rem 2.5rem;
-  box-shadow: 0 -10px 35px var(--shadow-color);
-  transform-origin: center top;
-  will-change: transform, opacity;
-  overflow: hidden;
-}
-
-/* Progressive Z-Index Stacking */
-.hero-section {
-  z-index: 1;
-  min-height: calc(85vh - 80px);
-  padding: 4rem 2.5rem;
-  display: flex;
-  align-items: center;
-}
-
-.about-section {
-  z-index: 2;
-}
-
-.projects-section {
-  z-index: 3;
-}
-
-.experiences-section {
-  z-index: 4;
-}
-
-.certificates-section {
-  z-index: 5;
-}
-
-.tech-section {
-  z-index: 6;
-}
-
-.contact-section {
-  z-index: 7;
-  margin-bottom: 3rem;
-}
-
-section:last-child {
-  margin-bottom: 3rem;
 }
 
 /* ===== SECTION HEADER ===== */
@@ -89,27 +38,9 @@ section:last-child {
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  section {
-    padding: 3rem 2rem;
-  }
-}
-
 @media (max-width: 768px) {
   .home {
-    padding: 1rem 0.75rem 6rem 0.75rem;
-  }
-
-  section {
-    top: 70px;
-    padding: 2.25rem 1.25rem;
-    border-radius: 20px;
-    margin-bottom: 12vh;
-  }
-
-  .hero-section {
-    min-height: auto;
-    padding: 3rem 1.25rem;
+    padding: 0 1rem 4rem 1rem;
   }
 
   .section-title {
