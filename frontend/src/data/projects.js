@@ -256,5 +256,27 @@ export const projects = [
     views : 0,
     created_at : "2026-08-17T00:00:00Z",
     categories : ["design"]
+  },
+  {
+    id: 13,
+    title: "Landing Page RPM Consult",
+    slug: "landing-page-rpm-consult",
+    description: "Website company profile modern dan responsif untuk PT Raka Pradipta Mahawira (RPM Consult), sebuah firma konsultan terintegrasi di bidang perpajakan, hukum bisnis, dan akuntansi.",
+    content: "Dibangun menggunakan React 19 dan Tailwind CSS untuk performa tinggi dan interaksi visual yang halus, serta diintegrasikan dengan REST API berbasis PHP & MySQL untuk pengelolaan data tim dan klien secara dinamis.",
+    image_url: "/images/project/rpm_consult/foto3.jpeg",
+    images: [
+      "/images/project/rpm_consult/foto3.jpeg",
+      "/images/project/rpm_consult/foto2.jpeg",
+      "/images/project/rpm_consult/foto1.jpeg",
+    ],
+    tech_stack: ["React", "Vite", "Tailwind CSS", "JavaScript", "PHP", "MySQL", "Framer Motion", "cPanel"],
+    github_link: "https://github.com/KIRRUU0/rpm-consult.git",
+    live_link: "https://rpm-consult.com",
+    desain_link: null,
+    featured: true,
+    status: "published",
+    views: 0,
+    created_at: "2026-10-02T00:00:00Z",
+    categories: ["fullstack"]
   }
 ];
