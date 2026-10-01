@@ -266,8 +266,8 @@ export const projects = [
     image_url: "/images/project/rpm_consult/foto3.jpeg",
     images: [
       "/images/project/rpm_consult/foto3.jpeg",
-      "/images/project/rpm_consult/foto2.jpeg",
       "/images/project/rpm_consult/foto1.jpeg",
+      "/images/project/rpm_consult/foto2.jpeg",
     ],
     tech_stack: ["React", "Vite", "Tailwind CSS", "JavaScript", "PHP", "MySQL", "Framer Motion", "cPanel"],
     github_link: "https://github.com/KIRRUU0/rpm-consult.git",
