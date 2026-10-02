@@ -24,7 +24,7 @@ const MainLayout = () => {
             certificates: 'Certificates',
             tech: 'Tech Stack',
             contact: 'Contact',
-            copyright: '© 2026 M. Haekal Arrafi'
+            copyright: '© 2026 Kirru'
         },
         id: {
             home: 'Home',
@@ -34,7 +34,7 @@ const MainLayout = () => {
             certificates: 'Sertifikat',
             tech: 'Teknologi',
             contact: 'Kontak',
-            copyright: '© 2026 M. Haekal Arrafi'
+            copyright: '© 2026 Kirru'
         }
     };
 
@@ -170,7 +170,7 @@ const MainLayout = () => {
                         <a href="https://linkedin.com/in/muhammadhaekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
                             <i className="bi bi-linkedin"></i>
                         </a>
-                        <a href="https://github.com/haekalarrafi" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
+                        <a href="https://github.com/KIRRUU0" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
                             <i className="bi bi-github"></i>
                         </a>
                         <a href="mailto:haekalarrafi24@gmail.com" className="social-icon" aria-label="Email">

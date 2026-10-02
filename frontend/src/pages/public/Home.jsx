@@ -362,8 +362,8 @@ const Home = () => {
   return (
     <div className="home">
       <Helmet>
-        <title>Portfolio | Haekal Arrafi</title>
-        <meta name="description" content="Portfolio of Haekal Arrafi, a Frontend Developer and UI/UX Designer showcasing projects, experiences, and certificates." />
+        <title>Portfolio | Kirru</title>
+        <meta name="description" content="Portfolio of Kirru, a Fullstack Developer and UI/UX Designer showcasing projects, experiences, and certificates." />
       </Helmet>
 
       {/* Fixed Hero Section in Background */}

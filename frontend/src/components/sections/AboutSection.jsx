@@ -44,10 +44,10 @@ const AboutSection = ({ aboutRef, expYears, projectCount, techCount }) => {
         {/* Card 1: Portrait & Intro */}
         <div className="bento-card portrait-card">
           <div className="portrait-image-wrapper">
-            <img src="/images/profile.jpeg" alt="Muhammad Haekal Arrafi" className="portrait-photo" />
+            <img src="/images/profile.jpeg" alt="Kirru" className="portrait-photo" />
           </div>
           <div className="portrait-info">
-            <h3 className="portrait-name">M. Haekal Arrafi</h3>
+            <h3 className="portrait-name">Kirru</h3>
             <p className="portrait-role">{text.role}</p>
           </div>
         </div>

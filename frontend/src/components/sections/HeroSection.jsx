@@ -9,14 +9,14 @@ const HeroSection = ({ homeRef }) => {
 
   const t = {
     en: {
-      greeting: "Hello, I'm Haekal",
+      greeting: "Hello, I'm Kirru",
       role: "Fullstack Developer & UI/UX Designer",
       description: "Developing robust backend systems and intuitive digital experiences. Specializing in Laravel, React, Tailwind, and modern UI/UX design.",
       ctaPrimary: "View Projects",
       ctaSecondary: "Contact Me"
     },
     id: {
-      greeting: "Halo, Saya Haekal",
+      greeting: "Halo, Saya Kirru",
       role: "Fullstack Developer & UI/UX Designer",
       description: "Mengembangkan sistem backend yang handal dan pengalaman digital yang intuitif. Memiliki spesialisasi dalam Laravel, React, Tailwind, dan desain UI/UX.",
       ctaPrimary: "Lihat Proyek",

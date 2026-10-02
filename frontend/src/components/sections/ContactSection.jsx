@@ -49,7 +49,7 @@ const ContactSection = ({ contactRef }) => {
       id: 'linkedin',
       icon: <i className="bi bi-linkedin"></i>,
       label: text.linkedin,
-      value: 'M Haekal Arrafi',
+      value: 'Kirru',
       link: 'https://www.linkedin.com/in/muhammad-haekal-arrafi-961991282',
       copyable: false
     },
